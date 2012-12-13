@@ -14,6 +14,6 @@ public class DSS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // O rei esteve aqui!
     }
 }
