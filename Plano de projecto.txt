@@ -1,0 +1,4 @@
+1- desenvolver o modelo de dominio - tarefa conjunta
+2- desenvolver diagrama de use-cases - tarefa conjunta
+3- especificação textual de use-cases e desenvolvimento de diagramas de sequencia - aa distribuir pelos elementos do grupo
+
