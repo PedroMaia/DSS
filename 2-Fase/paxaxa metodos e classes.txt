@@ -46,3 +46,22 @@ o metodo classifica recebe o id do user a classificar e a classificação a lhe se
  a variavel de instancia classif(é um set logo o resultado é void) para o valor do resultado da função media;
 o metodo getID vai buscar a variavel de instancia ID da classe User;
 o metodo private media vai calcular o novo valor fazendo a media do valor guardado e da nova classificação e incrementa o numero de classificadores.
+
+
+Pesquisa por palvra chave e categoria
+
+classe User
+variaveis instancia::                                           
+string id;
+metodo::::
+pesquisa(palchave:String,categ:String,listprod:list<?>):list<?>
+o metodo pesquisa vai procurar produtos na lista, atraves de uma palavra chave e categoria do produto(uma destas pode ser nula).
+
+Classe BuyKing
+variaveis instancia:::
+list<?> produtos;
+metodos:::
+-isAtivo(idProduto:String)boolean;
+-addlist(p:produto,list<?> lprodutos)list<?>:lprodutos;
+o metodo isAtivo: verifica se o produto está ativo ou inativo, o resultado é true se ativo e false se inativo.
+o metodo addlist adiciona um produto que satisfaz a pesquisa à lista de resultados.
