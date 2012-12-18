@@ -1,0 +1,48 @@
+reportar produto suspeito:::
+
+classe User:::
+variaveis instancia::                                           
+string id
+list<?> lprodutos;
+
+metodos::
++getID():id:String
++reporta(p:produto,id.User,just:String):boolean
+Descrição metodos::::::
+o metdo reporta: reporta o utilizador rebe como parametros o id do user a reportar, o produto que quer reportar e a justificação. 
+o metodo getID vai buscar a variavel de instancia ID da classe User.
+
+Classe Produto::::
+variaveis instancia::::
+string id;
+metodos::::
+descrição metodos::::
+
+
+
+
+Classifica Utilizador
+
+Classe Produto::::
+variaveis instancia::::
+string id;
+metodos::::
+descrição metodos::::
+
+
+
+classe User:::
+variaveis instancia::                                           
+string id;
+int classificaçãoAtual;
+int numClassificadores;
+list<?> lprodutos;
+metodos::
++getID():id:String
++classifica(id:User,class:int):void
+-media(classific:int,classificnova:int,nclassif :int)int
+Descrição metodos::::::
+o metodo classifica recebe o id do user a classificar e a classificação a lhe ser atribuida e vai alterar
+ a variavel de instancia classif(é um set logo o resultado é void) para o valor do resultado da função media;
+o metodo getID vai buscar a variavel de instancia ID da classe User;
+o metodo private media vai calcular o novo valor fazendo a media do valor guardado e da nova classificação e incrementa o numero de classificadores.
