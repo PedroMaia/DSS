@@ -48,3 +48,7 @@ pode apenas ser o constructor da classe produto.
 
 
 
+Substitui no insere produto aqueles campos todos apenas por produto
+A contruçao fazes com o construtor de produto
+
+Na troca o que forneces é o id do produto e não o nome
