@@ -1,0 +1,18 @@
+--Venda--
+pago:boolean
+dataLimitePagamento:Data
+confirmaPagamento():boolean
+registaComprador():
+cancelaVenda():
+concluiVenda():
+
+--Utilizador--
+compra(v:Venda)
+licitar(l:Leilao, v:int)
+adicionaProduto(p:Produto)
+removeProduto(p:Produto)
+
+--Leilao--
+registaLicitação(l:Leilao,v:int)
+concluiLeilão()
+fechado():boolean
