@@ -1,0 +1,50 @@
+
+Class:
+.Produto
+.Data
+.User
+.Estado (Será usada para classe do User e para o Produto:Podendo ser omitida)
+.Vender
+.Leilão
+.Troca
+(?).Descricao(Pode ser uma class que tem a foto, a data, a descriçao em promenor!)
+
+
++insereProduto(nomeProduto:String,descricao:(?),idVendedor:String,dataEntrada:Data):Produto;
+//Método que insere Produto, na Lista de produtos de um utilizador.Retorna produto, 
+pode apenas ser o constructor da classe produto.
+
+----Vender---
++colocarAvender(produto:Produto,dataEntrada:Data,preco:int):boolean;
+
++retiraProdutoVenda(nomeProduto:String):boolean;
+//retira o produto de estar à venda, mas não retira da lista de produtos!
+
++modificarProdutoVenda(idProduto:String,descricao:(?),novopreco:int,dataActual:data);
+
++emVenda(Idproduto:Produto):boolean;
+//testa se o produto se enconte à venda!
+
++estadoProduto():boolean
+//true caso esteja ACTIVO , false INACTIVO.
+
+
+----Troca-----
++TrocaProdutos(user1:String,user2:String,nomeProduto1:String,nomeProduto2:String):boolean;
+//boolean se a toca foi efectuada com sucesso.
++estadoUser():boolean.
++estadoProduto():boolean
+//true caso esteja ACTIVO , false INACTIVO.
+
+---Leilão---
++colocarEmLeilao(produto:Produto,dataEntrada:Data,dataLimite:Data,precoBase:int,precoTecto:int):boolean;
++retirarDeLeilao(Idproduto:String):boolean;
++emLeilao(idProduto:Produto):boolean;
++alteraDataLimite(IdProduto:String,novaData:Data);
+
+---Aceitar Proposta de Troca
+---Confirma envio de produto
+
+
+
+
