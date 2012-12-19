@@ -65,3 +65,9 @@ metodos:::
 -addlist(p:produto,list<?> lprodutos)list<?>:lprodutos;
 o metodo isAtivo: verifica se o produto está ativo ou inativo, o resultado é true se ativo e false se inativo.
 o metodo addlist adiciona um produto que satisfaz a pesquisa à lista de resultados.
+
+
+
+na pesquisa a classe BuyKing já tem a lista de produtos, nao precisa ser argumento da função.
+O metodo addList não faz muito sentido porque dentro da pesquisa se obedece as restições da pesquisa fazes logo list.add()
+de resto bom trabalho

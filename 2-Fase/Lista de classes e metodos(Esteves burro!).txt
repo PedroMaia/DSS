@@ -1,10 +1,11 @@
 --Venda--
 pago:boolean
 dataLimitePagamento:Data
-confirmaPagamento():boolean
+confirmaPagamento()-- executado pelo administrador
+confirmaEnvioProduto()-- executado pelo administrador
 registaComprador():
 cancelaVenda():
-concluiVenda():
+
 
 --Utilizador--
 compra(v:Venda)
@@ -14,5 +15,10 @@ removeProduto(p:Produto)
 
 --Leilao--
 registaLicitação(l:Leilao,v:int)
-concluiLeilão()
+concluiLeilão()-- executado pelo administrador
 fechado():boolean
+pago:boolean
+dataLimitePagamento:Data
+dataFecho:Data
+confirmaPagamento()-- executado pelo administrador
+confirmaEnvioProduto()-- executado pelo administrador

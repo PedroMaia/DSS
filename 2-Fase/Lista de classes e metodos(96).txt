@@ -12,3 +12,7 @@ produto
 listaprodutos (p:produto)
 encontrou : boolean
 naoencontrou: boolean
+
+
+ISTO ESTÁ MUITO FRACO
+PRECISA MAIS DETALHE E ALGUMA EXPLICAÇÃO
