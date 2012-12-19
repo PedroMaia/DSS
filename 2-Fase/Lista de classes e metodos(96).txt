@@ -1,0 +1,14 @@
+--Adicionar wishlist--
+produto 
+listaprodutos (p:produto)
+confirma :boolean
+
+--Login--
+listaUsers(uuser)
+user()  
+
+--Pesquisar produto--
+produto 
+listaprodutos (p:produto)
+encontrou : boolean
+naoencontrou: boolean
