@@ -114,7 +114,7 @@ public class mainmenu extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList2);
 
-        sugest.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 70));
+        sugest.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 250, 70));
 
         getContentPane().add(sugest, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 280, 130));
 
