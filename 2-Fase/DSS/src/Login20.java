@@ -36,8 +36,6 @@ public class Login20 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LogIn");
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(400, 200));
-        setPreferredSize(new java.awt.Dimension(400, 220));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
