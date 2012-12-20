@@ -1,18 +1,24 @@
---Adicionar wishlist--
-produto 
-listaprodutos (p:produto)
+--ADICIONAR WISHLIST--
+produto () ---- Entrem todos os dados relativos ao produto 
+wishtlist (p:produto) ---- não sei qual  a melhor forma de ordenar a wishlist se por data (sendo assim tem que se colocar uma data)
+ , se por classificação do p+roduto ou se por ordem decrescente(pelo ultimo a ser adicionado)
 confirma :boolean
 
---Login--
-listaUsers(uuser)
-user()  
 
---Pesquisar produto--
-produto 
-listaprodutos (p:produto)
-encontrou : boolean
-naoencontrou: boolean
+--LOGIN--
+listaUsers(u:user)
+user(e:email, pass:password)  
+
+Efectua o login sempre atraves do email e da palavra pass
 
 
-ISTO ESTÁ MUITO FRACO
-PRECISA MAIS DETALHE E ALGUMA EXPLICAÇÃO
+--REGISTAR--
+nome : string
+email: string
+password: string ????
+foto : ???
+descvriçãouser (A DECIDIR)
+confirmadados () -- executado pelo sistema (confirma pass email e nome de utilizador, email e nome de utilizador nao podem haver dois iguais)
+confirmauser () -- executado pelo administrador (envia um email a confirmar a criação da conta)
+
+--PEDIR SUGESTÕES--
