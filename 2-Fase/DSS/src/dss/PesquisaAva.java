@@ -50,14 +50,14 @@ public class PesquisaAva extends javax.swing.JPanel {
         });
         pesquisaAvan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Pesquisa");
-        pesquisaAvan.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 20));
+        jLabel1.setText("Pesquisa:");
+        pesquisaAvan.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 50, 30));
 
         jTextField1.setText("Nome do Produto");
-        pesquisaAvan.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 150, -1));
+        pesquisaAvan.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 160, 30));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
-        pesquisaAvan.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 80, -1));
+        pesquisaAvan.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 90, 30));
 
         jButton1.setText("OK");
         pesquisaAvan.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 60, -1));
