@@ -43,6 +43,8 @@ public class PesquisaAva extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         pesquisaAvan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pesquisaAvanFocusGained(evt);
@@ -98,22 +100,7 @@ public class PesquisaAva extends javax.swing.JPanel {
         jTextField4.setText("aaaa/mm/dd");
         pesquisaAvan.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 110, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pesquisaAvan, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pesquisaAvan, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(pesquisaAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 380, 348));
     }// </editor-fold>//GEN-END:initComponents
 
     private void pesquisaAvanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pesquisaAvanFocusGained
