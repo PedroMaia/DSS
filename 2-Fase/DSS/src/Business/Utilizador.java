@@ -39,7 +39,7 @@ public class Utilizador {
         _meusProds.remove(aP);
     }
 
-    public boolean reporta(Produto aP, String aUsername, String aJust) {
+    public Suspeita reporta(Produto aP, String aUsername, String aJust) {
         throw new UnsupportedOperationException();
     }
 
