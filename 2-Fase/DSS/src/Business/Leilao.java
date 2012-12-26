@@ -10,7 +10,7 @@ public class Leilao {
 	private int _base;
 	private int _tecto;
 	private boolean _prodEnviado;
-	public Produto _unnamed_Produto_;
+	public Produto p;
 
 	public void registaLicitacao(Utilizador aU, int aV) {
 		throw new UnsupportedOperationException();
