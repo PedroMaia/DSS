@@ -136,7 +136,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Em Viagem"));
 
-        jScrollPane1.setName("");
+        jScrollPane1.setName(""); // NOI18N
 
         jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -183,7 +183,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
                         .addGap(178, 178, 178))
                     .addGroup(jPanelComprasLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelComprasLayout.setVerticalGroup(
             jPanelComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
