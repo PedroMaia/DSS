@@ -8,7 +8,7 @@ public class BuyKing {
 	public Map<String,Utilizador> _utilizadores;
 	public List<Venda> _vendas = new ArrayList<Venda>();
 	public List<Leilao> _leiloes = new ArrayList<Leilao>();
-	public Suspeita _unnamed_Suspeita_;
+	public List<Suspeita> _unnamed_Suspeita_;
 	public Troca _unnamed_Troca_;
 	public Produto _produtos;
 
@@ -16,11 +16,14 @@ public class BuyKing {
 		throw new UnsupportedOperationException();
 	}
 
-	public void operation() {
-		throw new UnsupportedOperationException();
-	}
+	
 
 	public void login(String aUsername, String aPassword) {
 		throw new UnsupportedOperationException();
 	}
+        
+        public void registar()
+        {
+            throw new UnsupportedOperationException();
+        }
 }

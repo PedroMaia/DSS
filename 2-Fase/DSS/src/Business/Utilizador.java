@@ -38,7 +38,7 @@ public class Utilizador {
 		throw new UnsupportedOperationException();
 	}
 
-	public void classifica(String aUsername, int aClassificacao) {
+	public void classifica(Utilizador classificado, int aClassificacao) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -49,4 +49,9 @@ public class Utilizador {
 	public void leiloar(Produto aP, int aBase, int aTecto) {
 		throw new UnsupportedOperationException();
 	}
+        
+        public int getClassificacao()
+        {
+            throw new UnsupportedOperationException();
+        }
 }
