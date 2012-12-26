@@ -1,10 +1,11 @@
 package Business;
 
 public class Troca {
-	private String _prop;
-	private String _convidado;
-	private int _pidDesejado;
-	private int _pidOferta;
-	
+	private Utilizador _prop;
+	private Utilizador _convidado;
+	private Produto desejado;
+	private Produto oferta;
+	boolean aceite;
+        boolean concluido;
 	
 }

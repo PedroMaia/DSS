@@ -3,7 +3,7 @@ package Business;
 import java.util.GregorianCalendar;
 
 public class Leilao {
-	private boolean _fechado;
+	
 	private GregorianCalendar _dataFecho;
 	private GregorianCalendar _dataLimitePagamento;
 	private boolean _pago;
@@ -16,7 +16,12 @@ public class Leilao {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean getFechado() {
-		return this._fechado;
+	public boolean fechado() {
+		GregorianCalendar hoje = new GregorianCalendar();
+                return hoje.after(this._dataFecho);
 	}
+        
+        public void regrideLeilao() {
+            throw new UnsupportedOperationException();
+        }
 }
