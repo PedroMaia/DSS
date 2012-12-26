@@ -7,7 +7,9 @@ public class Venda {
 	private boolean _pago;
 	private GregorianCalendar _dataLimitePagamento;
 	private boolean _prodEnviado;
-	public Produto _produto;
+	private Produto _produto;
+        private Utilizador vendedor;
+        private Utilizador comprador;
 
 	public void registaComprador(Object aUtilizador_u) {
 		throw new UnsupportedOperationException();
