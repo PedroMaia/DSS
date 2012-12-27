@@ -6,4 +6,6 @@ public class Produto {
 	private int _id;
 	private String _nome;
 	private BufferedImage _imagem;
+        
+        
 }
