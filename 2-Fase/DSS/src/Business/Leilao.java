@@ -1,6 +1,7 @@
 package Business;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Leilao {
 	
@@ -10,10 +11,15 @@ public class Leilao {
 	private int _base;
 	private int _tecto;
 	private boolean _prodEnviado;
-	public Produto _unnamed_Produto_;
+	private Produto p;
+        private List<Licitacao> licitacoes;
 
-	public void registaLicitacao(Utilizador aU, int aV) {
-		throw new UnsupportedOperationException();
+	public void registaLicitacao(Utilizador aU, int aV) throws LeilaoFechadoException, BaixaLicitacaoException {
+		//throw new UnsupportedOperationException();
+            if(fechado()) throw new LeilaoFechadoException();
+            if (aV<getUltimaLicitacao()) throw new BaixaLicitacaoException();
+            Licitacao l = new Licitacao(aU,aV);
+            licitacoes.add(l);
 	}
 
 	public boolean fechado() {
@@ -23,5 +29,10 @@ public class Leilao {
         
         public void regrideLeilao() {
             throw new UnsupportedOperationException();
+        }
+        
+        public int getUltimaLicitacao()
+        {
+            return licitacoes.get(licitacoes.size()).getValor();
         }
 }

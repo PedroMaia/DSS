@@ -15,8 +15,8 @@ public class BuyKing {
     private List<Venda> _vendas = new ArrayList<Venda>();
     private List<Leilao> _leiloes = new ArrayList<Leilao>();
     private List<Suspeita> _suspeitas_;
-    private Troca _unnamed_Troca_;
-    private Produto _produtos;
+    private List<Troca> _trocas_;
+    private List<Produto> _produtos;
 
     public List<Produto> pesquisaProduto(String aPchave, String aCat) {
         throw new UnsupportedOperationException();
