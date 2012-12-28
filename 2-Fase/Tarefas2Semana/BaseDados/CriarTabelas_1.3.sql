@@ -12,7 +12,7 @@
 
 		
 CREATE TABLE Utilizador(
-  usr VARCHAR2(20) NOT NULL,--user name
+  usr VARCHAR2(20),--user name
   pw VARCHAR2(30) NOT NULL,--password
   e VARCHAR2(30) NOT NULL,--email
   lcp VARCHAR2(100) NOT NULL,--localidade e codPostal
