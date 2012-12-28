@@ -1,5 +1,13 @@
 package Business;
 
+import Data.ClassificacaoDAO;
+import Data.FavoritosDAO;
+import Data.LeiloesDAO;
+import Data.ProdutosDAO;
+import Data.TrocasDAO;
+import Data.VendasDAO;
+import java.awt.image.BufferedImage;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -7,36 +15,74 @@ public class Utilizador {
 
     private String _username;
     private String _passmd5;
+    private String email;
+    private GregorianCalendar dataNascimento;
+    private BufferedImage imagem;
+    private ClassificacaoDAO _classificacao;
+    private ProdutosDAO _meusProds;
+    private FavoritosDAO _wishlist;
+    private VendasDAO minhasVendas;
+    private LeiloesDAO meusLeiloes;
+    private TrocasDAO minhasTrocas;
+    
+    public Utilizador(String name, String pass, String mail, GregorianCalendar dN, BufferedImage i)
+    {
+        _username=name;
+        _passmd5=BuyKing.md5crypt(pass);
+        email=mail;
+        dataNascimento= dN;
+        imagem=i;
+        _classificacao=new ClassificacaoDAO();
+        _meusProds = new ProdutosDAO();
+        _wishlist=new FavoritosDAO();
+        minhasVendas = new VendasDAO();
+        meusLeiloes=new LeiloesDAO();
+        minhasTrocas = new TrocasDAO();
+        
+    }
+
+    public String getUsername() {
+        return _username;
+    }
 
     public String getPassmd5() {
         return _passmd5;
     }
-    private Map<Utilizador, Integer> _classificacao;
-    private List<Produto> _meusProds;
-    private List<Produto> _wishlist;
-    private List<Venda> minhasVendas;
-    private List<Leilao> meusLeiloes;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public GregorianCalendar getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public BufferedImage getImagem() {
+        return imagem;
+    }
+    
+    
+    
+    
 
     public void compra(Venda aV) {
-        //throw new UnsupportedOperationException();
-        aV.registaComprador(this);
-        minhasVendas.add(aV);
+        throw new UnsupportedOperationException();
+        
     }
 
     public void licitar(Leilao aL, int aV) {
-        //throw new UnsupportedOperationException();
-        aL.registaLicitacao(this, aV);
-        meusLeiloes.add(aL);
+        throw new UnsupportedOperationException();
+       
     }
 
     public void addProduto(Produto aP) {
-        //throw new UnsupportedOperationException();
-        _meusProds.add(aP);
+        throw new UnsupportedOperationException();
+        
     }
 
     public void removeProduto(Produto aP) {
-        //throw new UnsupportedOperationException();
-        _meusProds.remove(aP);
+        throw new UnsupportedOperationException();
+        
     }
 
     public Suspeita reporta(Produto aP, String aUsername, String aJust) {
@@ -44,8 +90,8 @@ public class Utilizador {
     }
 
     public void classifica(Utilizador classificado, int aClassificacao) {
-        //throw new UnsupportedOperationException();
-        classificado._classificacao.put(this, aClassificacao);
+        throw new UnsupportedOperationException();
+        
     }
 
     public Venda vende(Produto aP) {
@@ -57,11 +103,7 @@ public class Utilizador {
     }
 
     public int getClassificacao() {
-        //throw new UnsupportedOperationException();
-        int c = 0;
-        for (int i : _classificacao.values()) {
-            c += i;
-        }
-        return c / _classificacao.size();
+        throw new UnsupportedOperationException();
+        
     }
 }

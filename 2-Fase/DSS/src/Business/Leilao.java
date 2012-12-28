@@ -13,13 +13,11 @@ public class Leilao {
 	private boolean _prodEnviado;
 	private Produto p;
         private List<Licitacao> licitacoes;
+        int id;
 
 	public void registaLicitacao(Utilizador aU, int aV) throws LeilaoFechadoException, BaixaLicitacaoException {
 		//throw new UnsupportedOperationException();
-            if(fechado()) throw new LeilaoFechadoException();
-            if (aV<getUltimaLicitacao()) throw new BaixaLicitacaoException();
-            Licitacao l = new Licitacao(aU,aV);
-            licitacoes.add(l);
+            
 	}
 
 	public boolean fechado() {
@@ -33,6 +31,6 @@ public class Leilao {
         
         public int getUltimaLicitacao()
         {
-            return licitacoes.get(licitacoes.size()).getValor();
+           
         }
 }

@@ -3,6 +3,7 @@ package Business;
 import java.util.GregorianCalendar;
 
 public class Venda {
+        int id;
 	private int _preco;
 	private boolean _pago;
 	private GregorianCalendar _dataLimitePagamento;
