@@ -41,6 +41,9 @@ public void setJust(String j){
     _just=j;
 }
 
+public Suspeita clone(){
+    return new Suspeita(this);
+}
 
 
 

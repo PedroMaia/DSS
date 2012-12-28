@@ -73,4 +73,9 @@ public void setResult(Boolean b){
 public void setConc(Boolean b){
     concluido = b;
 }
+
+public Troca clone(){
+    return new Troca(this);
+}
+
 }
