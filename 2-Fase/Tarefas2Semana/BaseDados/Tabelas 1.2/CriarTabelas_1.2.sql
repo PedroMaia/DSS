@@ -17,7 +17,8 @@ CREATE TABLE Utilizador(
   e VARCHAR2(30) NOT NULL,--email
   lc VARCHAR2(100) NOT NULL,--localidade
   cp VARCHAR2(10) NOT NULL,--cod-Postal
-  ddr DATE NOT NULL,--cod-Postal
+  dn DATE NOt NULL,--data nascimento
+  ddr DATE NOT NULL,--data de registo
   fu BLOB,--foto user
   PRIMARY KEY (usr)
 );
@@ -59,13 +60,13 @@ CREATE TABLE Produto(
 );
 
 -- ---
--- Table 'Vendas'
+-- Table 'Venda'
 -- 
 -- ---
 
 		
-CREATE TABLE Vendas(
-   idv NUMBER(10), --idvendas
+CREATE TABLE Venda(
+   idv NUMBER(10), --idVenda
    idp NUMBER(10) REFERENCES Produto(idp),--idproduto
    pr number(6,2),--preço produto
    cp VARCHAR2(20) DEFAULT NULL REFERENCES Utilizador(usr),--comprador 
@@ -77,15 +78,16 @@ CREATE TABLE Vendas(
 );
 
 -- ---
--- Table 'Favoritos'
+-- Table 'Favorito'
 -- 
 -- ---
 
 
 		
-CREATE TABLE Favoritos(
+CREATE TABLE Favorito(
   usr varchar2(20) REFERENCES Utilizador(usr),--username
   idp NUMBER(10) REFERENCES Produto(idp),--IDproduto 
+  daf DATE ,--data de adicionado a favorito
   PRIMARY KEY (usr,idp)
 );
 
@@ -107,7 +109,7 @@ CREATE TABLE Leilao(
   pb number(6,2),--Preço Base
   pml number(6,2),--PMLecitacao
   PRIMARY KEY (idl)
-)
+);
 
 -- ---
 -- Table 'Lecitacao'
@@ -141,6 +143,9 @@ CREATE TABLE PTroca(
   dpt DATE,--DataPropostaDeTroca
   PRIMARY KEY (usr1,idp1,usr2,idp2)
 );
+
+
+
 -- ---
 -- Table 'CasoSuspeito'
 -- 
@@ -164,7 +169,7 @@ increment by 1
 minvalue 1
 maxvalue 10000;
 
---que incrementa as IDvendas
+--que incrementa as IDVenda
 Create sequence Sidv
 start with 1
 increment by 1
@@ -178,33 +183,4 @@ start with 1
 increment by 1
 minvalue 1
 maxvalue 10000;
-
-
-
-
--- Test Data estou a fazer!!! não tirar de comentário!
--- ---
-
-
---Inserir um utilizador  
--- INSERT INTO Utilizador(usr,pw,e,lc,cp,ddr,fu) VALUES('maiarib','1234','maiarib@gmail.com','Ribeirao rua das Escolas','4702-407','');
--- INSERT INTO Utilizador(usr,pw,e,lc,cp,ddr,fu) VALUES('pfaria','12345','pfaria@gmail.com','Cu do mundo','4702-407','');
-
---inserir uma classificação
--- INSERT INTO Classificacao(cdono,cuser,va,dc) VALUES('maiarib','pfaria',4,to_date('2010-01-23','yyyy-mm-dd'));
-  
-  
--- INSERT INTO Produto (idp,np,imp,dp,dsp,ctg,di) VALUES(Sidp.nextval,'Telemovel','','maiarib','Em bom estado','COMUNICACOES',to_date('2010-01-23','yyyy-mm-dd'));
--- INSERT INTO `Vendas` (`idVenda`,`idProduto`,`Preço`,`Comprador`,`DataLimitePagamento`,`DataPagamento`,`DataInseridoAvenda`,`Vendedor`) VALUES
--- ('','','','','','','','');
--- INSERT INTO `Favoritos` (`UseName`,`IdProduto`) VALUES
--- ('','');
--- INSERT INTO `Leilão` (`IdLeilao`,`IdProduto`,`Leiloador`,`DataFecho`,`DataInsercao`,`PBase`,`PMLecitacao`,`Comprador`,`DataPagamento`) VALUES
--- ('','','','','','','','','');
--- INSERT INTO `Lecitacao` (`IdLeilao`,`UserLecitou`,`DataLecitacao`,`Valor`) VALUES
--- ('','','','');
--- INSERT INTO `PTroca` (`User1`,`IdProduto1`,`User2`,`IdProduto2`,`ConfirmaTroca`,`TrocaCSucesso`,`DataLimiteParaTroca`,`DataPropostaDeTroca`) VALUES
--- ('','','','','','','','');
--- INSERT INTO `CasoSuspeito` (`UserName`,`idProduto`,`JustificaSusp`) VALUES
--- ('','','');
 
