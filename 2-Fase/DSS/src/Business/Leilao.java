@@ -16,7 +16,8 @@ public class Leilao {
         int id;
 
 	public void registaLicitacao(Utilizador aU, int aV) throws LeilaoFechadoException, BaixaLicitacaoException {
-		//throw new UnsupportedOperationException();
+            Licitacao l = new Licitacao(aU,aV);
+            licitacoes.add(l.clone());
             
 	}
 
@@ -26,11 +27,13 @@ public class Leilao {
 	}
         
         public void regrideLeilao() {
-            throw new UnsupportedOperationException();
+            licitacoes.remove(licitacoes.size()-1);
         }
         
         public int getUltimaLicitacao()
         {
-           
+           Licitacao l = licitacoes.get(licitacoes.size()-1);
+           int i = l.getValor();
+           return i;
         }
 }

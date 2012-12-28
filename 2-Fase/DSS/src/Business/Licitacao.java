@@ -32,4 +32,18 @@ public class Licitacao {
     {
         return v;
     }
+    
+    public GregorianCalendar getData(){
+        return data;
+    }
+    
+    public Licitacao(Licitacao l){
+        u=l.getUser();
+        v=l.getValor();
+        data=l.getData();
+    }
+    
+    public Licitacao clone(){
+        return new Licitacao(this);
+    }
 }
