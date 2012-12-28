@@ -38,8 +38,6 @@ public final class Body extends javax.swing.JInternalFrame {
         jButtonpesquisa = new javax.swing.JButton();
         definicutilizador = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonKingArea = new javax.swing.JButton();
         jButtonAjuda = new javax.swing.JButton();
@@ -551,11 +549,13 @@ public final class Body extends javax.swing.JInternalFrame {
         hiperlig.setName("Produtos"); // NOI18N
         hiperlig.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButtonVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarVender.png"))); // NOI18N
         jButtonVender.setText("Vender");
-        hiperlig.add(jButtonVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
+        hiperlig.add(jButtonVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, 30));
 
+        jButtonLeiloar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarEmLeilão.png"))); // NOI18N
         jButtonLeiloar.setText("Leiloar");
-        hiperlig.add(jButtonLeiloar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 80, 30));
+        hiperlig.add(jButtonLeiloar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, 30));
 
         jButtonpesquisa.setText("Pesquisa");
         hiperlig.add(jButtonpesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 80, 30));
@@ -565,26 +565,7 @@ public final class Body extends javax.swing.JInternalFrame {
         definicutilizador.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
         definicutilizador.setName("Definições de Utilizador"); // NOI18N
 
-        jLabel3.setText("Utilizador");
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/12092_64x64.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(26, 26, 26))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/kingAvatar.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Menu do User ")));
 
@@ -638,25 +619,23 @@ public final class Body extends javax.swing.JInternalFrame {
         definicutilizadorLayout.setHorizontalGroup(
             definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(definicutilizadorLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(definicutilizadorLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(definicutilizadorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         definicutilizadorLayout.setVerticalGroup(
             definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(definicutilizadorLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(63, 63, 63)
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         getContentPane().add(definicutilizador, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 40, 190, -1));
@@ -680,13 +659,13 @@ public final class Body extends javax.swing.JInternalFrame {
         jPanelpesq.add(jLabelpesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 23, -1, -1));
 
         jTextpesq.setText("Nome do Produto");
-        jPanelpesq.add(jTextpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 20, 170, -1));
+        jPanelpesq.add(jTextpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 20, 170, 20));
 
         jComboBoxCateg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria" }));
-        jPanelpesq.add(jComboBoxCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 110, -1));
+        jPanelpesq.add(jComboBoxCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 110, 20));
 
         jButtonpesq.setText("Pesquisar");
-        jPanelpesq.add(jButtonpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 51, -1, -1));
+        jPanelpesq.add(jButtonpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 51, -1, 30));
 
         jListresultados.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -3087,7 +3066,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -3269,7 +3247,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JList jListresultados2;
     private javax.swing.JList jListresultados3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
