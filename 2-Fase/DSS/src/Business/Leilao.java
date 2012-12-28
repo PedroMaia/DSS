@@ -13,13 +13,12 @@ public class Leilao {
 	private boolean _prodEnviado;
 	private Produto p;
         private List<Licitacao> licitacoes;
+        int id;
 
 	public void registaLicitacao(Utilizador aU, int aV) throws LeilaoFechadoException, BaixaLicitacaoException {
-		//throw new UnsupportedOperationException();
-            if(fechado()) throw new LeilaoFechadoException();
-            if (aV<getUltimaLicitacao()) throw new BaixaLicitacaoException();
             Licitacao l = new Licitacao(aU,aV);
-            licitacoes.add(l);
+            licitacoes.add(l.clone());
+            
 	}
 
 	public boolean fechado() {
@@ -28,11 +27,13 @@ public class Leilao {
 	}
         
         public void regrideLeilao() {
-            throw new UnsupportedOperationException();
+            licitacoes.remove(licitacoes.size()-1);
         }
         
         public int getUltimaLicitacao()
         {
-            return licitacoes.get(licitacoes.size()).getValor();
+           Licitacao l = licitacoes.get(licitacoes.size()-1);
+           int i = l.getValor();
+           return i;
         }
 }
