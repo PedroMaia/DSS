@@ -13,10 +13,10 @@ import java.util.GregorianCalendar;
 public class Licitacao {
     
     private Utilizador u;
-    private int v;
+    private float v;
     private GregorianCalendar data;
     
-    public Licitacao(Utilizador user, int valor)
+    public Licitacao(Utilizador user, float valor)
     {
         u=user;
         v=valor;
@@ -28,7 +28,7 @@ public class Licitacao {
         return u;
     }
     
-    public int getValor()
+    public float getValor()
     {
         return v;
     }
