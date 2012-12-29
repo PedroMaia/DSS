@@ -13,8 +13,8 @@
 		
 CREATE TABLE Utilizador(
   usr VARCHAR2(20),--user name
-  pw VARCHAR2(30) NOT NULL,--password
-  e VARCHAR2(30) NOT NULL,--email
+  pw VARCHAR2(32) NOT NULL,--password
+  e VARCHAR2(30) NOT NULL UNIQUE,--email
   lcp VARCHAR2(100) NOT NULL,--localidade e codPostal
   dn DATE NOt NULL,--data nascimento
   ddr DATE NOT NULL,--data de registo
