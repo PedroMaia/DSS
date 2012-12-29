@@ -7,11 +7,14 @@ package Data;
 import Business.Utilizador;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -55,15 +58,18 @@ public class UserDAO {
             String name = rs.getString("usr");
             String pass= rs.getString("pw");
             String mail=rs.getString("e");
+            String loc=rs.getString("lcp");
             GregorianCalendar dN = new GregorianCalendar();
             dN.setTime(rs.getDate("ddr"));
+            GregorianCalendar dR = new GregorianCalendar();
+            dR.setTime(rs.getDate("ddr"));
             BufferedImage i = null;
             try {
                 i= ImageIO.read(new ByteArrayInputStream(rs.getBytes("fu")));
             } catch (IOException ex) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return new Utilizador(name, pass, mail, dN, i);
+            return new Utilizador(name, pass, mail, loc, dN, dR, i);
     }
     
     /**
@@ -91,6 +97,30 @@ public class UserDAO {
         s.setString(1, u.getUsername());
         s.setString(2, u.getPassmd5());
         s.setString(3, u.getEmail());
-        s.
+        s.setString(4, u.getLocalidade());
+        s.setDate(5, new Date(u.getDataNascimento().getTime().getDate()));
+        s.setDate(6, new Date(u.getDataRegisto().getTime().getTime()));
+        if(u.getImagem()==null) s.setNull(7, Types.BLOB);
+        else 
+        {
+            byte[] b;
+            ByteArrayOutputStream bytesImg = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(u.getImagem(), "jpg", bytesImg);
+                bytesImg.flush();
+            } catch (IOException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            b=bytesImg.toByteArray();
+            try {
+                bytesImg.close();
+            } catch (IOException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            s.setBytes(7,b);
+        }
+        int r=s.executeUpdate();
+        return (r>0);
     }
 }
