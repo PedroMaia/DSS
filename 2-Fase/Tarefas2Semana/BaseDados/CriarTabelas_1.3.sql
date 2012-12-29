@@ -69,8 +69,9 @@ CREATE TABLE Venda(
    idp NUMBER(10) REFERENCES Produto(idp),--idproduto
    pr number(6,2),--preço produto
    cp VARCHAR2(20) DEFAULT NULL REFERENCES Utilizador(usr),--comprador 
-   dlp DATE,--DataLimitePagamento
+   dlv DATE,--DataLimiteVenda
    dp DATE,--DataPagamento
+   dep DATE, --DataEnvioProduto
    div DATE,--DataInseridoAvenda
    vd VARCHAR2(20) REFERENCES Utilizador(usr),--vendedor
   PRIMARY KEY (idv)
@@ -86,7 +87,6 @@ CREATE TABLE Venda(
 CREATE TABLE Favorito(
   usr varchar2(20) REFERENCES Utilizador(usr),--username
   idp NUMBER(10) REFERENCES Produto(idp),--IDproduto 
-  daf DATE ,--data de adicionado a favorito
   PRIMARY KEY (usr,idp)
 );
 
@@ -102,7 +102,9 @@ CREATE TABLE Leilao(
   idp number(10) REFERENCES Produto(idp),--idproduto
   ul VARCHAR2(20) REFERENCES Utilizador(usr),--Leiloador
   cp VARCHAR2(20) REFERENCES Utilizador(usr),--Comprador
+  dll DATE, --DataLimiteLeilao
   dp DATE,--DataPagamento
+  dep DATE, --DataEnvioProduto
   df DATE,--DataFecho
   di DATE,--DataInsercao
   pb number(6,2),--Preço Base
@@ -136,9 +138,9 @@ CREATE TABLE PTroca(
   idp1 number(10) REFERENCES Produto(idp),--idproduto1
   usr2 VARCHAR2(20) REFERENCES Utilizador(usr),
   idp2 number(10) REFERENCES Produto(idp),
-   ct number(2),--`ConfirmaTroca`
-  tcs number(2),--TrocaCSucesso
   dlt DATE,--DataLimiteParaTroca
+  dct DATE, --DataConfirmacaoTroca
+  dconlt DATE, --DataConclusaoTroca
   dpt DATE,--DataPropostaDeTroca
   PRIMARY KEY (usr1,idp1,usr2,idp2)
 );
