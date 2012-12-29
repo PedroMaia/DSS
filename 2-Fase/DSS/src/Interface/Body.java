@@ -31,32 +31,19 @@ public final class Body extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         logotipo = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        hiperlig = new javax.swing.JPanel();
+        jLabelLogoTipo = new javax.swing.JLabel();
+        MenuPrincipal = new javax.swing.JPanel();
         jButtonVender = new javax.swing.JButton();
         jButtonLeiloar = new javax.swing.JButton();
         jButtonpesquisa = new javax.swing.JButton();
-        definicutilizador = new javax.swing.JPanel();
+        DefUser = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonKingArea = new javax.swing.JButton();
         jButtonAjuda = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         Body = new javax.swing.JPanel();
-        vender = new javax.swing.JPanel();
-        pcimagem = new javax.swing.JPanel();
-        jBcimagem = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        nomedescricao = new javax.swing.JPanel();
-        lnome = new javax.swing.JLabel();
-        jTnome = new javax.swing.JTextField();
-        jLdescricao = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaDescricao = new javax.swing.JTextArea();
-        jButtonvend = new javax.swing.JButton();
-        jLabelpreco = new javax.swing.JLabel();
-        jTexpreco = new javax.swing.JTextField();
-        leiloar = new javax.swing.JPanel();
+        Leiloar = new javax.swing.JPanel();
         pcimagem1 = new javax.swing.JPanel();
         jBcimagem1 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
@@ -73,6 +60,17 @@ public final class Body extends javax.swing.JInternalFrame {
         jTextbaselicit = new javax.swing.JTextField();
         jTextFieldtetolicit = new javax.swing.JTextField();
         jTextFielddatlimite = new javax.swing.JTextField();
+        ResultPesquisa = new javax.swing.JPanel();
+        jPanelpesq = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListresultados = new javax.swing.JList();
+        jButtonPesqAvan = new javax.swing.JButton();
+        jButtonResults = new javax.swing.JButton();
+        jPanelPesquisa1 = new javax.swing.JPanel();
+        jLabelPesq1 = new javax.swing.JLabel();
+        ChavePesquisa1 = new javax.swing.JTextField();
+        jComboBoxCategoria1 = new javax.swing.JComboBox();
+        jButtonPesquisar1 = new javax.swing.JButton();
         ProdutoCompra = new javax.swing.JPanel();
         jPanelImagem = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -89,10 +87,23 @@ public final class Body extends javax.swing.JInternalFrame {
         jList2 = new javax.swing.JList();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        Vender = new javax.swing.JPanel();
+        pcimagem = new javax.swing.JPanel();
+        jBcimagem = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        nomedescricao = new javax.swing.JPanel();
+        lnome = new javax.swing.JLabel();
+        jTnome = new javax.swing.JTextField();
+        jLdescricao = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaDescricao = new javax.swing.JTextArea();
+        jButtonvend = new javax.swing.JButton();
+        jLabelpreco = new javax.swing.JLabel();
+        jTexpreco = new javax.swing.JTextField();
         ProdutoLeilao = new javax.swing.JPanel();
         jPanelImagem1 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jPanelDescricao1 = new javax.swing.JPanel();
+        jPanelDescricaoProduto = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -116,7 +127,7 @@ public final class Body extends javax.swing.JInternalFrame {
         Trocar = new javax.swing.JPanel();
         jPanelMeusProdutos = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        pesquisaavan = new javax.swing.JPanel();
+        PesqAvan = new javax.swing.JPanel();
         pesquisaAvan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -133,6 +144,18 @@ public final class Body extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        PagInicial = new javax.swing.JPanel();
+        ResutadosPesquisa = new javax.swing.JPanel();
+        jPanelPesquisa = new javax.swing.JPanel();
+        jLabelPesq = new javax.swing.JLabel();
+        ChavePesquisa = new javax.swing.JTextField();
+        jComboBoxCategoria = new javax.swing.JComboBox();
+        jButtonPesquisar = new javax.swing.JButton();
+        jPanelSugestoes = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jListSugests = new javax.swing.JList();
+        jButtonSugests = new javax.swing.JButton();
+        jLabelSugests = new javax.swing.JLabel();
         jPanelPatrocinadores = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
@@ -504,27 +527,12 @@ public final class Body extends javax.swing.JInternalFrame {
         jLabel117 = new javax.swing.JLabel();
         jPanelPatrocinadores3 = new javax.swing.JPanel();
         jLabel118 = new javax.swing.JLabel();
-        pesquisa = new javax.swing.JPanel();
-        jPanelpesq = new javax.swing.JPanel();
-        jLabelpesquisa = new javax.swing.JLabel();
-        jTextpesq = new javax.swing.JTextField();
-        jComboBoxCateg = new javax.swing.JComboBox();
-        jButtonpesq = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jListresultados = new javax.swing.JList();
-        jButtonPesqAvan = new javax.swing.JButton();
-        jButtonResults = new javax.swing.JButton();
-        jPanelSugestoes = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jListSugests = new javax.swing.JList();
-        jButtonSugests = new javax.swing.JButton();
-        jLabelSugests = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logotipo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FinalLog128.png"))); // NOI18N
+        jLabelLogoTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FinalLog128.png"))); // NOI18N
 
         javax.swing.GroupLayout logotipoLayout = new javax.swing.GroupLayout(logotipo);
         logotipo.setLayout(logotipoLayout);
@@ -532,19 +540,19 @@ public final class Body extends javax.swing.JInternalFrame {
             logotipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logotipoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
+                .addComponent(jLabelLogoTipo)
                 .addContainerGap())
         );
         logotipoLayout.setVerticalGroup(
             logotipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabelLogoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(logotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 150, 100));
 
-        hiperlig.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
-        hiperlig.setName("Produtos"); // NOI18N
-        hiperlig.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MenuPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
+        MenuPrincipal.setName("Produtos"); // NOI18N
+        MenuPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarVender.png"))); // NOI18N
         jButtonVender.setText("Vender");
@@ -553,35 +561,38 @@ public final class Body extends javax.swing.JInternalFrame {
                 jButtonVenderActionPerformed(evt);
             }
         });
-        hiperlig.add(jButtonVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, 30));
+        MenuPrincipal.add(jButtonVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, 30));
 
         jButtonLeiloar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarEmLeilão.png"))); // NOI18N
         jButtonLeiloar.setText("Leiloar");
-        hiperlig.add(jButtonLeiloar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 110, 30));
+        MenuPrincipal.add(jButtonLeiloar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 110, 30));
 
         jButtonpesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
         jButtonpesquisa.setText("Pesquisa");
-        hiperlig.add(jButtonpesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 110, 30));
+        MenuPrincipal.add(jButtonpesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 110, 30));
 
-        getContentPane().add(hiperlig, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, 150));
+        getContentPane().add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, 150));
 
-        definicutilizador.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
-        definicutilizador.setName("Definições de Utilizador"); // NOI18N
+        DefUser.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
+        DefUser.setName("Definições de Utilizador"); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/kingAvatar.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Menu do User ")));
 
+        jButtonKingArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/KingArea.png"))); // NOI18N
         jButtonKingArea.setText("King Area");
 
-        jButtonAjuda.setText("Ajuda");
+        jButtonAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Help.png"))); // NOI18N
+        jButtonAjuda.setText("Ajuda          ");
         jButtonAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAjudaActionPerformed(evt);
             }
         });
 
-        jButtonSair.setText("Terminar sessão");
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logouticon.png"))); // NOI18N
+        jButtonSair.setText(" Sair            ");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
@@ -592,57 +603,48 @@ public final class Body extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jButtonSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonKingArea, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonKingArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jButtonKingArea)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAjuda)
+                .addComponent(jButtonKingArea, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jButtonAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSair)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout definicutilizadorLayout = new javax.swing.GroupLayout(definicutilizador);
-        definicutilizador.setLayout(definicutilizadorLayout);
-        definicutilizadorLayout.setHorizontalGroup(
-            definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(definicutilizadorLayout.createSequentialGroup()
-                .addGroup(definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(definicutilizadorLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, definicutilizadorLayout.createSequentialGroup()
-                        .addContainerGap(16, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout DefUserLayout = new javax.swing.GroupLayout(DefUser);
+        DefUser.setLayout(DefUserLayout);
+        DefUserLayout.setHorizontalGroup(
+            DefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DefUserLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel3)
                 .addContainerGap())
+            .addGroup(DefUserLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        definicutilizadorLayout.setVerticalGroup(
-            definicutilizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(definicutilizadorLayout.createSequentialGroup()
+        DefUserLayout.setVerticalGroup(
+            DefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DefUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        getContentPane().add(definicutilizador, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 190, 290));
+        getContentPane().add(DefUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 190, 340));
 
         Body.setPreferredSize(new java.awt.Dimension(400, 400));
         Body.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -652,69 +654,8 @@ public final class Body extends javax.swing.JInternalFrame {
         });
         Body.setLayout(new java.awt.CardLayout());
 
-        vender.setPreferredSize(new java.awt.Dimension(400, 400));
-        vender.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jBcimagem.setText("Carregar Imagem");
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/12092_64x64.png"))); // NOI18N
-
-        javax.swing.GroupLayout pcimagemLayout = new javax.swing.GroupLayout(pcimagem);
-        pcimagem.setLayout(pcimagemLayout);
-        pcimagemLayout.setHorizontalGroup(
-            pcimagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jBcimagem, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-            .addGroup(pcimagemLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel17)
-                .addContainerGap())
-        );
-        pcimagemLayout.setVerticalGroup(
-            pcimagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pcimagemLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(jBcimagem)
-                .addContainerGap())
-        );
-
-        vender.add(pcimagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, -1));
-
-        nomedescricao.setMaximumSize(new java.awt.Dimension(195, 370));
-        nomedescricao.setPreferredSize(new java.awt.Dimension(195, 370));
-        nomedescricao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lnome.setText("Nome:");
-        nomedescricao.add(lnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 42, -1, -1));
-
-        jTnome.setText("Nome");
-        nomedescricao.add(jTnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 39, 81, -1));
-
-        jLdescricao.setText("Descrição:");
-        nomedescricao.add(jLdescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 101, -1, -1));
-
-        jTextAreaDescricao.setColumns(20);
-        jTextAreaDescricao.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaDescricao);
-
-        nomedescricao.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 133, 191, 144));
-
-        jButtonvend.setText("Vender");
-        nomedescricao.add(jButtonvend, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 306, -1, -1));
-
-        vender.add(nomedescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 220, 360));
-
-        jLabelpreco.setText("Preço:");
-        vender.add(jLabelpreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
-
-        jTexpreco.setText("€€€€€€");
-        vender.add(jTexpreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 60, 30));
-
-        Body.add(vender, "Vender");
-
-        leiloar.setPreferredSize(new java.awt.Dimension(400, 400));
-        leiloar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Leiloar.setPreferredSize(new java.awt.Dimension(400, 400));
+        Leiloar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBcimagem1.setText("Carregar Imagem");
 
@@ -744,7 +685,7 @@ public final class Body extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        leiloar.add(pcimagem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        Leiloar.add(pcimagem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         nomedescricao1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -766,27 +707,100 @@ public final class Body extends javax.swing.JInternalFrame {
         jButtonleiloar.setText("Leiloar");
         nomedescricao1.add(jButtonleiloar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
-        leiloar.add(nomedescricao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 220, 330));
+        Leiloar.add(nomedescricao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 220, 330));
 
         jLabelblicitacao.setText("Base de Licitação:");
-        leiloar.add(jLabelblicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        Leiloar.add(jLabelblicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
         jLabetlicita.setText("Teto de Licitação:");
-        leiloar.add(jLabetlicita, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        Leiloar.add(jLabetlicita, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
         jLabel5.setText("Data Limite do Leilão:");
-        leiloar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        Leiloar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         jTextbaselicit.setText("€€€€€€€");
-        leiloar.add(jTextbaselicit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, 30));
+        Leiloar.add(jTextbaselicit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, 30));
 
         jTextFieldtetolicit.setText("€€€€€€€€");
-        leiloar.add(jTextFieldtetolicit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 30));
+        Leiloar.add(jTextFieldtetolicit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 30));
 
         jTextFielddatlimite.setText("aaaa/mm/dd");
-        leiloar.add(jTextFielddatlimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 120, 30));
+        Leiloar.add(jTextFielddatlimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 120, 30));
 
-        Body.add(leiloar, "Leiloar");
+        Body.add(Leiloar, "Leiloar");
+
+        ResultPesquisa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ResultPesquisa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelpesq.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
+        jPanelpesq.setToolTipText("");
+        jPanelpesq.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jListresultados.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jListresultados);
+
+        jPanelpesq.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 68));
+
+        jButtonPesqAvan.setText("Pesquisa Avançada");
+        jPanelpesq.add(jButtonPesqAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 130, -1));
+
+        jButtonResults.setText("Mais Resultados");
+        jPanelpesq.add(jButtonResults, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        ResultPesquisa.add(jPanelpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 380, 110));
+
+        jPanelPesquisa1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabelPesq1.setText("Pesquisa:");
+
+        ChavePesquisa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChavePesquisa1ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxCategoria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
+
+        jButtonPesquisar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanelPesquisa1Layout = new javax.swing.GroupLayout(jPanelPesquisa1);
+        jPanelPesquisa1.setLayout(jPanelPesquisa1Layout);
+        jPanelPesquisa1Layout.setHorizontalGroup(
+            jPanelPesquisa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPesquisa1Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabelPesq1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChavePesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPesquisar1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+        );
+        jPanelPesquisa1Layout.setVerticalGroup(
+            jPanelPesquisa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPesquisa1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPesquisa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBoxCategoria1)
+                    .addGroup(jPanelPesquisa1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelPesquisa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonPesquisar1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelPesquisa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                                .addComponent(jLabelPesq1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ChavePesquisa1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+
+        ResultPesquisa.add(jPanelPesquisa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, -1));
+
+        Body.add(ResultPesquisa, "card9");
 
         ProdutoCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -843,31 +857,94 @@ public final class Body extends javax.swing.JInternalFrame {
 
         Body.add(ProdutoCompra, "ProdutoCompra");
 
+        Vender.setPreferredSize(new java.awt.Dimension(400, 400));
+        Vender.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBcimagem.setText("Carregar Imagem");
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/12092_64x64.png"))); // NOI18N
+
+        javax.swing.GroupLayout pcimagemLayout = new javax.swing.GroupLayout(pcimagem);
+        pcimagem.setLayout(pcimagemLayout);
+        pcimagemLayout.setHorizontalGroup(
+            pcimagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBcimagem, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addGroup(pcimagemLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel17)
+                .addContainerGap())
+        );
+        pcimagemLayout.setVerticalGroup(
+            pcimagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pcimagemLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addComponent(jBcimagem)
+                .addContainerGap())
+        );
+
+        Vender.add(pcimagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, -1));
+
+        nomedescricao.setMaximumSize(new java.awt.Dimension(195, 370));
+        nomedescricao.setPreferredSize(new java.awt.Dimension(195, 370));
+        nomedescricao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lnome.setText("Nome:");
+        nomedescricao.add(lnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 42, -1, -1));
+
+        jTnome.setText("Nome");
+        nomedescricao.add(jTnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 39, 81, -1));
+
+        jLdescricao.setText("Descrição:");
+        nomedescricao.add(jLdescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 101, -1, -1));
+
+        jTextAreaDescricao.setColumns(20);
+        jTextAreaDescricao.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaDescricao);
+
+        nomedescricao.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 133, 191, 144));
+
+        jButtonvend.setText("Vender");
+        nomedescricao.add(jButtonvend, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 306, -1, -1));
+
+        Vender.add(nomedescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 220, 360));
+
+        jLabelpreco.setText("Preço:");
+        Vender.add(jLabelpreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+
+        jTexpreco.setText("€€€€€€");
+        Vender.add(jTexpreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 60, 30));
+
+        Body.add(Vender, "Vender");
+
         ProdutoLeilao.setPreferredSize(new java.awt.Dimension(426, 400));
         ProdutoLeilao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelImagem1.setBorder(javax.swing.BorderFactory.createTitledBorder("ImagensProduto"));
         jPanelImagem1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/12092_64x64.png"))); // NOI18N
-        jPanelImagem1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 20, 89, 92));
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/produtoExemplo_1.png"))); // NOI18N
+        jPanelImagem1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, 90));
 
-        ProdutoLeilao.add(jPanelImagem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 31, -1, -1));
+        ProdutoLeilao.add(jPanelImagem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 12, 150, 110));
 
-        jPanelDescricao1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelDescricaoProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
+        jPanelDescricaoProduto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel20.setText("Nome");
-        jPanelDescricao1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jPanelDescricaoProduto.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 20, -1));
 
         jLabel21.setText("Descrição :");
-        jPanelDescricao1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, -1, -1));
+        jPanelDescricaoProduto.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane6.setViewportView(jTextArea1);
 
-        jPanelDescricao1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPanelDescricaoProduto.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        ProdutoLeilao.add(jPanelDescricao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 23, 200, 170));
+        ProdutoLeilao.add(jPanelDescricaoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 200, 170));
 
         jLabelcontacto1.setText("Contacto do Vendedor");
         ProdutoLeilao.add(jLabelcontacto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 145, -1));
@@ -908,8 +985,13 @@ public final class Body extends javax.swing.JInternalFrame {
         jLabel29.setText("aaaa/mm/dd    hh:mm");
         ProdutoLeilao.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 110, -1));
 
-        jTextField5.setText("minha licitação");
-        ProdutoLeilao.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 100, 30));
+        jTextField5.setText("valor");
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        ProdutoLeilao.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 110, 30));
 
         jButton3.setText("Licitar");
         ProdutoLeilao.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, 30));
@@ -945,7 +1027,7 @@ public final class Body extends javax.swing.JInternalFrame {
 
         Body.add(Trocar, "card8");
 
-        pesquisaavan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PesqAvan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pesquisaAvan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -1012,9 +1094,90 @@ public final class Body extends javax.swing.JInternalFrame {
         jButton2.setText("Mais Resultados");
         pesquisaAvan.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
-        pesquisaavan.add(pesquisaAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 380, 380));
+        PesqAvan.add(pesquisaAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 380, 380));
 
-        Body.add(pesquisaavan, "pesquisaAvan");
+        Body.add(PesqAvan, "pesquisaAvan");
+
+        PagInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ResutadosPesquisa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ResutadosPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ResutadosPesquisaFocusGained(evt);
+            }
+        });
+        ResutadosPesquisa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelPesquisa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabelPesq.setText("Pesquisa:");
+
+        ChavePesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChavePesquisaActionPerformed(evt);
+            }
+        });
+
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
+
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanelPesquisaLayout = new javax.swing.GroupLayout(jPanelPesquisa);
+        jPanelPesquisa.setLayout(jPanelPesquisaLayout);
+        jPanelPesquisaLayout.setHorizontalGroup(
+            jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPesquisaLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabelPesq)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChavePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+        );
+        jPanelPesquisaLayout.setVerticalGroup(
+            jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPesquisaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBoxCategoria)
+                    .addGroup(jPanelPesquisaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                                .addComponent(jLabelPesq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ChavePesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+
+        ResutadosPesquisa.add(jPanelPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, -1));
+
+        jPanelSugestoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Sugestões"));
+        jPanelSugestoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jListSugests.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jListSugests);
+
+        jPanelSugestoes.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 48, 340, 80));
+
+        jButtonSugests.setText("Mais Sugestões");
+        jPanelSugestoes.add(jButtonSugests, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 110, -1));
+
+        jLabelSugests.setText("Sugestões :");
+        jPanelSugestoes.add(jLabelSugests, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 23, -1, -1));
+
+        ResutadosPesquisa.add(jPanelSugestoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 170));
+
+        PagInicial.add(ResutadosPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 390));
+
+        Body.add(PagInicial, "pesquisaAvan");
 
         getContentPane().add(Body, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 19, 426, 402));
 
@@ -1037,7 +1200,7 @@ public final class Body extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6))
         );
 
-        getContentPane().add(jPanelPatrocinadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 810, 20));
+        getContentPane().add(jPanelPatrocinadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 810, 20));
 
         jInternalFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2775,64 +2938,6 @@ public final class Body extends javax.swing.JInternalFrame {
 
         getContentPane().add(jInternalFrame2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pesquisa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pesquisa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanelpesq.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
-        jPanelpesq.setToolTipText("");
-        jPanelpesq.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelpesquisa.setText("Pesquisa:");
-        jPanelpesq.add(jLabelpesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 23, -1, -1));
-
-        jTextpesq.setText("Nome do Produto");
-        jPanelpesq.add(jTextpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 20, 170, 20));
-
-        jComboBoxCateg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria" }));
-        jPanelpesq.add(jComboBoxCateg, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 110, 20));
-
-        jButtonpesq.setText("Pesquisar");
-        jPanelpesq.add(jButtonpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 51, -1, 30));
-
-        jListresultados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jListresultados);
-
-        jPanelpesq.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 340, 68));
-
-        jButtonPesqAvan.setText("Pesquisa Avançada");
-        jPanelpesq.add(jButtonPesqAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 130, -1));
-
-        jButtonResults.setText("Mais Resultados");
-        jPanelpesq.add(jButtonResults, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-
-        pesquisa.add(jPanelpesq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 380, 200));
-
-        jPanelSugestoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Sugestões"));
-        jPanelSugestoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jListSugests.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(jListSugests);
-
-        jPanelSugestoes.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 48, 340, 80));
-
-        jButtonSugests.setText("Mais Sugestões");
-        jPanelSugestoes.add(jButtonSugests, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 110, -1));
-
-        jLabelSugests.setText("Sugestões :");
-        jPanelSugestoes.add(jLabelSugests, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 23, -1, -1));
-
-        pesquisa.add(jPanelSugestoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 190));
-
-        getContentPane().add(pesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 426, 390));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2936,6 +3041,22 @@ public final class Body extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonVenderActionPerformed
 
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void ResutadosPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ResutadosPesquisaFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ResutadosPesquisaFocusGained
+
+    private void ChavePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChavePesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChavePesquisaActionPerformed
+
+    private void ChavePesquisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChavePesquisa1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChavePesquisa1ActionPerformed
+
     public void IniciaPanel(String nome){
         CardLayout card = (CardLayout)Body.getLayout();
         card.show(Body, nome);
@@ -2946,6 +3067,13 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JPanel Body1;
     private javax.swing.JPanel Body2;
     private javax.swing.JPanel Body3;
+    private javax.swing.JTextField ChavePesquisa;
+    private javax.swing.JTextField ChavePesquisa1;
+    private javax.swing.JPanel DefUser;
+    private javax.swing.JPanel Leiloar;
+    private javax.swing.JPanel MenuPrincipal;
+    private javax.swing.JPanel PagInicial;
+    private javax.swing.JPanel PesqAvan;
     private javax.swing.JPanel ProdutoCompra;
     private javax.swing.JPanel ProdutoCompra1;
     private javax.swing.JPanel ProdutoCompra2;
@@ -2954,15 +3082,16 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ProdutoLeilao1;
     private javax.swing.JPanel ProdutoLeilao2;
     private javax.swing.JPanel ProdutoLeilao3;
+    private javax.swing.JPanel ResultPesquisa;
+    private javax.swing.JPanel ResutadosPesquisa;
     private javax.swing.JPanel Trocar;
     private javax.swing.JPanel Trocar1;
     private javax.swing.JPanel Trocar2;
     private javax.swing.JPanel Trocar3;
-    private javax.swing.JPanel definicutilizador;
+    private javax.swing.JPanel Vender;
     private javax.swing.JPanel definicutilizador1;
     private javax.swing.JPanel definicutilizador2;
     private javax.swing.JPanel definicutilizador3;
-    private javax.swing.JPanel hiperlig;
     private javax.swing.JPanel hiperlig1;
     private javax.swing.JPanel hiperlig2;
     private javax.swing.JPanel hiperlig3;
@@ -3010,6 +3139,8 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonPesqAvan1;
     private javax.swing.JButton jButtonPesqAvan2;
     private javax.swing.JButton jButtonPesqAvan3;
+    private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonPesquisar1;
     private javax.swing.JButton jButtonResults;
     private javax.swing.JButton jButtonResults1;
     private javax.swing.JButton jButtonResults2;
@@ -3042,7 +3173,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonleiloar1;
     private javax.swing.JButton jButtonleiloar2;
     private javax.swing.JButton jButtonleiloar3;
-    private javax.swing.JButton jButtonpesq;
     private javax.swing.JButton jButtonpesq1;
     private javax.swing.JButton jButtonpesq2;
     private javax.swing.JButton jButtonpesq3;
@@ -3066,10 +3196,11 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBox6;
     private javax.swing.JComboBox jComboBox7;
     private javax.swing.JComboBox jComboBox8;
-    private javax.swing.JComboBox jComboBoxCateg;
     private javax.swing.JComboBox jComboBoxCateg1;
     private javax.swing.JComboBox jComboBoxCateg2;
     private javax.swing.JComboBox jComboBoxCateg3;
+    private javax.swing.JComboBox jComboBoxCategoria;
+    private javax.swing.JComboBox jComboBoxCategoria1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JInternalFrame jInternalFrame3;
@@ -3179,7 +3310,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
@@ -3190,6 +3320,9 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
+    private javax.swing.JLabel jLabelLogoTipo;
+    private javax.swing.JLabel jLabelPesq;
+    private javax.swing.JLabel jLabelPesq1;
     private javax.swing.JLabel jLabelSugests;
     private javax.swing.JLabel jLabelSugests1;
     private javax.swing.JLabel jLabelSugests2;
@@ -3206,7 +3339,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelcontacto5;
     private javax.swing.JLabel jLabelcontacto6;
     private javax.swing.JLabel jLabelcontacto7;
-    private javax.swing.JLabel jLabelpesquisa;
     private javax.swing.JLabel jLabelpesquisa1;
     private javax.swing.JLabel jLabelpesquisa2;
     private javax.swing.JLabel jLabelpesquisa3;
@@ -3260,13 +3392,13 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelDescricao;
-    private javax.swing.JPanel jPanelDescricao1;
     private javax.swing.JPanel jPanelDescricao2;
     private javax.swing.JPanel jPanelDescricao3;
     private javax.swing.JPanel jPanelDescricao4;
     private javax.swing.JPanel jPanelDescricao5;
     private javax.swing.JPanel jPanelDescricao6;
     private javax.swing.JPanel jPanelDescricao7;
+    private javax.swing.JPanel jPanelDescricaoProduto;
     private javax.swing.JPanel jPanelImagem;
     private javax.swing.JPanel jPanelImagem1;
     private javax.swing.JPanel jPanelImagem2;
@@ -3283,6 +3415,8 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelPatrocinadores1;
     private javax.swing.JPanel jPanelPatrocinadores2;
     private javax.swing.JPanel jPanelPatrocinadores3;
+    private javax.swing.JPanel jPanelPesquisa;
+    private javax.swing.JPanel jPanelPesquisa1;
     private javax.swing.JPanel jPanelSugestoes;
     private javax.swing.JPanel jPanelSugestoes1;
     private javax.swing.JPanel jPanelSugestoes2;
@@ -3371,7 +3505,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextbaselicit1;
     private javax.swing.JTextField jTextbaselicit2;
     private javax.swing.JTextField jTextbaselicit3;
-    private javax.swing.JTextField jTextpesq;
     private javax.swing.JTextField jTextpesq1;
     private javax.swing.JTextField jTextpesq2;
     private javax.swing.JTextField jTextpesq3;
@@ -3383,7 +3516,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTnome5;
     private javax.swing.JTextField jTnome6;
     private javax.swing.JTextField jTnome7;
-    private javax.swing.JPanel leiloar;
     private javax.swing.JPanel leiloar1;
     private javax.swing.JPanel leiloar2;
     private javax.swing.JPanel leiloar3;
@@ -3415,7 +3547,6 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pcimagem5;
     private javax.swing.JPanel pcimagem6;
     private javax.swing.JPanel pcimagem7;
-    private javax.swing.JPanel pesquisa;
     private javax.swing.JPanel pesquisa1;
     private javax.swing.JPanel pesquisa2;
     private javax.swing.JPanel pesquisa3;
@@ -3423,11 +3554,9 @@ public final class Body extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pesquisaAvan1;
     private javax.swing.JPanel pesquisaAvan2;
     private javax.swing.JPanel pesquisaAvan3;
-    private javax.swing.JPanel pesquisaavan;
     private javax.swing.JPanel pesquisaavan1;
     private javax.swing.JPanel pesquisaavan2;
     private javax.swing.JPanel pesquisaavan3;
-    private javax.swing.JPanel vender;
     private javax.swing.JPanel vender1;
     private javax.swing.JPanel vender2;
     private javax.swing.JPanel vender3;
