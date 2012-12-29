@@ -8,15 +8,15 @@ import Data.TrocasDAO;
 import Data.VendasDAO;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
 
 public class Utilizador {
 
     private String _username;
     private String _passmd5;
     private String email;
+    private String localidade;
     private GregorianCalendar dataNascimento;
+    private GregorianCalendar dataRegisto;
     private BufferedImage imagem;
     private ClassificacaoDAO _classificacao;
     private ProdutosDAO _meusProds;
@@ -25,12 +25,14 @@ public class Utilizador {
     private LeiloesDAO meusLeiloes;
     private TrocasDAO minhasTrocas;
     
-    public Utilizador(String name, String pass, String mail, GregorianCalendar dN, BufferedImage i)
+    public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i)
     {
         _username=name;
         _passmd5=BuyKing.md5crypt(pass);
         email=mail;
+        localidade=l;
         dataNascimento= dN;
+        dataRegisto=dR;
         imagem=i;
         _classificacao=new ClassificacaoDAO();
         _meusProds = new ProdutosDAO();
@@ -49,6 +51,10 @@ public class Utilizador {
         return _passmd5;
     }
 
+    public String getLocalidade() {
+        return localidade;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -57,6 +63,10 @@ public class Utilizador {
         return dataNascimento;
     }
 
+    public GregorianCalendar getDataRegisto() {
+        return dataRegisto;
+    }
+    
     public BufferedImage getImagem() {
         return imagem;
     }
