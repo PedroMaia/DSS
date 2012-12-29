@@ -1,6 +1,5 @@
 package Business;
 
-import Data.LeiloesDAO;
 import Data.LicitacoesDAO;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
@@ -47,6 +46,6 @@ public class Leilao {
         
         public int getUltimaLicitacao()
         {
-           
+           return licitacoes.getMaxLicitacao();
         }
 }
