@@ -4,10 +4,18 @@
  */
 package Data;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author Cesar
  */
 public class LeiloesDAO {
+
+    public static int getNewId() throws SQLException {
+        Connection c=DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select ")
+    }
     
 }

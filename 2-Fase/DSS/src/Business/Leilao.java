@@ -1,5 +1,7 @@
 package Business;
 
+import Data.LeiloesDAO;
+import Data.LicitacoesDAO;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -12,12 +14,25 @@ public class Leilao {
 	private int _tecto;
 	private boolean _prodEnviado;
 	private Produto p;
-        private List<Licitacao> licitacoes;
+        private LicitacoesDAO licitacoes;
         int id;
+        
+        public Leilao(Produto pr, int base, int tecto)
+        {
+            p=pr;
+            _base=base;
+            _tecto=tecto;
+            _prodEnviado=false;
+            _pago=false;
+            _dataLimitePagamento=null;
+            GregorianCalendar now = new GregorianCalendar();
+            now.add(GregorianCalendar.DAY_OF_MONTH,2);
+            _dataFecho=now;
+            id=LeiloesDAO.getNewId();
+        }
 
 	public void registaLicitacao(Utilizador aU, int aV) throws LeilaoFechadoException, BaixaLicitacaoException {
-            Licitacao l = new Licitacao(aU,aV);
-            licitacoes.add(l.clone());
+            
             
 	}
 
@@ -27,13 +42,11 @@ public class Leilao {
 	}
         
         public void regrideLeilao() {
-            licitacoes.remove(licitacoes.size()-1);
+            
         }
         
         public int getUltimaLicitacao()
         {
-           Licitacao l = licitacoes.get(licitacoes.size()-1);
-           int i = l.getValor();
-           return i;
+           
         }
 }
