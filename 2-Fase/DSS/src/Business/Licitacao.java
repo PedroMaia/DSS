@@ -16,11 +16,11 @@ public class Licitacao {
     private float v;
     private GregorianCalendar data;
     
-    public Licitacao(Utilizador user, float valor)
+    public Licitacao(Utilizador user, float valor,GregorianCalendar data)
     {
         u=user;
         v=valor;
-        data = new GregorianCalendar();
+        data = data;
     }
     
     public Utilizador getUser()

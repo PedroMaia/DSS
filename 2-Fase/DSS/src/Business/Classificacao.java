@@ -12,10 +12,6 @@ import java.util.GregorianCalendar;
  */
 public class Classificacao {
 
-    private Utilizador classificador;
-    private GregorianCalendar data;
-    private int valor;
-	
     public Classificacao(Utilizador classificador, GregorianCalendar data, int valor) {
         this.classificador = classificador;
         this.data = data;
@@ -24,7 +20,9 @@ public class Classificacao {
     
     
     
-
+    private Utilizador classificador;
+    private GregorianCalendar data;
+    private int valor;
 
     public Utilizador getClassificador() {
         return classificador;

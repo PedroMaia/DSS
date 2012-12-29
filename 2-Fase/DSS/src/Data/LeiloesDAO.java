@@ -5,6 +5,8 @@
 package Data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -15,7 +17,12 @@ public class LeiloesDAO {
 
     public static int getNewId() throws SQLException {
         Connection c=DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("select ")
+        PreparedStatement s = c.prepareStatement("select sidl.nextval from dual");
+        ResultSet rs=s.executeQuery();
+        rs.next();
+        int res = rs.getInt(1);
+        c.close();
+        return res;
     }
     
 }

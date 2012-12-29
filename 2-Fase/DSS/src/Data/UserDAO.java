@@ -40,11 +40,13 @@ public class UserDAO {
         PreparedStatement s=c.prepareStatement("select * from utilizador where usr = ?");
         s.setString(1, username);
         ResultSet rs=s.executeQuery();
+        Utilizador res=null;
         if (rs.next())
         {
-            return readUser(rs);
+            res = readUser(rs);
         }
-        else return null;
+        c.close();
+        return res;
     }
     
     /**
@@ -64,11 +66,16 @@ public class UserDAO {
             GregorianCalendar dR = new GregorianCalendar();
             dR.setTime(rs.getDate("ddr"));
             BufferedImage i = null;
-            try {
-                i= ImageIO.read(new ByteArrayInputStream(rs.getBytes("fu")));
-            } catch (IOException ex) {
-                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            byte[] b = rs.getBytes("fu");
+            if(b!=null)
+            {
+                try {
+                    i= ImageIO.read(new ByteArrayInputStream(rs.getBytes("fu")));
+                } catch (IOException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            
             return new Utilizador(name, pass, mail, loc, dN, dR, i);
     }
     
@@ -81,12 +88,13 @@ public class UserDAO {
     {
         Connection c = DataConnection.getDataConnection();
         List<Utilizador> res = new ArrayList<Utilizador>();
-        PreparedStatement s = c.prepareStatement("select * from utilizadores");
+        PreparedStatement s = c.prepareStatement("select * from utilizadore");
         ResultSet rs = s.executeQuery();
         while(rs.next())
         {
             res.add(readUser(rs));
         }
+        c.close();
         return res;
     }
     
@@ -98,7 +106,7 @@ public class UserDAO {
         s.setString(2, u.getPassmd5());
         s.setString(3, u.getEmail());
         s.setString(4, u.getLocalidade());
-        s.setDate(5, new Date(u.getDataNascimento().getTime().getDate()));
+        s.setDate(5, new Date(u.getDataNascimento().getTime().getTime()));
         s.setDate(6, new Date(u.getDataRegisto().getTime().getTime()));
         if(u.getImagem()==null) s.setNull(7, Types.BLOB);
         else 
@@ -121,6 +129,32 @@ public class UserDAO {
             s.setBytes(7,b);
         }
         int r=s.executeUpdate();
+        c.close();
         return (r>0);
+    }
+    
+    public boolean update(Utilizador u) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("update utilizador set pw=?, e=?, lcp=?, fu=? where usr=?");
+        s.setString(1, u.getPassmd5());
+        s.setString(2, u.getEmail());
+        s.setString(3, u.getLocalidade());
+        if(u.getImagem()==null) s.setNull(4, Types.BLOB);
+        else
+        {
+            ByteArrayOutputStream bytesImg = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(u.getImagem(), "jpg", bytesImg);
+                bytesImg.flush();
+            } catch (IOException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            s.setBytes(4,bytesImg.toByteArray());
+        }
+        s.setString(5, u.getUsername());
+        int res=s.executeUpdate();
+        c.close();
+        return res<0;
     }
 }

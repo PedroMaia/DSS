@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 public class Venda {
         int id;
-	private int _preco;
+	private float _preco;
         private GregorianCalendar dataVenda;
 	private GregorianCalendar _dataLimiteVenda;
 	private GregorianCalendar dataEnvioProduto;
