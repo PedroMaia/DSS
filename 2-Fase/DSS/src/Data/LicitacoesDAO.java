@@ -15,6 +15,12 @@ import java.util.List;
  */
 public class LicitacoesDAO {
     
+    int idLeilao;
+
+    public LicitacoesDAO(int id) {
+        idLeilao=id;
+    }
+    
     private Licitacao readLlicitacao(ResultSet rs)
     {
         

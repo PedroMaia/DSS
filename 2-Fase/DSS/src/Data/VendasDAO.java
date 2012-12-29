@@ -9,5 +9,9 @@ package Data;
  * @author Cesar
  */
 public class VendasDAO {
+
+    public static int getNewId() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
 }

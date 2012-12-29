@@ -32,11 +32,11 @@ CREATE TABLE Utilizador(
 		
 CREATE TABLE Classificacao(
 
-   cdono VARCHAR2(20) REFERENCES Utilizador(usr),--user name classificado dono
-   cuser VARCHAR2(20) REFERENCES Utilizador(usr),--user name class classificador
+   classificado VARCHAR2(20) REFERENCES Utilizador(usr),--user name classificado dono
+   classificador VARCHAR2(20) REFERENCES Utilizador(usr),--user name class classificador
    va NUMBER(5),--valor atribuido
    dc DATE, --data classificação
-  PRIMARY KEY (cdono,cuser)
+  PRIMARY KEY (classificado,classificador)
 );
 
 
@@ -54,7 +54,7 @@ CREATE TABLE Produto(
   dp VARCHAR2(20) REFERENCES Utilizador(usr),--username: dono produto
   dsp VARCHAR2(150),--descrição produto
   ctg VARCHAR2(20) ,--categoria
-  di DATE,--data de inserção
+  
   PRIMARY KEY (idp)
 );
 
@@ -116,7 +116,7 @@ CREATE TABLE Leilao(
 -- ---
 
 		
-CREATE TABLE Lecitacao (
+CREATE TABLE Licitacao (
   idl number(10) REFERENCES Leilao(idl),--idleilão
   ul VARCHAR2(20) REFERENCES Utilizador(usr),--UserLecitou
   dl DATE ,--DataLecitacao
