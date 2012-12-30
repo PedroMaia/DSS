@@ -138,7 +138,7 @@ public class Registar extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(idpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,7 +193,7 @@ public class Registar extends javax.swing.JFrame {
                 .addGap(3, 3, 3))
         );
 
-        getContentPane().add(idpessoal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 173));
+        getContentPane().add(idpessoal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 430, 173));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

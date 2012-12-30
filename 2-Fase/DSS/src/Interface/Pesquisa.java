@@ -36,8 +36,6 @@ public class Pesquisa extends javax.swing.JPanel {
 
         jLabel1.setText("<html><h1>Pesquisar:</h1></html>");
 
-        jTextField1.setText("Nome do Produto");
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
