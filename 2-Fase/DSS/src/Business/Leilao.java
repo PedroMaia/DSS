@@ -5,7 +5,10 @@ import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 public class Leilao {
-	
+    
+	private int id;
+        private Utilizador leiloador;
+	private Produto p;
         private GregorianCalendar dataLeilao;
 	private GregorianCalendar _dataFecho;
 	private GregorianCalendar _dataLimiteLeilao;
@@ -13,12 +16,12 @@ public class Leilao {
         private GregorianCalendar dataEnvioProduto;
 	private float _base;
 	private float _tecto;
-	private Utilizador leiloador;
-	private Produto p;
         private LicitacoesDAO licitacoes;
-        private int id;
 
-    public Leilao(GregorianCalendar dataLeilao, GregorianCalendar _dataFecho, GregorianCalendar _dataLimiteLeilao, GregorianCalendar dataPagamento, GregorianCalendar dataEnvioProduto, float _base, float _tecto, Utilizador leiloador, Produto p, int id) {
+    public Leilao(int id, Utilizador leiloador, Produto p, GregorianCalendar dataLeilao, GregorianCalendar _dataFecho, GregorianCalendar _dataLimiteLeilao, GregorianCalendar dataPagamento, GregorianCalendar dataEnvioProduto, float _base, float _tecto) {
+        this.id = id;
+        this.leiloador = leiloador;
+        this.p = p;
         this.dataLeilao = dataLeilao;
         this._dataFecho = _dataFecho;
         this._dataLimiteLeilao = _dataLimiteLeilao;
@@ -26,11 +29,11 @@ public class Leilao {
         this.dataEnvioProduto = dataEnvioProduto;
         this._base = _base;
         this._tecto = _tecto;
-        this.leiloador = leiloador;
-        this.p = p;
-        this.id = id;
         this.licitacoes=new LicitacoesDAO(id);
     }
+        
+
+    
 
     public Utilizador getLeiloador() {
         return leiloador;
