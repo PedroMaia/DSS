@@ -8,6 +8,7 @@ import Business.Produto;
 import Business.Utilizador;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -79,5 +80,50 @@ public class ProdutosDAO {
         }
         c.close();
         return res;
+    }
+    
+    public boolean add(Produto p, Utilizador u) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("insert into produto values(?,?,?,?,?,?,?)");
+        s.setInt(1,p.getId());
+        s.setString(2,p.getNome());
+        byte[] b=null;
+        ByteArrayOutputStream bytesImg = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(p.getImagem(), "jpg", bytesImg);
+            bytesImg.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        b=bytesImg.toByteArray();
+        s.setBytes(3, b);
+        s.setString(4, u.getUsername());
+        s.setString(5, p.getDescricao());
+        s.setString(6, p.getCategoria());
+        int res=s.executeUpdate();
+        c.close();
+        return (res<1);
+    }
+    
+    public boolean update(Produto p, Utilizador u) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("update produto set np=?, imp=?, dp=?, dsp=?, ctg=? where idp=?");
+        s.setString(1,p.getNome());
+        ByteArrayOutputStream bytesImg = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(p.getImagem(), "jpg", bytesImg);
+            bytesImg.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        s.setBytes(2,bytesImg.toByteArray());
+        s.setString(3, u.getUsername());
+        s.setString(4, p.getDescricao());
+        s.setString(5, p.getCategoria());
+        s.setInt(6,p.getId());
+        int res=s.executeUpdate();
+        return (res<1);
     }
 }

@@ -13,19 +13,69 @@ public class Leilao {
         private GregorianCalendar dataEnvioProduto;
 	private float _base;
 	private float _tecto;
-	
+	private Utilizador leiloador;
 	private Produto p;
         private LicitacoesDAO licitacoes;
-        int id;
+        private int id;
 
-    public Leilao(int id, GregorianCalendar dataLeilao, GregorianCalendar _dataFecho, int _base, int _tecto, Produto p) throws SQLException {
-        this.id=id;
+    public Leilao(GregorianCalendar dataLeilao, GregorianCalendar _dataFecho, GregorianCalendar _dataLimiteLeilao, GregorianCalendar dataPagamento, GregorianCalendar dataEnvioProduto, float _base, float _tecto, Utilizador leiloador, Produto p, int id) {
         this.dataLeilao = dataLeilao;
         this._dataFecho = _dataFecho;
+        this._dataLimiteLeilao = _dataLimiteLeilao;
+        this.dataPagamento = dataPagamento;
+        this.dataEnvioProduto = dataEnvioProduto;
         this._base = _base;
         this._tecto = _tecto;
+        this.leiloador = leiloador;
         this.p = p;
-        licitacoes=new LicitacoesDAO(this.id);
+        this.id = id;
+        this.licitacoes=new LicitacoesDAO(id);
+    }
+
+    public Utilizador getLeiloador() {
+        return leiloador;
+    }
+
+    
+
+    public GregorianCalendar getDataLeilao() {
+        return dataLeilao;
+    }
+
+    public GregorianCalendar getDataFecho() {
+        return _dataFecho;
+    }
+
+    public GregorianCalendar getDataLimiteLeilao() {
+        return _dataLimiteLeilao;
+    }
+
+    public GregorianCalendar getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public GregorianCalendar getDataEnvioProduto() {
+        return dataEnvioProduto;
+    }
+
+    public float getBase() {
+        return _base;
+    }
+
+    public float getTecto() {
+        return _tecto;
+    }
+
+    public Produto getP() {
+        return p;
+    }
+
+    public LicitacoesDAO getLicitacoes() {
+        return licitacoes;
+    }
+
+    public int getId() {
+        return id;
     }
         
         
