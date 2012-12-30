@@ -2,6 +2,7 @@ package Business;
 
 import Data.ClassificacaoDAO;
 import Data.FavoritosDAO;
+import Data.ProdutosDAO;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
@@ -16,6 +17,7 @@ public class Utilizador {
     private BufferedImage imagem;
     private ClassificacaoDAO _classificacao;
     private FavoritosDAO _wishlist;
+    private ProdutosDAO meusProds;
     
     
     public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i)
@@ -29,7 +31,7 @@ public class Utilizador {
         imagem=i;
         _classificacao=new ClassificacaoDAO(name);
         _wishlist=new FavoritosDAO(name);
-        
+        meusProds=new ProdutosDAO();
         
     }
 
