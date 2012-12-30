@@ -5,12 +5,14 @@
 package Data;
 
 import Business.Leilao;
+import Business.Produto;
 import Business.Utilizador;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -44,5 +46,42 @@ public class LeiloesDAO {
         s.setFloat(10, l.getTecto());
         int res = s.executeUpdate();
         return (res<0);
+    }
+    
+    private Leilao read(ResultSet rs) throws SQLException
+    {
+        int id=rs.getInt("idl");
+        Produto p = (new ProdutosDAO()).get(rs.getInt("idp"));
+        Utilizador leiloador = (new UserDAO()).get(rs.getString("ul"));
+        GregorianCalendar dataLeilao, dataFecho, dataLimiteLeilao, dataPagamento, dataEnvioProduto;
+        dataLeilao = new GregorianCalendar();
+        dataLeilao.setTime(rs.getDate("di"));
+        dataFecho = new GregorianCalendar();
+        dataFecho.setTime(rs.getDate("df"));
+        dataLimiteLeilao=new GregorianCalendar();
+        dataLimiteLeilao.setTime(rs.getDate("dll"));
+        dataPagamento=new GregorianCalendar();
+        dataPagamento.setTime(rs.getDate("dp"));
+        dataEnvioProduto=new GregorianCalendar();
+        dataEnvioProduto.setTime(rs.getDate("dep"));
+        float base = rs.getFloat("pb");
+        float tecto = rs.getFloat("pml");
+        Leilao res = new Leilao(id, leiloador, p, dataLeilao, dataFecho, dataLimiteLeilao, dataPagamento, dataEnvioProduto, base, tecto);
+        return res;
+    }
+    
+    public Leilao get(int id) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select * from leilao where idl=?");
+        s.setInt(1, id);
+        ResultSet rs = s.executeQuery();
+        Leilao res=null;
+        if(rs.next())
+        {
+            
+        }
+        c.close();
+        return res;
     }
 }
