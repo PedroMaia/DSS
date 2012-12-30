@@ -101,7 +101,6 @@ CREATE TABLE Leilao(
   idl number(10),--idleilão
   idp number(10) REFERENCES Produto(idp),--idproduto
   ul VARCHAR2(20) REFERENCES Utilizador(usr),--Leiloador
-  cp VARCHAR2(20) REFERENCES Utilizador(usr),--Comprador
   dll DATE, --DataLimiteLeilao
   dp DATE,--DataPagamento
   dep DATE, --DataEnvioProduto
