@@ -8,14 +8,6 @@ package Data;
  *
  * @author Cesar
  */
-public class FavoritosDAO {
-
-    private String username;
-
-    public FavoritosDAO(String username) {
-        this.username = username;
-    }
-    
-    
+public class SuspeitasDAO {
     
 }

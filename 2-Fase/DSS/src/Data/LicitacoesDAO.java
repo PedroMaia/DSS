@@ -71,13 +71,11 @@ public class LicitacoesDAO {
     {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s=c.prepareStatement(
-                "insert into licitacao values(? , ? , ? , ?) where ? > nvl((select max(vl) from licitacao where idl=?),0)");
+                "insert into licitacao values(? , ? , ? , ?)");
         s.setInt(1,idLeilao);
         s.setString(2,l.getUser().getUsername());
         s.setDate(3, new Date(l.getData().getTime().getTime()));
         s.setFloat(4, l.getValor());
-        s.setFloat(5, l.getValor());
-        s.setInt(6,idLeilao);
         int res=s.executeUpdate();
         c.close();
         return (res<0);

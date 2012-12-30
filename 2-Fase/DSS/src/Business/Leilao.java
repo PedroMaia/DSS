@@ -30,14 +30,15 @@ public class Leilao {
         
         
 
-	public void registaLicitacao(Utilizador aU, int aV) throws LeilaoFechadoException, BaixaLicitacaoException {
-            
-            
+	public void registaLicitacao(Licitacao l) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
+            if(fechado()) throw new LeilaoFechadoException();
+            if(l.getValor()<getUltimaLicitacao()) throw new BaixaLicitacaoException();
+            licitacoes.addLicitacao(l);
 	}
 
-	public boolean fechado() {
+	public boolean fechado() throws SQLException {
 		GregorianCalendar hoje = new GregorianCalendar();
-                return hoje.after(this._dataFecho);
+                return (hoje.after(this._dataFecho)||(licitacoes.getMaxLicitacao()>=_tecto));
 	}
         
         public void regrideLeilao() {

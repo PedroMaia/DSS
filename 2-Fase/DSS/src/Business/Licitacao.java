@@ -20,7 +20,7 @@ public class Licitacao {
     {
         u=user;
         v=valor;
-        data = data;
+        this.data = data;
     }
     
     public Utilizador getUser()

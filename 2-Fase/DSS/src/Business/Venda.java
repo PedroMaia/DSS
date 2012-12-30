@@ -34,7 +34,7 @@ public class Venda {
         return id;
     }
 
-    public int getPreco() {
+    public float getPreco() {
         return _preco;
     }
 

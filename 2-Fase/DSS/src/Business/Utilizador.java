@@ -2,10 +2,6 @@ package Business;
 
 import Data.ClassificacaoDAO;
 import Data.FavoritosDAO;
-import Data.LeiloesDAO;
-import Data.ProdutosDAO;
-import Data.TrocasDAO;
-import Data.VendasDAO;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
@@ -19,11 +15,8 @@ public class Utilizador {
     private GregorianCalendar dataRegisto;
     private BufferedImage imagem;
     private ClassificacaoDAO _classificacao;
-    private ProdutosDAO _meusProds;
     private FavoritosDAO _wishlist;
-    private VendasDAO minhasVendas;
-    private LeiloesDAO meusLeiloes;
-    private TrocasDAO minhasTrocas;
+    
     
     public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i)
     {
@@ -34,12 +27,9 @@ public class Utilizador {
         dataNascimento= dN;
         dataRegisto=dR;
         imagem=i;
-        _classificacao=new ClassificacaoDAO();
-        _meusProds = new ProdutosDAO();
-        _wishlist=new FavoritosDAO();
-        minhasVendas = new VendasDAO();
-        meusLeiloes=new LeiloesDAO();
-        minhasTrocas = new TrocasDAO();
+        _classificacao=new ClassificacaoDAO(name);
+        _wishlist=new FavoritosDAO(name);
+        
         
     }
 

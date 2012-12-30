@@ -1,8 +1,15 @@
 package Business;
 
+import Data.LeiloesDAO;
+import Data.ProdutosDAO;
+import Data.SuspeitasDAO;
+import Data.TrocasDAO;
+import Data.UserDAO;
+import Data.VendasDAO;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,18 +18,18 @@ import java.util.logging.Logger;
 
 public class BuyKing {
 
-    private Map<String, Utilizador> _utilizadores;
-    private List<Venda> _vendas = new ArrayList<Venda>();
-    private List<Leilao> _leiloes = new ArrayList<Leilao>();
-    private List<Suspeita> _suspeitas_;
-    private List<Troca> _trocas_;
-    private List<Produto> _produtos;
+    private UserDAO _utilizadores;
+    private VendasDAO _vendas;
+    private LeiloesDAO _leiloes;
+    private SuspeitasDAO _suspeitas_;
+    private TrocasDAO _trocas_;
+    private ProdutosDAO _produtos;
 
     public List<Produto> pesquisaProduto(String aPchave, String aCat) {
         throw new UnsupportedOperationException();
     }
 
-    public boolean login(String aUsername, String aPassword) {
+    public boolean login(String aUsername, String aPassword) throws SQLException {
         //throw new UnsupportedOperationException();
         Utilizador u = _utilizadores.get(aUsername);
         String md5 = BuyKing.md5crypt(aPassword);
