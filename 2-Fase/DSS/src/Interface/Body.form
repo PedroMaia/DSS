@@ -14,7 +14,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,47,0,0,3,74"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,47,0,0,3,58"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -39,7 +39,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="666" max="32767" attributes="0"/>
                   <Component id="jLabelLogoTipo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -82,9 +82,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButtonVender">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/ColocarVender.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Vender"/>
           </Properties>
           <Events>
@@ -98,9 +95,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonLeiloar">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/ColocarEmLeil&#xe3;o.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Leiloar"/>
           </Properties>
           <Constraints>
@@ -111,14 +105,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonFavoritos">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/Favoritos.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Favoritos"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="100" width="-1" height="30"/>
+              <AbsoluteConstraints x="10" y="100" width="110" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -149,7 +140,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanelMenuUser" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="618" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -168,9 +159,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/kingAvatar.png"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="icons"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanelMenuUser">
@@ -208,7 +197,7 @@
                       <Component id="jButtonAjuda" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButtonSair" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="236" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -216,17 +205,11 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jButtonKingArea">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/KingArea.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="King Area"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonAjuda">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Help.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Ajuda          "/>
               </Properties>
               <Events>
@@ -235,9 +218,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSair">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/logouticon.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value=" Sair            "/>
               </Properties>
               <Events>
@@ -248,14 +228,14 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="Body">
+    <Container class="javax.swing.JPanel" name="BodyPrincipal">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 400]"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="BodyComponentAdded"/>
+        <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="BodyPrincipalComponentAdded"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -630,11 +610,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonPesquisar1">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagens/Pesquisa.png"/>
-                    </Property>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -829,7 +804,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="Vender"/>
+              <CardConstraints cardName="cardVender"/>
             </Constraint>
           </Constraints>
 
@@ -1021,9 +996,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagens/produtoExemplo_1.png"/>
-                    </Property>
+                    <Property name="text" type="java.lang.String" value="sd"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1115,9 +1088,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonfavorit1">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Favoritos.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Adicionar aos Favoritos"/>
               </Properties>
               <Constraints>
@@ -1601,11 +1571,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonPesquisar">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/Imagens/Pesquisa.png"/>
-                        </Property>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

@@ -42,7 +42,7 @@ public final class Body extends javax.swing.JInternalFrame {
         jButtonKingArea = new javax.swing.JButton();
         jButtonAjuda = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        Body = new javax.swing.JPanel();
+        BodyPrincipal = new javax.swing.JPanel();
         Leiloar = new javax.swing.JPanel();
         pcimagem1 = new javax.swing.JPanel();
         jBcimagem1 = new javax.swing.JButton();
@@ -167,7 +167,7 @@ public final class Body extends javax.swing.JInternalFrame {
         logotipoLayout.setHorizontalGroup(
             logotipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logotipoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(666, Short.MAX_VALUE)
                 .addComponent(jLabelLogoTipo)
                 .addContainerGap())
         );
@@ -182,7 +182,6 @@ public final class Body extends javax.swing.JInternalFrame {
         MenuPrincipal.setName("Produtos"); // NOI18N
         MenuPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarVender.png"))); // NOI18N
         jButtonVender.setText("Vender");
         jButtonVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,27 +190,23 @@ public final class Body extends javax.swing.JInternalFrame {
         });
         MenuPrincipal.add(jButtonVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, 30));
 
-        jButtonLeiloar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarEmLeilão.png"))); // NOI18N
         jButtonLeiloar.setText("Leiloar");
         MenuPrincipal.add(jButtonLeiloar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 110, 30));
 
-        jButtonFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Favoritos.png"))); // NOI18N
         jButtonFavoritos.setText("Favoritos");
-        MenuPrincipal.add(jButtonFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 30));
+        MenuPrincipal.add(jButtonFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 110, 30));
 
         getContentPane().add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, 150));
 
         DefUser.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
         DefUser.setName("Definições de Utilizador"); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/kingAvatar.png"))); // NOI18N
+        jLabel3.setText("icons");
 
         jPanelMenuUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Menu do User ")));
 
-        jButtonKingArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/KingArea.png"))); // NOI18N
         jButtonKingArea.setText("King Area");
 
-        jButtonAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Help.png"))); // NOI18N
         jButtonAjuda.setText("Ajuda          ");
         jButtonAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +214,6 @@ public final class Body extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logouticon.png"))); // NOI18N
         jButtonSair.setText(" Sair            ");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +241,7 @@ public final class Body extends javax.swing.JInternalFrame {
                 .addComponent(jButtonAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSair)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DefUserLayout = new javax.swing.GroupLayout(DefUser);
@@ -260,7 +254,7 @@ public final class Body extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(DefUserLayout.createSequentialGroup()
                 .addComponent(jPanelMenuUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 618, Short.MAX_VALUE))
         );
         DefUserLayout.setVerticalGroup(
             DefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,13 +268,13 @@ public final class Body extends javax.swing.JInternalFrame {
 
         getContentPane().add(DefUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 190, 340));
 
-        Body.setPreferredSize(new java.awt.Dimension(400, 400));
-        Body.addContainerListener(new java.awt.event.ContainerAdapter() {
+        BodyPrincipal.setPreferredSize(new java.awt.Dimension(400, 400));
+        BodyPrincipal.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
-                BodyComponentAdded(evt);
+                BodyPrincipalComponentAdded(evt);
             }
         });
-        Body.setLayout(new java.awt.CardLayout());
+        BodyPrincipal.setLayout(new java.awt.CardLayout());
 
         Leiloar.setPreferredSize(new java.awt.Dimension(400, 400));
         Leiloar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -355,7 +349,7 @@ public final class Body extends javax.swing.JInternalFrame {
         jTextFielddatlimite.setText("aaaa/mm/dd");
         Leiloar.add(jTextFielddatlimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 120, 30));
 
-        Body.add(Leiloar, "Leiloar");
+        BodyPrincipal.add(Leiloar, "Leiloar");
 
         ResultPesquisa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ResultPesquisa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -393,8 +387,6 @@ public final class Body extends javax.swing.JInternalFrame {
 
         jComboBoxCategoria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
 
-        jButtonPesquisar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanelPesquisa1Layout = new javax.swing.GroupLayout(jPanelPesquisa1);
         jPanelPesquisa1.setLayout(jPanelPesquisa1Layout);
         jPanelPesquisa1Layout.setHorizontalGroup(
@@ -428,7 +420,7 @@ public final class Body extends javax.swing.JInternalFrame {
 
         ResultPesquisa.add(jPanelPesquisa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, -1));
 
-        Body.add(ResultPesquisa, "card9");
+        BodyPrincipal.add(ResultPesquisa, "card9");
 
         ProdutoCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -483,7 +475,7 @@ public final class Body extends javax.swing.JInternalFrame {
         jLabel15.setText("Classificação do Vendedor(0 a 5)");
         ProdutoCompra.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        Body.add(ProdutoCompra, "ProdutoCompra");
+        BodyPrincipal.add(ProdutoCompra, "ProdutoCompra");
 
         Vender.setPreferredSize(new java.awt.Dimension(400, 400));
         Vender.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -544,7 +536,7 @@ public final class Body extends javax.swing.JInternalFrame {
         jTexpreco.setText("€€€€€€");
         Vender.add(jTexpreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 60, 30));
 
-        Body.add(Vender, "Vender");
+        BodyPrincipal.add(Vender, "cardVender");
 
         ProdutoLeilao.setPreferredSize(new java.awt.Dimension(426, 400));
         ProdutoLeilao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -552,7 +544,7 @@ public final class Body extends javax.swing.JInternalFrame {
         jPanelImagemLeilao.setBorder(javax.swing.BorderFactory.createTitledBorder("ImagensProduto"));
         jPanelImagemLeilao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/produtoExemplo_1.png"))); // NOI18N
+        jLabel19.setText("sd");
         jPanelImagemLeilao.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, 90));
 
         ProdutoLeilao.add(jPanelImagemLeilao, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 12, 150, 110));
@@ -580,7 +572,6 @@ public final class Body extends javax.swing.JInternalFrame {
         jLabel22.setText("Classificação do Vendedor(0 a 5)");
         ProdutoLeilao.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        jButtonfavorit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Favoritos.png"))); // NOI18N
         jButtonfavorit1.setText("Adicionar aos Favoritos");
         ProdutoLeilao.add(jButtonfavorit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, -1));
 
@@ -652,7 +643,7 @@ public final class Body extends javax.swing.JInternalFrame {
 
         ProdutoLeilao.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 390, 80));
 
-        Body.add(ProdutoLeilao, "ProdutoLeilao");
+        BodyPrincipal.add(ProdutoLeilao, "ProdutoLeilao");
 
         PesqAvan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -723,7 +714,7 @@ public final class Body extends javax.swing.JInternalFrame {
 
         PesqAvan.add(pesquisaAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 380, 380));
 
-        Body.add(PesqAvan, "pesquisaAvan");
+        BodyPrincipal.add(PesqAvan, "pesquisaAvan");
 
         PagInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -746,8 +737,6 @@ public final class Body extends javax.swing.JInternalFrame {
         });
 
         jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
-
-        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelPesquisaLayout = new javax.swing.GroupLayout(jPanelPesquisa);
         jPanelPesquisa.setLayout(jPanelPesquisaLayout);
@@ -804,9 +793,9 @@ public final class Body extends javax.swing.JInternalFrame {
 
         PagInicial.add(ResutadosPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 390));
 
-        Body.add(PagInicial, "pesquisaAvan");
+        BodyPrincipal.add(PagInicial, "pesquisaAvan");
 
-        getContentPane().add(Body, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 19, 426, 402));
+        getContentPane().add(BodyPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 19, 426, 402));
 
         jPanelPatrocinadores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -818,9 +807,9 @@ public final class Body extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BodyComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_BodyComponentAdded
+    private void BodyPrincipalComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_BodyPrincipalComponentAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_BodyComponentAdded
+    }//GEN-LAST:event_BodyPrincipalComponentAdded
 
     private void jButtonAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjudaActionPerformed
         // TODO add your handling code here:
@@ -843,7 +832,8 @@ public final class Body extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVenderActionPerformed
-        // TODO add your handling code here:
+      CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
+      card.show(this.BodyPrincipal,"cardVender");
     }//GEN-LAST:event_jButtonVenderActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -863,12 +853,12 @@ public final class Body extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ChavePesquisa1ActionPerformed
 
     public void IniciaPanel(String nome){
-        CardLayout card = (CardLayout)Body.getLayout();
-        card.show(Body, nome);
+        CardLayout card = (CardLayout)BodyPrincipal.getLayout();
+        card.show(BodyPrincipal, nome);
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Body;
+    private javax.swing.JPanel BodyPrincipal;
     private javax.swing.JTextField ChavePesquisa;
     private javax.swing.JTextField ChavePesquisa1;
     private javax.swing.JPanel DefUser;
