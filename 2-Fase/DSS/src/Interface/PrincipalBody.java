@@ -97,7 +97,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         Vender = new javax.swing.JPanel();
         pcimagem = new javax.swing.JPanel();
         jBcimagem = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
         nomedescricao = new javax.swing.JPanel();
         lnome = new javax.swing.JLabel();
         jTnome = new javax.swing.JTextField();
@@ -142,7 +141,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jButtonLeiloar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarEmLeilão.png"))); // NOI18N
         jButtonLeiloar.setText("Leiloar");
 
-        jButtonMenuFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EleStart.png"))); // NOI18N
+        jButtonMenuFavoritos.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pedro\\Dropbox\\GitDSS\\DSS\\2-Fase\\DSS\\src\\Imagens\\lixo.png")); // NOI18N
         jButtonMenuFavoritos.setText("Favoritos");
 
         javax.swing.GroupLayout MenuPrincipalLayout = new javax.swing.GroupLayout(MenuPrincipal);
@@ -164,8 +163,8 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jButtonLeiloar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonMenuFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addComponent(jButtonMenuFavoritos)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanelPesquisa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -296,8 +295,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jPanelpesq.setToolTipText("");
         jPanelpesq.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButtonPesqAvan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
         jButtonPesqAvan.setText("Pesquisa Avançada");
-        jPanelpesq.add(jButtonPesqAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 140, 30));
+        jPanelpesq.add(jButtonPesqAvan, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 170, 30));
 
         jButtonResults.setText("Mais Resultados");
         jPanelpesq.add(jButtonResults, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 120, 30));
@@ -447,11 +447,10 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(ProdutoCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ProdutoCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15)
-                        .addGroup(ProdutoCompraLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel15)
+                    .addGroup(ProdutoCompraLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         ProdutoCompraLayout.setVerticalGroup(
@@ -595,17 +594,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         pcimagemLayout.setHorizontalGroup(
             pcimagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jBcimagem, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-            .addGroup(pcimagemLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel17)
-                .addContainerGap())
         );
         pcimagemLayout.setVerticalGroup(
             pcimagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pcimagemLayout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
+                .addContainerGap(193, Short.MAX_VALUE)
                 .addComponent(jBcimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -742,10 +735,10 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                             .addComponent(logotipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(62, 62, 62)
                         .addComponent(MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(150, Short.MAX_VALUE)
+                    .addContainerGap(158, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
@@ -810,7 +803,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
