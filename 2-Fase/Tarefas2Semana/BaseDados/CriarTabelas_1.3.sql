@@ -134,6 +134,7 @@ CREATE TABLE Licitacao (
 
 		
 CREATE TABLE PTroca(
+  idt number(10) --idTroca
   usr1 VARCHAR2(20) REFERENCES Utilizador(usr),--user1
   idp1 number(10) REFERENCES Produto(idp),--idproduto1
   usr2 VARCHAR2(20) REFERENCES Utilizador(usr),
@@ -142,7 +143,7 @@ CREATE TABLE PTroca(
   dct DATE, --DataConfirmacaoTroca
   dconlt DATE, --DataConclusaoTroca
   dpt DATE,--DataPropostaDeTroca
-  PRIMARY KEY (usr1,idp1,usr2,idp2)
+  PRIMARY KEY (idt)
 );
 
 
@@ -184,6 +185,13 @@ start with 1
 increment by 1
 minvalue 1
 maxvalue 10000;
+
+
+Create sequence Sidt
+start with 1
+increment 1
+minvalue 1
+nomaxvalue;
 ---Inserir
 
 
