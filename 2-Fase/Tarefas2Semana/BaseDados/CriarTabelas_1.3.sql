@@ -135,10 +135,10 @@ CREATE TABLE Licitacao (
 		
 CREATE TABLE PTroca(
   idt number(10) --idTroca
-  usr1 VARCHAR2(20) REFERENCES Utilizador(usr),--user1
-  idp1 number(10) REFERENCES Produto(idp),--idproduto1
-  usr2 VARCHAR2(20) REFERENCES Utilizador(usr),
-  idp2 number(10) REFERENCES Produto(idp),
+  usr1 VARCHAR2(20) REFERENCES Utilizador(usr),--propositor
+  idp1 number(10) REFERENCES Produto(idp),--oferta
+  usr2 VARCHAR2(20) REFERENCES Utilizador(usr),--convidado
+  idp2 number(10) REFERENCES Produto(idp),--desejado
   dlt DATE,--DataLimiteParaTroca
   dct DATE, --DataConfirmacaoTroca
   dconlt DATE, --DataConclusaoTroca
