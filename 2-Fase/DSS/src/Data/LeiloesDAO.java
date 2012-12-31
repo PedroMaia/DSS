@@ -79,9 +79,19 @@ public class LeiloesDAO {
         Leilao res=null;
         if(rs.next())
         {
-            
+            res=read(rs);
         }
         c.close();
         return res;
+    }
+    
+    public boolean update(Leilao l) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("update leilao set dll=? where idl=?");
+        s.setDate(1, new Date(l.getDataLimiteLeilao().getTime().getTime()));
+        s.setInt(2, l.getId());
+        int res = s.executeUpdate();
+        return (res<1);
     }
 }

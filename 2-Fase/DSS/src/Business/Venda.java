@@ -1,6 +1,5 @@
 package Business;
 
-import Data.VendasDAO;
 import java.util.GregorianCalendar;
 
 public class Venda {
@@ -18,7 +17,7 @@ public class Venda {
 
         
         
-    public Venda(int id, int _preco, GregorianCalendar dataVenda, GregorianCalendar _dataLimiteVenda, GregorianCalendar dataEnvioProduto, GregorianCalendar dataPagamento, Produto _produto, Utilizador vendedor, Utilizador comprador) {
+    public Venda(int id, float _preco, GregorianCalendar dataVenda, GregorianCalendar _dataLimiteVenda, GregorianCalendar dataEnvioProduto, GregorianCalendar dataPagamento, Produto _produto, Utilizador vendedor, Utilizador comprador) {
         this.id = id;
         this._preco = _preco;
         this.dataVenda = dataVenda;

@@ -1,5 +1,6 @@
 package Business;
 
+import Data.SuspeitasDAO;
 import java.awt.image.BufferedImage;
 
 public class Produto {
@@ -8,6 +9,7 @@ public class Produto {
 	private BufferedImage _imagem;
         private String descricao;
         private String categoria;
+        private SuspeitasDAO suspeitas;
 
     public Produto(int _id, String _nome, BufferedImage _imagem, String descricao, String categoria) {
         this._id = _id;
@@ -15,6 +17,7 @@ public class Produto {
         this._imagem = _imagem;
         this.descricao = descricao;
         this.categoria = categoria;
+        suspeitas = new SuspeitasDAO(_id);
     }
 
     public int getId() {
