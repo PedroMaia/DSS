@@ -23,7 +23,11 @@ public class BuyKing {
     private TrocasDAO _trocas_;
     private ProdutosDAO _produtos;
 
-    public List<Produto> pesquisaProduto(String aPchave, String aCat) {
+    public List<Venda> pesquisaVendas(String aPchave, String aCat) {
+        throw new UnsupportedOperationException();
+    }
+    
+    public List<Leilao> pesquisaLeilao(String aPchave, String aCat){
         throw new UnsupportedOperationException();
     }
 
@@ -34,8 +38,9 @@ public class BuyKing {
         return ((u != null) && (u.getPassmd5().equals(md5)));
     }
 
-    public void registar() {
-        throw new UnsupportedOperationException();
+    public boolean registar(Utilizador u) throws SQLException {
+        //throw new UnsupportedOperationException();
+        return _utilizadores.add(u);
     }
 
     public static String md5crypt(String s) {
