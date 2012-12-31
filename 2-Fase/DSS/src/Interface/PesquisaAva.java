@@ -34,9 +34,13 @@ public class PesquisaAva extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jPanelVLOpt = new javax.swing.JPanel();
+        jPanelVenda = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelLeilao = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa Avançada"));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Venda", "Leilão", "Todos" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -44,30 +48,85 @@ public class PesquisaAva extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 30));
 
         jLabel7.setText("Tipo de Transação :");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
         jLabel2.setText("Preço de :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 50, 20));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 50, 20));
 
         jLabel6.setText("$");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 10, 20));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 50, 20));
 
         jLabel9.setText(" Até:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 30, 20));
 
         jLabel10.setText("$");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 10, 20));
+
+        jPanelVLOpt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanelVLOpt.setLayout(new java.awt.CardLayout());
+
+        jLabel1.setText("Venda");
+        jPanelVenda.add(jLabel1);
+
+        jPanelVLOpt.add(jPanelVenda, "card2");
+
+        jLabel3.setText("Leilao");
+        jPanelLeilao.add(jLabel3);
+
+        jPanelVLOpt.add(jPanelLeilao, "card3");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanelVLOpt, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(5, 5, 5)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelVLOpt, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -80,11 +139,16 @@ public class PesquisaAva extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanelLeilao;
+    private javax.swing.JPanel jPanelVLOpt;
+    private javax.swing.JPanel jPanelVenda;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
