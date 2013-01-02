@@ -3,20 +3,17 @@ package Business;
 import java.util.GregorianCalendar;
 
 public class Venda {
-        private int id;
-	private float _preco;
-        private GregorianCalendar dataVenda;
-	private GregorianCalendar _dataLimiteVenda;
-	private GregorianCalendar dataEnvioProduto;
-        private GregorianCalendar dataPagamento;
-	private Produto _produto;
-        private Utilizador vendedor;
-        private Utilizador comprador;
 
-    
+    private int id;
+    private float _preco;
+    private GregorianCalendar dataVenda;
+    private GregorianCalendar _dataLimiteVenda;
+    private GregorianCalendar dataEnvioProduto;
+    private GregorianCalendar dataPagamento;
+    private Produto _produto;
+    private Utilizador vendedor;
+    private Utilizador comprador;
 
-        
-        
     public Venda(int id, float _preco, GregorianCalendar dataVenda, GregorianCalendar _dataLimiteVenda, GregorianCalendar dataEnvioProduto, GregorianCalendar dataPagamento, Produto _produto, Utilizador vendedor, Utilizador comprador) {
         this.id = id;
         this._preco = _preco;
@@ -65,17 +62,19 @@ public class Venda {
         return comprador;
     }
 
+    public void setDataLimiteVenda(GregorianCalendar _dataLimiteVenda) {
+        this._dataLimiteVenda = _dataLimiteVenda;
+    }
+
+    public void setComprador(Utilizador comprador) {
+        this.comprador = comprador;
+    }
+
     
-        
-        
 
-	public void registaComprador(Object aUtilizador_u) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void cancelaVenda() {
-		throw new UnsupportedOperationException();
-	}
+    public void cancelaVenda() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public int hashCode() {
@@ -103,7 +102,4 @@ public class Venda {
     public String toString() {
         return "Venda{" + "id=" + id + ", _preco=" + _preco + ", dataVenda=" + dataVenda + ", _dataLimiteVenda=" + _dataLimiteVenda + ", dataEnvioProduto=" + dataEnvioProduto + ", dataPagamento=" + dataPagamento + ", _produto=" + _produto + ", vendedor=" + vendedor + ", comprador=" + comprador + '}';
     }
-        
-        
-        
 }

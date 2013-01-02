@@ -50,11 +50,10 @@ CREATE TABLE Classificacao(
 CREATE TABLE Produto(
   idp NUMBER(10),--IdProduto ver como fazer para auto-icrementar
   np VARCHAR2(50),--NomeProduto
-  imp BLOB NOT NULL,--imagemProduto
+  imp BLOB,--imagemProduto
   dp VARCHAR2(20) REFERENCES Utilizador(usr),--username: dono produto
   dsp VARCHAR2(150),--descrição produto
   ctg VARCHAR2(20) ,--categoria
-  
   PRIMARY KEY (idp)
 );
 
@@ -134,7 +133,7 @@ CREATE TABLE Licitacao (
 
 		
 CREATE TABLE PTroca(
-  idt number(10) --idTroca
+  idt number(10), --idTroca
   usr1 VARCHAR2(20) REFERENCES Utilizador(usr),--propositor
   idp1 number(10) REFERENCES Produto(idp),--oferta
   usr2 VARCHAR2(20) REFERENCES Utilizador(usr),--convidado
@@ -189,7 +188,7 @@ maxvalue 10000;
 
 Create sequence Sidt
 start with 1
-increment 1
+increment by 1
 minvalue 1
 nomaxvalue;
 ---Inserir
@@ -211,13 +210,13 @@ INSERT INTO Classificacao VALUES('pfaria','maiarib',5,to_date('2010-01-24','yyyy
 
 
 --Inserir produtos  
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Samsung',null,'maiarib','Em bom estado','COMUNICACOES',to_date('2012-01-23','yyyy-mm-dd'));
+INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Samsung',null,'maiarib','Em bom estado','COMUNICACOES');
 
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Samsung 2',null,'pfaria','Não Em bom estado','COMUNICACOES',to_date('2012-01-24','yyyy-mm-dd'));
+INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Samsung 2',null,'pfaria','Não Em bom estado','COMUNICACOES');
 
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Da Vodafone',null,'pfaria','Em bom Optimo estado para Troca','COMUNICACOES',to_date('2012-01-25','yyyy-mm-dd'));
+INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Da Vodafone',null,'pfaria','Em bom Optimo estado para Troca','COMUNICACOES');
 
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Da Huawei',null,'maiarib','Em bom Optimo estado para troca','COMUNICACOES',to_date('2012-01-25','yyyy-mm-dd'));
+INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Da Huawei',null,'maiarib','Em bom Optimo estado para troca','COMUNICACOES');
 
 
 

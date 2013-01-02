@@ -13,9 +13,8 @@ import java.sql.SQLException;
  * @author Cesar
  */
 public class DataConnection {
-    
-    public static Connection getDataConnection() throws SQLException
-    {
+
+    public static Connection getDataConnection() throws SQLException {
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         String url = "jdbc:oracle:thin:@serverPC:1521:orcl";
         Connection c = DriverManager.getConnection(url, "luis", "leilei");

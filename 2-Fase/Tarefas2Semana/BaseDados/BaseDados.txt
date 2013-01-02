@@ -37,232 +37,242 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="214" y="123" name="Utilizador">
-<row name="username" null="0" autoincrement="1">
-<datatype>VARCHAR</datatype>
-<relation table="Classificação" row="classificado" />
-<relation table="Classificação" row="classificador" />
-<relation table="PTroca" row="User1" />
-<relation table="PTroca" row="User2" />
-<relation table="CasoSuspeito" row="UserName" />
+</datatypes><table x="518" y="326" name="Utilizador">
+<row name="Username()" null="0" autoincrement="1">
+<datatype>VARCHAR(20)</datatype>
+<relation table="Classificação" row="Classificado()" />
+<relation table="Classificação" row="Classificador()" />
+<relation table="PTroca" row="User1()" />
+<relation table="PTroca" row="User2()" />
+<relation table="CasoSuspeito" row="UserName()" />
 </row>
-<row name="password" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<row name="Password()" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
 <default>'NotNuLL'</default></row>
-<row name="email" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="Localidade" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="Cod-Postal" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default></row>
-<row name="DataDeRegisto" null="1" autoincrement="0">
+<row name="Email()" null="1" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+<default>'NOT NULL UNIQUE'</default></row>
+<row name="Localidade()" null="1" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="DataDeRegisto()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
-<default>NULL</default></row>
+<default>'DATE NOT NULL'</default></row>
+<row name="DataNascimento()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>'DATE NOT NULL'</default></row>
+<row name="FotoUser()" null="0" autoincrement="0">
+<datatype>BLOB</datatype>
+</row>
 <key type="PRIMARY" name="">
-<part>username</part>
+<part>Username()</part>
 </key>
 </table>
-<table x="240" y="346" name="Classificação">
-<row name="classificado" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<table x="795" y="568" name="Classificação">
+<row name="Classificado()" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
 </row>
-<row name="classificador" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<row name="Classificador()" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
 </row>
-<row name="valorAtribuido" null="0" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default></row>
-<row name="DataClassificação" null="1" autoincrement="0">
+<row name="ValorAtribuido()" null="0" autoincrement="0">
+<datatype>INT(5)</datatype>
+</row>
+<row name="DataClassificação()" null="0" autoincrement="0">
 <datatype>DATE</datatype>
-<default>NULL</default></row>
+</row>
 <key type="PRIMARY" name="">
-<part>classificado</part>
-<part>classificador</part>
+<part>Classificado()</part>
+<part>Classificador()</part>
 </key>
 </table>
-<table x="777" y="25" name="Produtos">
-<row name="IdProduto" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>'NULL'</default><relation table="PTroca" row="IdProduto1" />
-<relation table="PTroca" row="IdProduto2" />
+<table x="754" y="44" name="Produtos">
+<row name="IdProduto()" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<relation table="PTroca" row="IdProduto1()" />
+<relation table="PTroca" row="IdProduto2()" />
 </row>
-<row name="nomeProduto" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="Imagem" null="1" autoincrement="0">
-<datatype>BINARY</datatype>
-<default>NULL</default></row>
-<row name="DonoProduto" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<row name="NomeProduto()" null="1" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="Imagem()" null="0" autoincrement="0">
+<datatype>BLOB</datatype>
 </row>
-<row name="Descrição" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="Categoria" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="DataInsercao" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<row name="DonoProduto()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="Descrição()" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="Categoria()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
-<part>IdProduto</part>
+<part>IdProduto()</part>
 </key>
 <key type="INDEX" name="">
-<part>DonoProduto</part>
+<part>DonoProduto()</part>
 </key>
 </table>
-<table x="936" y="147" name="Vendas">
-<row name="idVenda" null="1" autoincrement="1">
-<datatype>VARCHAR</datatype>
+<table x="1114" y="85" name="Vendas">
+<row name="idVenda()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
 <default>NULL</default></row>
-<row name="idProduto" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Produtos" row="IdProduto" />
+<row name="idProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Produtos" row="IdProduto()" />
 </row>
-<row name="Preço" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="Preço()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
 <default>NULL</default></row>
-<row name="Comprador" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<row name="Comprador()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
 </row>
-<row name="DataLimitePagamento" null="1" autoincrement="0">
+<row name="DataLimiteVenda()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="DataPagamento" null="1" autoincrement="0">
+<row name="DataPagamento()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="DataInseridoAvenda" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="DataEnvioProduto()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="Vendedor" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<row name="DataInseridoAvenda()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="Vendedor()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
 </row>
 <key type="PRIMARY" name="">
-<part>idVenda</part>
+<part>idVenda()</part>
 </key>
 </table>
-<table x="528" y="6" name="Favoritos">
-<row name="UseName" null="1" autoincrement="1">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<table x="260" y="38" name="Favoritos">
+<row name="UseName()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
 </row>
-<row name="IdProduto" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Produtos" row="IdProduto" />
-<relation table="CasoSuspeito" row="idProduto" />
+<row name="IdProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Produtos" row="IdProduto()" />
+<relation table="CasoSuspeito" row="idProduto()" />
 </row>
 <key type="PRIMARY" name="">
-<part>UseName</part>
-<part>IdProduto</part>
+<part>UseName()</part>
+<part>IdProduto()</part>
 </key>
 </table>
-<table x="462" y="428" name="Leilão">
-<row name="IdLeilao" null="1" autoincrement="1">
-<datatype>VARCHAR</datatype>
+<table x="39" y="364" name="Leilão">
+<row name="IdLeilao()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
 <default>NULL</default></row>
-<row name="IdProduto" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Produtos" row="IdProduto" />
+<row name="IdProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Produtos" row="IdProduto()" />
 </row>
-<row name="Leiloador" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<row name="Leiloador()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
 </row>
-<row name="DataFecho" null="1" autoincrement="0">
+<row name="DataLimiteLeilao()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="DataInsercao" null="1" autoincrement="0">
+<row name="DataPagamento()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="PBase" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="DataEnvioProduto()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="PMLecitacao" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="DataFecho()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="Comprador" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<row name="DataInsercao()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
 </row>
-<row name="DataPagamento" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="PrecoBase()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
+<default>NULL</default></row>
+<row name="PMLecitacao()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
-<part>IdLeilao</part>
+<part>IdLeilao()</part>
 </key>
 </table>
-<table x="451" y="246" name="Lecitacao">
-<row name="IdLeilao" null="1" autoincrement="1">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Leilão" row="IdLeilao" />
+<table x="302" y="575" name="Licitacao">
+<row name="IdLeilao()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Leilão" row="IdLeilao()" />
 </row>
-<row name="UserLecitou" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="Utilizador" row="username" />
+<row name="UserLicitou()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
 </row>
-<row name="DataLecitacao" null="1" autoincrement="0">
+<row name="DataLicitacao()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="Valor" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="Valor()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
-<part>IdLeilao</part>
-<part>UserLecitou</part>
-<part>DataLecitacao</part>
+<part>IdLeilao()</part>
+<part>UserLicitou()</part>
+<part>DataLicitacao()</part>
 </key>
 </table>
-<table x="861" y="397" name="PTroca">
-<row name="User1" null="1" autoincrement="1">
-<datatype>TINYINT</datatype>
+<table x="1113" y="412" name="PTroca">
+<row name="User1()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
 <default>NULL</default></row>
-<row name="IdProduto1" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="IdProduto1()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
 <default>NULL</default></row>
-<row name="User2" null="1" autoincrement="0">
+<row name="User2()" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="IdProduto2" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
+<row name="IdProduto2()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
 <default>NULL</default></row>
-<row name="ConfirmaTroca" null="1" autoincrement="0">
-<datatype>INT</datatype>
+<row name="IdTroca()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
 <default>NULL</default></row>
-<row name="TrocaCSucesso" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default></row>
-<row name="DataLimiteParaTroca" null="1" autoincrement="0">
+<row name="DataLimiteParaTroca()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="DataPropostaDeTroca" null="1" autoincrement="0">
+<row name="DataConfirmaoTroca()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataConclucaoTroca()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataPropostaTroca()" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
-<part>User1</part>
-<part>IdProduto1</part>
-<part>User2</part>
-<part>IdProduto2</part>
+<part>User1()</part>
+<part>IdProduto1()</part>
+<part>User2()</part>
+<part>IdProduto2()</part>
 </key>
 </table>
-<table x="28" y="18" name="CasoSuspeito">
-<row name="UserName" null="1" autoincrement="1">
-<datatype>TINYINT</datatype>
-<default>NULL</default></row>
-<row name="idProduto" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="JustificaSusp" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<table x="32" y="159" name="CasoSuspeito">
+<row name="UserName()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="idProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NOT NULL</default></row>
+<row name="JustificaSusp()" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
-<part>UserName</part>
-<part>idProduto</part>
+<part>UserName()</part>
+<part>idProduto()</part>
 </key>
 </table>
 </sql>
