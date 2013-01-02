@@ -5,6 +5,7 @@
 package Interface;
 
 import java.awt.Menu;
+import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,11 +35,18 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemNovaJanela = new javax.swing.JMenuItem();
+        jMenuItemClient = new javax.swing.JMenuItem();
+        jMenuItemLogIn = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("File");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItemNovaJanela.setText("Nova Janela");
         jMenuItemNovaJanela.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +55,22 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemNovaJanela);
+
+        jMenuItemClient.setText("AreaCliente");
+        jMenuItemClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemClientActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemClient);
+
+        jMenuItemLogIn.setText("LogIn");
+        jMenuItemLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLogInActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemLogIn);
 
         jMenuBar1.add(jMenu1);
 
@@ -61,30 +85,57 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//Cria janela no desktop
+//Cria janela  principal no desktop
     private void CriaJanelaBody() throws InterruptedException
     {
        
-       if(this.teste==null)
-           this.teste=new PrincipalBody();
+       if(this.janelaBody==null) 
+           this.janelaBody=new PrincipalBody();
        
-       this.jDesktopPanel.add(this.teste);
-       this.teste.setVisible(true);
+       this.jDesktopPanel.add(this.janelaBody);
+       this.janelaBody.setVisible(true);
+      
+  try {
+          this.janelaBody.setSelected(true);
+      }catch (PropertyVetoException ex)
+      {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+      }
+       
     }
-    
+
+   
+    private void CriaJanelaLogIn() throws InterruptedException
+    {
+       
+       if(this.loginJanela==null) 
+        this.loginJanela=new LogIn();
+       
+       this.jDesktopPanel.add(this.loginJanela);
+       this.loginJanela.setVisible(true);
+      
+  try {
+          this.loginJanela.setSelected(true);
+      }catch (PropertyVetoException ex)
+      {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+      }
+       
+    }
+        
     private void jMenuItemNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaJanelaActionPerformed
     try {
             CriaJanelaBody();
@@ -95,6 +146,25 @@ public class Principal extends javax.swing.JFrame {
         }
  // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemNovaJanelaActionPerformed
+
+    private void jMenuItemClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientActionPerformed
+     // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemClientActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItemLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogInActionPerformed
+          try {
+            CriaJanelaLogIn();
+            
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemLogInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,7 +212,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemClient;
+    private javax.swing.JMenuItem jMenuItemLogIn;
     private javax.swing.JMenuItem jMenuItemNovaJanela;
     // End of variables declaration//GEN-END:variables
-    private PrincipalBody teste;
+    private PrincipalBody janelaBody;
+    private LogIn loginJanela;
 }

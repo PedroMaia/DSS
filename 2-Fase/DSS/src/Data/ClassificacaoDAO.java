@@ -84,6 +84,7 @@ public class ClassificacaoDAO {
         s.setString(2, cl.getClassificador().getUsername());
         int res=0;
         ResultSet rs = s.executeQuery();
+        
         if(rs.next())
         {
             rs.close();
