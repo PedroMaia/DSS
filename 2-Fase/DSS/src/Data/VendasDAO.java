@@ -8,9 +8,11 @@ import Business.Produto;
 import Business.Utilizador;
 import Business.Venda;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -123,8 +125,51 @@ public class VendasDAO {
         return res;
     }
     
-    public boolean add(Venda v)
+    public boolean add(Venda v) throws SQLException
     {
-        
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("insert into venda values(?,?,?,?,?,?,?,?,?)");
+        s.setInt(1,v.getId());
+        s.setInt(2,v.getProduto().getId());
+        s.setFloat(3,v.getPreco());
+        if(v.getComprador()!=null)
+            s.setString(4,v.getComprador().getUsername());
+        else
+            s.setNull(4, Types.VARCHAR);
+        if(v.getDataLimiteVenda()!=null)
+            s.setDate(5,new Date(v.getDataLimiteVenda().getTime().getTime()));
+        else
+            s.setNull(5,Types.DATE);
+        if(v.getDataPagamento()!=null)
+            s.setDate(6, new Date(v.getDataPagamento().getTime().getTime()));
+        else
+            s.setNull(6,Types.DATE);
+        if(v.getDataEnvioProduto()!=null)
+            s.setDate(7,new Date(v.getDataEnvioProduto().getTime().getTime()));
+        else
+            s.setNull(7, Types.DATE);
+        s.setDate(8,new Date(v.getDataVenda().getTime().getTime()));
+        s.setString(9, v.getVendedor().getUsername());
+        int res = s.executeUpdate();
+        c.close();
+        return res<1;
+    }
+    
+    public boolean update(Venda v) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("update venda set cp=?, dlv=? where idv=?");
+        if(v.getComprador()!=null)
+            s.setString(1, v.getComprador().getUsername());
+        else
+            s.setNull(1, Types.VARCHAR);
+        if(v.getDataLimiteVenda()!=null)
+            s.setDate(2, new Date(v.getDataLimiteVenda().getTime().getTime()));
+        else
+            s.setNull(2, Types.DATE);
+        s.setInt(3,v.getId());
+        int res = s.executeUpdate();
+        c.close();
+        return res<1;
     }
 }

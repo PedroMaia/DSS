@@ -23,7 +23,7 @@ public class Utilizador {
     public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i)
     {
         _username=name;
-        _passmd5=BuyKing.md5crypt(pass);
+        _passmd5=pass;
         email=mail;
         localidade=l;
         dataNascimento= dN;
