@@ -98,7 +98,7 @@ public class VendasDAO {
     public List<Venda> getVendasComprador(Utilizador u) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("select * from vendas where cp=?");
+        PreparedStatement s = c.prepareStatement("select * from venda where cp=?");
         s.setString(1,u.getUsername());
         List<Venda> res = new ArrayList<Venda>();
         ResultSet rs = s.executeQuery();

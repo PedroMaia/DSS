@@ -185,8 +185,8 @@ public class Teste {
         out.println(bol);
         * */
         //metodos venda
-        bol=vends.add(v1);
-        out.println(bol);
+        //bol=vends.add(v1);
+        //out.println(bol);
         listVendsAb = vends.getVendasAbertas();
         out.print(listVendsAb);
         listVendsC=vends.getVendasComprador(u5);
