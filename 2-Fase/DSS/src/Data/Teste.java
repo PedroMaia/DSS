@@ -8,6 +8,7 @@ import Business.Classificacao;
 import Business.Leilao;
 import Business.Licitacao;
 import Business.Produto;
+import Business.Suspeita;
 import Business.Utilizador;
 import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
@@ -61,7 +62,7 @@ public class Teste {
         Produto p2 = new Produto(2,"roda",imagemProd,"fixe","carros");
         ProdutosDAO pDao = new ProdutosDAO();
         //variaveis favoritos
-        FavoritosDAO favDao = new FavoritosDAO("favs");
+        FavoritosDAO favDao = new FavoritosDAO("pedroMaia");
         List<Produto> listFavs = new ArrayList<Produto>();
         //variaveis licitacao
         LicitacoesDAO licitDAO= new LicitacoesDAO(1);
@@ -73,10 +74,16 @@ public class Teste {
         float teto=90;
         Leilao le = new Leilao(1,u4,p2,reg,DFecho,DFecho,DPag,DEnvProd,base,teto);
         Leilao le2;
-        /**
+        //variaveis suspeita
+        SuspeitasDAO susp = new SuspeitasDAO(2);
+        Suspeita su = new Suspeita(u4,"Gatuno");
+        List<Suspeita> listSusp = new ArrayList<Suspeita>();
+        
+        
+        /*
         //metodos User
-        //bol4=userd.add(u3);
-        //out.println(bol4);
+        bol4=userd.add(u3);
+        out.println(bol4);
         bol4=userd.add(u1);
         out.println(bol4);
         bol4=userd.add(u2);
@@ -113,7 +120,7 @@ public class Teste {
         
         
         
-        */
+        
           //metodos licitacao
         max=licitDAO.getMaxLicitacao();
         out.println(max);
@@ -135,7 +142,12 @@ public class Teste {
         out.println(bol8);
         bol9=favDao.contains(p2);
         out.println(bol9);
-      
+      */
+        //metodos suspeita
+        bol7=susp.add(su);
+        out.println(bol7);
+        listSusp=susp.list();
+       
        
         
         

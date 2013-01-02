@@ -44,7 +44,7 @@ public class SuspeitasDAO {
         return new Suspeita(u, just);
     }
     
-    private List<Suspeita> list() throws SQLException
+    public List<Suspeita> list() throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("select * from casosuspeito where idp=?");
