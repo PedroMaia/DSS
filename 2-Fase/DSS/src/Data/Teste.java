@@ -78,7 +78,18 @@ public class Teste {
         //out.println(bol);
         p=pDao.get(1);
         listProds=pDao.getFromUser(u1);
-       
+        //metodos User
+        u3=userd.get("cesar");
+        out.println(u3);
+        listUser=userd.list();
+        bol4=userd.add(u3);
+        out.println(bol4);
+        bol5=userd.update(u3);
+        out.println(bol5);
+        cla2=c.get(u2);
+        out.println(cla2);
+        bol3=c.delete(u2);
+        out.println(bol3);
         //metodos classificacao
         bol2=c.add(cla);
         out.println(bol2);
@@ -88,18 +99,9 @@ public class Teste {
         classific=c.getNrClassificacao();
         out.println(classific);
         
-        cla2=c.get(u2);
-        out.println(cla2);
-        bol3=c.delete(u2);
-        out.println(bol3);
-        //metodos User
-        u3=userd.get("cesar");
-        out.println(u3);
-        listUser=userd.list();
-        bol4=userd.add(u3);
-        out.println(bol4);
-        bol5=userd.update(u3);
-        out.println(bol5);
+        
+        
+        
         //metodos favoritos
         listFavs=favDao.list();
         bol6=favDao.add(p);
