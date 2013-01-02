@@ -9,6 +9,7 @@ import Business.Leilao;
 import Business.Licitacao;
 import Business.Produto;
 import Business.Suspeita;
+import Business.Troca;
 import Business.Utilizador;
 import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
@@ -35,6 +36,10 @@ public class Teste {
         GregorianCalendar DFecho = new GregorianCalendar(2013,01,31);
         GregorianCalendar DPag = new GregorianCalendar(2013,02,04);
         GregorianCalendar DEnvProd = new GregorianCalendar(2013,02,05);
+        GregorianCalendar DPropst = new GregorianCalendar(2013,02,05);
+        GregorianCalendar DConf = new GregorianCalendar(2013,02,06);
+        GregorianCalendar DConclus = new GregorianCalendar(2013,02,8);
+        GregorianCalendar DLimit = new GregorianCalendar(2013,02,12);
         //variaveis imagens
         BufferedImage imagem = new BufferedImage(10,10,1);
         BufferedImage imagemProd = new BufferedImage(10,10,1);
@@ -58,7 +63,7 @@ public class Teste {
         List<Classificacao> listClassific = new ArrayList<Classificacao>();
         //variaveis produto
         List<Produto> listProds = new ArrayList<Produto>();
-        Produto p;
+        Produto p = new Produto(1,"pneu",imagemProd,"mtofixe","carros");
         Produto p2 = new Produto(2,"roda",imagemProd,"fixe","carros");
         ProdutosDAO pDao = new ProdutosDAO();
         //variaveis favoritos
@@ -78,6 +83,22 @@ public class Teste {
         SuspeitasDAO susp = new SuspeitasDAO(2);
         Suspeita su = new Suspeita(u4,"Gatuno");
         List<Suspeita> listSusp = new ArrayList<Suspeita>();
+        //variaveis Troca
+        Troca tr = new Troca(u1,u2,p2,p,DPropst,DConf,DConclus,DLimit,1);
+        Troca tr2;
+        TrocasDAO trocs = new TrocasDAO();
+        List<Troca> listTrocConv = new ArrayList<Troca>();
+        List<Troca> listTrocProps = new ArrayList<Troca>();
+        bol=trocs.add(tr);
+        out.println(bol);
+        listTrocConv = trocs.listConvidado(u1);
+        listTrocProps = trocs.listPropostas(u2);
+        tr2=trocs.get(1);
+        out.println(tr);
+        
+        
+        
+        
         
         
         /*
