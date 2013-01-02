@@ -159,6 +159,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescricao = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jComboBoxCategoria1 = new javax.swing.JComboBox();
         jLabelpreco = new javax.swing.JLabel();
         jTexpreco = new javax.swing.JTextField();
         jButtonvend = new javax.swing.JButton();
@@ -259,7 +260,8 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<html><strong>Categoria</strong></html>", "Moda", "Tecnologia", "Moveis", "Casa e Jardim", "Lazer", "Desporto", "Imoveis", "Emprego", "Carros", "Motos", "Barcos", "Animais", "Serviços", "Outros" }));
+        jComboBoxCategoria.setToolTipText("");
 
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
 
@@ -280,18 +282,18 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         );
         jPanelPesquisaLayout.setVerticalGroup(
             jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPesquisaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPesquisaLayout.createSequentialGroup()
+                .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelPesquisaLayout.createSequentialGroup()
-                        .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonPesquisar))
                     .addGroup(jPanelPesquisaLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPesq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ChavePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60))))
+                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(60, 60, 60))
         );
 
         DefUser.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
@@ -747,6 +749,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBoxCategoria1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<html><strong>Categoria</strong></html>", "Moda", "Tecnologia", "Moveis", "Casa e Jardim", "Lazer", "Desporto", "Imoveis", "Emprego", "Carros", "Motos", "Barcos", "Animais", "Serviços", "Outros" }));
+        jComboBoxCategoria1.setToolTipText("");
+
         javax.swing.GroupLayout JpanelPropriedadesProdutoLayout = new javax.swing.GroupLayout(JpanelPropriedadesProduto);
         JpanelPropriedadesProduto.setLayout(JpanelPropriedadesProdutoLayout);
         JpanelPropriedadesProdutoLayout.setHorizontalGroup(
@@ -754,35 +759,36 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
                 .addComponent(lnome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTnome)
+                .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
             .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
-                .addGroup(JpanelPropriedadesProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(2, 2, 2))
-                    .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLdescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(111, 111, 111)))
-                .addGap(42, 42, 42))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelPropriedadesProdutoLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44))
+            .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
+                .addComponent(jComboBoxCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
+                .addComponent(jLdescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         JpanelPropriedadesProdutoLayout.setVerticalGroup(
             JpanelPropriedadesProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(JpanelPropriedadesProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lnome)
-                    .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
+                    .addComponent(jTnome)
+                    .addComponent(lnome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(49, 49, 49))
@@ -806,17 +812,17 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                         .addComponent(jButtonvend)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(VenderLayout.createSequentialGroup()
-                        .addGroup(VenderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(VenderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(VenderLayout.createSequentialGroup()
                                 .addComponent(jLabelpreco)
                                 .addGap(15, 15, 15)
-                                .addComponent(jTexpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTexpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelEuro, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(VenderLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(jPanelAddImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(jPanelAddImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
                         .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -843,7 +849,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
         jPanelPesquisaAvanc.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa Avançada"));
 
-        jComboBoxTransacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Venda", "Leilão", "Todos" }));
+        jComboBoxTransacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todas", "Venda", "Leilão", " " }));
         jComboBoxTransacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTransacaoActionPerformed(evt);
@@ -981,9 +987,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addComponent(jSpinnerMinutos)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jMonthChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jYearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLeilaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinnerDias)
@@ -1162,6 +1168,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonvend;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBoxCategoria;
+    private javax.swing.JComboBox jComboBoxCategoria1;
     private javax.swing.JComboBox jComboBoxTransacao;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
