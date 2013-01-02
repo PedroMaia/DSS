@@ -84,7 +84,7 @@ public class VendasDAO {
     public List<Venda> getVendasAbertas() throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("select * from vendas where cp is null");
+        PreparedStatement s = c.prepareStatement("select * from venda where cp is null");
         List<Venda> res = new ArrayList<Venda>();
         ResultSet rs = s.executeQuery();
         while(rs.next())
