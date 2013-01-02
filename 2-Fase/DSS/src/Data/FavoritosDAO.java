@@ -63,6 +63,7 @@ public class FavoritosDAO {
     {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("select idp from favorito where usr=?");
+        s.setString(1, username);
         ResultSet rs = s.executeQuery();
         ProdutosDAO p = new ProdutosDAO();
         List<Produto> res = new ArrayList<Produto>();

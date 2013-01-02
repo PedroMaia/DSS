@@ -3,7 +3,7 @@ package Business;
 import java.util.GregorianCalendar;
 
 public class Venda {
-        int id;
+        private int id;
 	private float _preco;
         private GregorianCalendar dataVenda;
 	private GregorianCalendar _dataLimiteVenda;
@@ -76,4 +76,34 @@ public class Venda {
 	public void cancelaVenda() {
 		throw new UnsupportedOperationException();
 	}
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Venda other = (Venda) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Venda{" + "id=" + id + ", _preco=" + _preco + ", dataVenda=" + dataVenda + ", _dataLimiteVenda=" + _dataLimiteVenda + ", dataEnvioProduto=" + dataEnvioProduto + ", dataPagamento=" + dataPagamento + ", _produto=" + _produto + ", vendedor=" + vendedor + ", comprador=" + comprador + '}';
+    }
+        
+        
+        
 }
