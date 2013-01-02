@@ -169,11 +169,11 @@ public class Teste {
         out.println(bol8);
         bol9=favDao.contains(p2);
         out.println(bol9);
-      */
+      
         //metodos suspeita
-        //bol7=susp.add(su);
-        //out.println(bol7);
-        //listSusp=susp.list();
+        bol7=susp.add(su);
+        out.println(bol7);
+        listSusp=susp.list();
         //metodos Troca
         bol=trocs.add(tr);
         out.println(bol);
@@ -183,6 +183,7 @@ public class Teste {
         out.println(tr);
         bol=trocs.update(tr2);
         out.println(bol);
+        * */
         //metodos venda
         bol=vends.add(v1);
         out.println(bol);
