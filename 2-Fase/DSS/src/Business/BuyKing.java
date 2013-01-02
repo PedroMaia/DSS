@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,8 +25,23 @@ public class BuyKing {
     private TrocasDAO _trocas_;
     private ProdutosDAO _produtos;
 
-    public List<Venda> pesquisaVendas(String aPchave, String aCat) {
-        throw new UnsupportedOperationException();
+    public List<Venda> pesquisaVendasSimples(String aPchave, String aCat) throws SQLException
+    {
+        return pesquisaVendasAvançada(aPchave, aCat, 0, Float.MAX_VALUE);
+    }
+    
+    public List<Venda> pesquisaVendasAvançada(String aPchave, String aCat, float minP, float maxP) throws SQLException {
+        //throw new UnsupportedOperationException();
+        List<Venda> l = _vendas.getVendasAbertas();
+        List<Venda> res = new ArrayList<Venda>();
+        for(Venda v:l)
+        {
+            if((v.getPreco()>minP)&&(v.getPreco()<maxP)&&
+                    (aPchave.matches(v.getProduto().getNome())||aPchave.matches(v.getProduto().getDescricao()))
+                    &&(aCat.equals(v.getProduto().getCategoria())))
+                res.add(v);
+        }
+        return res;
     }
 
     public List<Leilao> pesquisaLeilao(String aPchave, String aCat) {

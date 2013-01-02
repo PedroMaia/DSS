@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  *
@@ -122,5 +124,19 @@ public class LeiloesDAO {
         ResultSet rs=s.executeQuery();
         int res = rs.getInt(1);
         return res>0;
+    }
+    
+    public List<Leilao> getLeiloesActivos() throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select * from leilao where sysdate<df and (select max(vl) from licitacao where licitacao.idl=leilao.idl)<pml");
+        List<Leilao> res = new ArrayList<Leilao>();
+        ResultSet rs = s.executeQuery();
+        while(rs.next())
+        {
+            res.add(read(rs));
+        }
+        c.close();
+        return res;
     }
 }
