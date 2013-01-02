@@ -73,26 +73,37 @@ public class Teste {
         float teto=90;
         Leilao le = new Leilao(1,u4,p2,reg,DFecho,DFecho,DPag,DEnvProd,base,teto);
         Leilao le2;
-        //metodos Produto
-        //bol = pDao.add(p2, u1);
-        //out.println(bol);
-        p=pDao.get(1);
-        listProds=pDao.getFromUser(u1);
         //metodos User
+        //bol4=userd.add(u3);
+        //out.println(bol4);
+        bol4=userd.add(u1);
+        out.println(bol4);
+        bol4=userd.add(u2);
+        out.println(bol4);
+        bol4=userd.add(u4);
+        out.println(bol4);
+        bol4=userd.add(u5);
+        out.println(bol4);
         u3=userd.get("cesar");
         out.println(u3);
         listUser=userd.list();
-        bol4=userd.add(u3);
-        out.println(bol4);
         bol5=userd.update(u3);
         out.println(bol5);
-        cla2=c.get(u2);
-        out.println(cla2);
-        bol3=c.delete(u2);
-        out.println(bol3);
+        
+        //metodos Produto
+        bol = pDao.add(p2, u1);
+        out.println(bol);
+        p=pDao.get(1);
+        listProds=pDao.getFromUser(u1);
+        
+        
         //metodos classificacao
         bol2=c.add(cla);
         out.println(bol2);
+        cla2=c.get(u3);
+        out.println(cla2);
+        bol3=c.delete(u2);
+        out.println(bol3);
         listClassific = c.list();
         classificMed = c.getClassificacaoMedia();
         out.println(classificMed);
@@ -103,9 +114,15 @@ public class Teste {
         
         
         //metodos favoritos
-        listFavs=favDao.list();
         bol6=favDao.add(p);
         out.println(bol6);
+        bol11=leil.add(le);
+        out.println(bol11); 
+        bol10=licitDAO.addLicitacao(l);
+        out.println(bol10);
+        listFavs=favDao.list();
+        le2=leil.get(1);
+        out.println(le2);
         bol7=favDao.contains(p);
         out.println(bol7);
         bol8=favDao.delete(p);
@@ -117,12 +134,9 @@ public class Teste {
         out.println(max);
         u4=licitDAO.getVencedor();
         out.println(u4);
-        bol10=licitDAO.addLicitacao(l);
-        out.println(bol10);
-        le2=leil.get(1);
-        out.println(le2);
-        bol11=leil.add(le);
-        out.println(bol11);
+       
+       
+        
         
         
         
