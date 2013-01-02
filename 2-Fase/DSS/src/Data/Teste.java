@@ -73,6 +73,7 @@ public class Teste {
         float teto=90;
         Leilao le = new Leilao(1,u4,p2,reg,DFecho,DFecho,DPag,DEnvProd,base,teto);
         Leilao le2;
+        /**
         //metodos User
         //bol4=userd.add(u3);
         //out.println(bol4);
@@ -112,9 +113,14 @@ public class Teste {
         
         
         
-        
-        //metodos favoritos
-        bol6=favDao.add(p);
+        */
+          //metodos licitacao
+        max=licitDAO.getMaxLicitacao();
+        out.println(max);
+        u4=licitDAO.getVencedor();
+        out.println(u4);
+       //metodos favoritos
+        bol6=favDao.add(p2);
         out.println(bol6);
         bol11=leil.add(le);
         out.println(bol11); 
@@ -123,18 +129,13 @@ public class Teste {
         listFavs=favDao.list();
         le2=leil.get(1);
         out.println(le2);
-        bol7=favDao.contains(p);
+        bol7=favDao.contains(p2);
         out.println(bol7);
-        bol8=favDao.delete(p);
+        bol8=favDao.delete(p2);
         out.println(bol8);
-        bol9=favDao.contains(p);
+        bol9=favDao.contains(p2);
         out.println(bol9);
-        //metodos licitacao
-        max=licitDAO.getMaxLicitacao();
-        out.println(max);
-        u4=licitDAO.getVencedor();
-        out.println(u4);
-       
+      
        
         
         
