@@ -38,12 +38,24 @@ public class VendasDAO {
         GregorianCalendar dataVenda, dataLimiteVenda, dataEnvioProduto, dataPagamento;
         dataVenda=new GregorianCalendar();
         dataVenda.setTime(rs.getDate("div"));
-        dataLimiteVenda=new GregorianCalendar();
-        dataLimiteVenda.setTime(rs.getDate("dlv"));
-        dataEnvioProduto=new GregorianCalendar();
-        dataEnvioProduto.setTime(rs.getDate("dep"));
-        dataPagamento=new GregorianCalendar();
-        dataPagamento.setTime(rs.getDate("dp"));
+        if(rs.getDate("dlv")!=null)
+        {
+            dataLimiteVenda=new GregorianCalendar();
+            dataLimiteVenda.setTime(rs.getDate("dlv"));
+        }
+        else dataLimiteVenda=null;
+        if(rs.getDate("dep")!=null)
+        {
+            dataEnvioProduto=new GregorianCalendar();
+            dataEnvioProduto.setTime(rs.getDate("dep"));
+        }
+        else dataEnvioProduto=null;
+        if(rs.getDate("dp")!=null)
+        {
+            dataPagamento=new GregorianCalendar();
+            dataPagamento.setTime(rs.getDate("dp"));
+        }
+        else dataPagamento=null;
         Produto p = (new ProdutosDAO()).get(rs.getInt("idp"));
         UserDAO users=new UserDAO();
         Utilizador vendedor = users.get(rs.getString("vd"));
@@ -109,5 +121,10 @@ public class VendasDAO {
         }
         c.close();
         return res;
+    }
+    
+    public boolean add(Venda v)
+    {
+        
     }
 }
