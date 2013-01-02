@@ -39,6 +39,33 @@ public class Produto {
     public String getCategoria() {
         return categoria;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + this._id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Produto other = (Produto) obj;
+        if (this._id != other._id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "_id=" + _id + ", _nome=" + _nome + ", _imagem=" + _imagem + ", descricao=" + descricao + ", categoria=" + categoria + ", suspeitas=" + suspeitas + '}';
+    }
         
         
         
