@@ -96,7 +96,7 @@ public class ClassificacaoDAO {
         }
         else
         {
-            s=c.prepareStatement("insert int classificacao values(?,?,?,?)");
+            s=c.prepareStatement("insert into classificacao values(?,?,?,?)");
             s.setString(1, classificado);
             s.setString(2, cl.getClassificador().getUsername());
             s.setInt(3, cl.getValor());
