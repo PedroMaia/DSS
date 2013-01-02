@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.GregorianCalendar;
 
 /**
@@ -37,9 +38,12 @@ public class LeiloesDAO {
         s.setInt(1,l.getId());
         s.setInt(2,l.getP().getId());
         s.setString(3, l.getLeiloador().getUsername());
-        s.setDate(4,new Date(l.getDataLimiteLeilao().getTime().getTime()));
-        s.setDate(5, new Date(l.getDataPagamento().getTime().getTime()));
-        s.setDate(6, new Date(l.getDataEnvioProduto().getTime().getTime()));
+        if(l.getDataLimiteLeilao()!=null)s.setDate(4,new Date(l.getDataLimiteLeilao().getTime().getTime()));
+        else s.setNull(4, Types.DATE);
+        if(l.getDataPagamento()!=null) s.setDate(5, new Date(l.getDataPagamento().getTime().getTime()));
+        else s.setNull(5, Types.DATE);
+        if(l.getDataEnvioProduto()!=null)s.setDate(6, new Date(l.getDataEnvioProduto().getTime().getTime()));
+        else s.setNull(6, Types.DATE);
         s.setDate(7, new Date(l.getDataFecho().getTime().getTime()));
         s.setDate(8, new Date(l.getDataLeilao().getTime().getTime()));
         s.setFloat(9, l.getBase());
@@ -58,12 +62,24 @@ public class LeiloesDAO {
         dataLeilao.setTime(rs.getDate("di"));
         dataFecho = new GregorianCalendar();
         dataFecho.setTime(rs.getDate("df"));
-        dataLimiteLeilao=new GregorianCalendar();
-        dataLimiteLeilao.setTime(rs.getDate("dll"));
-        dataPagamento=new GregorianCalendar();
-        dataPagamento.setTime(rs.getDate("dp"));
-        dataEnvioProduto=new GregorianCalendar();
-        dataEnvioProduto.setTime(rs.getDate("dep"));
+        if(rs.getDate("dll")!=null)
+        {
+            dataLimiteLeilao=new GregorianCalendar();
+            dataLimiteLeilao.setTime(rs.getDate("dll"));
+        }
+        else dataLimiteLeilao=null;
+        if(rs.getDate("dp")!=null)
+        {
+            dataPagamento=new GregorianCalendar();
+            dataPagamento.setTime(rs.getDate("dp"));
+        }
+        else dataPagamento=null;
+        if(rs.getDate("dep")!=null)
+        {
+            dataEnvioProduto=new GregorianCalendar();
+            dataEnvioProduto.setTime(rs.getDate("dep"));
+        }
+        else dataEnvioProduto=null;
         float base = rs.getFloat("pb");
         float tecto = rs.getFloat("pml");
         Leilao res = new Leilao(id, leiloador, p, dataLeilao, dataFecho, dataLimiteLeilao, dataPagamento, dataEnvioProduto, base, tecto);
@@ -89,7 +105,10 @@ public class LeiloesDAO {
     {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("update leilao set dll=? where idl=?");
-        s.setDate(1, new Date(l.getDataLimiteLeilao().getTime().getTime()));
+        if(l.getDataLimiteLeilao()!=null)
+            s.setDate(1, new Date(l.getDataLimiteLeilao().getTime().getTime()));
+        else
+            s.setNull(1, Types.DATE);
         s.setInt(2, l.getId());
         int res = s.executeUpdate();
         return (res<1);

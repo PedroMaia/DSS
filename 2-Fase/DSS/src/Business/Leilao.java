@@ -102,4 +102,34 @@ public class Leilao {
         {
            return licitacoes.getMaxLicitacao();
         }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Leilao other = (Leilao) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Leilao{" + "id=" + id + ", leiloador=" + leiloador + ", p=" + p + ", dataLeilao=" + dataLeilao + ", _dataFecho=" + _dataFecho + ", _dataLimiteLeilao=" + _dataLimiteLeilao + ", dataPagamento=" + dataPagamento + ", dataEnvioProduto=" + dataEnvioProduto + ", _base=" + _base + ", _tecto=" + _tecto + ", licitacoes=" + licitacoes + '}';
+    }
+        
+        
+        
 }

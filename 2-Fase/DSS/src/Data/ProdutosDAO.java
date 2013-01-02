@@ -85,7 +85,7 @@ public class ProdutosDAO {
     public boolean add(Produto p, Utilizador u) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("insert into produto values(?,?,?,?,?,?,?)");
+        PreparedStatement s = c.prepareStatement("insert into produto values(?,?,?,?,?,?)");
         s.setInt(1,p.getId());
         s.setString(2,p.getNome());
         byte[] b=null;

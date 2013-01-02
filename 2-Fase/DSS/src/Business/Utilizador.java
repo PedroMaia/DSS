@@ -23,7 +23,7 @@ public class Utilizador {
     public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i)
     {
         _username=name;
-        _passmd5=BuyKing.md5crypt(pass);
+        _passmd5=pass;
         email=mail;
         localidade=l;
         dataNascimento= dN;
@@ -108,4 +108,33 @@ public class Utilizador {
         throw new UnsupportedOperationException();
         
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this._username != null ? this._username.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Utilizador other = (Utilizador) obj;
+        if ((this._username == null) ? (other._username != null) : !this._username.equals(other._username)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilizador{" + "_username=" + _username + ", _passmd5=" + _passmd5 + ", email=" + email + ", localidade=" + localidade + ", dataNascimento=" + dataNascimento + ", dataRegisto=" + dataRegisto + ", imagem=" + imagem + '}';
+    }
+    
+    
 }

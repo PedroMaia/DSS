@@ -40,7 +40,7 @@ public class LicitacoesDAO {
     public float getMaxLicitacao() throws SQLException {
         //throw new UnsupportedOperationException("Not yet implemented");
         Connection c=DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("selece max(vl) from Licitacao where idl=?");
+        PreparedStatement s = c.prepareStatement("select max(vl) from Licitacao where idl=?");
         s.setInt(1,idLeilao);
         ResultSet rs = s.executeQuery();
         float res=0;

@@ -61,6 +61,33 @@ public class Troca {
         return id;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Troca other = (Troca) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Troca{" + "_prop=" + _prop + ", _convidado=" + _convidado + ", desejado=" + desejado + ", oferta=" + oferta + ", dataProposta=" + dataProposta + ", dataConfirmacao=" + dataConfirmacao + ", dataConclusao=" + dataConclusao + ", dataLimite=" + dataLimite + ", id=" + id + '}';
+    }
+
     
         
         

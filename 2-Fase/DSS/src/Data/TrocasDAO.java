@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -45,19 +46,31 @@ public class TrocasDAO {
         GregorianCalendar dataProposta, dataConfirmacao, dataConclusao, dataLimite;
         dataProposta=new GregorianCalendar();
         dataProposta.setTime(rs.getDate("dpt"));
-        dataConfirmacao=new GregorianCalendar();
-        dataConfirmacao.setTime(rs.getDate("dct"));
-        dataConclusao=new GregorianCalendar();
-        dataConclusao.setTime(rs.getDate("dconlt"));
-        dataLimite=new GregorianCalendar();
-        dataLimite.setTime(rs.getDate("dlt"));
+        if(rs.getDate("dct")!=null)
+        {
+            dataConfirmacao=new GregorianCalendar();
+            dataConfirmacao.setTime(rs.getDate("dct"));
+        }
+        else dataConfirmacao=null;
+        if(rs.getDate("dconlt")!=null)
+        {
+            dataConclusao=new GregorianCalendar();
+            dataConclusao.setTime(rs.getDate("dconlt"));
+        }
+        else dataConclusao=null;
+        if(rs.getDate("dlt")!=null)
+        {
+            dataLimite=new GregorianCalendar();
+            dataLimite.setTime(rs.getDate("dlt"));
+        }
+        else dataLimite=null;
         return new Troca(prop, conv, desejado, oferta, dataProposta, dataConfirmacao, dataConclusao, dataLimite, id);
     }
     
     public Troca get(int id) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s=c.prepareStatement("select * from troca where idt=?");
+        PreparedStatement s=c.prepareStatement("select * from ptroca where idt=?");
         s.setInt(1,id);
         ResultSet rs = s.executeQuery();
         Troca res=null;
@@ -70,7 +83,7 @@ public class TrocasDAO {
     public List<Troca> listConvidado(Utilizador u) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s=c.prepareStatement("select * from troca where usr2=?");
+        PreparedStatement s=c.prepareStatement("select * from ptroca where usr2=?");
         s.setString(1, u.getUsername());
         List<Troca> res = new ArrayList<Troca>();
         ResultSet rs = s.executeQuery();
@@ -85,7 +98,7 @@ public class TrocasDAO {
     public List<Troca> listPropostas(Utilizador u) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s=c.prepareStatement("select * from troca where usr1=?");
+        PreparedStatement s=c.prepareStatement("select * from ptroca where usr1=?");
         s.setString(1, u.getUsername());
         List<Troca> res = new ArrayList<Troca>();
         ResultSet rs = s.executeQuery();
@@ -100,16 +113,43 @@ public class TrocasDAO {
     public boolean add(Troca t) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s=c.prepareStatement("insert into troca values(?,?,?,?,?,?,?,?,?)");
+        PreparedStatement s=c.prepareStatement("insert into ptroca values(?,?,?,?,?,?,?,?,?)");
         s.setInt(1, t.getId());
         s.setString(2,t.getProp().getUsername());
         s.setInt(3, t.getOferta().getId());
         s.setString(4, t.getConvidado().getUsername());
         s.setInt(5, t.getDesejado().getId());
-        s.setDate(6,new Date(t.getDataLimite().getTime().getTime()));
-        s.setDate(7, new Date(t.getDataConfirmacao().getTime().getTime()));
-        s.setDate(8, new Date(t.getDataConclusao().getTime().getTime()));
+        if(t.getDataLimite()!=null)
+            s.setDate(6,new Date(t.getDataLimite().getTime().getTime()));
+        else
+            s.setNull(6, Types.DATE);
+        if(t.getDataConfirmacao()!=null)
+            s.setDate(7, new Date(t.getDataConfirmacao().getTime().getTime()));
+        else
+            s.setNull(7, Types.DATE);
+        if(t.getDataConclusao()!=null)
+            s.setDate(8, new Date(t.getDataConclusao().getTime().getTime()));
+        else
+            s.setNull(8, Types.DATE);
         s.setDate(9, new Date(t.getDataProposta().getTime().getTime()));
+        int res=s.executeUpdate();
+        c.close();
+        return res<1;
+    }
+    
+    public boolean update(Troca t) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("update ptroca set dct=?, dlt=? where idt=?");
+        if(t.getDataConfirmacao()!=null)
+            s.setDate(1, new Date(t.getDataConfirmacao().getTime().getTime()));
+        else
+            s.setNull(1, Types.DATE);
+        if(t.getDataLimite()!=null)
+            s.setDate(2, new Date(t.getDataLimite().getTime().getTime()));
+        else
+            s.setNull(2, Types.DATE);
+        s.setInt(3, t.getId());
         int res=s.executeUpdate();
         c.close();
         return res<1;

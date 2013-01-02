@@ -19,6 +19,37 @@ public class Suspeita {
         return _just;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (this._queixoso != null ? this._queixoso.hashCode() : 0);
+        hash = 97 * hash + (this._just != null ? this._just.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Suspeita other = (Suspeita) obj;
+        if (this._queixoso != other._queixoso && (this._queixoso == null || !this._queixoso.equals(other._queixoso))) {
+            return false;
+        }
+        if ((this._just == null) ? (other._just != null) : !this._just.equals(other._just)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Suspeita{" + "_queixoso=" + _queixoso + ", _just=" + _just + '}';
+    }
+
         
 
 
