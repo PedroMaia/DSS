@@ -1,10 +1,13 @@
 Moda
 Tecnologia
-Moveis,Casa e Jardim
-Lazer e Desporto
+Moveis, Casa e Jardim
+Lazer
+Desporto
 Imoveis
 Emprego
-Carros, Motos e Barcos
+Carros
+Motos
+Barcos
 Animais
 Serviços
 Outros
