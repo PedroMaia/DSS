@@ -158,7 +158,7 @@ public class VendasDAO {
     public boolean update(Venda v) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("update venda set cp=?, dlv=? where idv=?");
+        PreparedStatement s = c.prepareStatement("update venda set cp=?, dlv=? where idv=? and cp is null");
         if(v.getComprador()!=null)
             s.setString(1, v.getComprador().getUsername());
         else
@@ -171,5 +171,15 @@ public class VendasDAO {
         int res = s.executeUpdate();
         c.close();
         return res<1;
+    }
+    
+    public boolean aVenda(Produto p) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select count(*) from venda where idp=? and cp is not null and dp is not null and dep is not null");
+        s.setInt(1,p.getId());
+        ResultSet rs=s.executeQuery();
+        int res = rs.getInt(1);
+        return res>0;
     }
 }

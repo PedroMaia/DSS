@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,8 +27,8 @@ public class BuyKing {
     public List<Venda> pesquisaVendas(String aPchave, String aCat) {
         throw new UnsupportedOperationException();
     }
-    
-    public List<Leilao> pesquisaLeilao(String aPchave, String aCat){
+
+    public List<Leilao> pesquisaLeilao(String aPchave, String aCat) {
         throw new UnsupportedOperationException();
     }
 
@@ -53,10 +54,65 @@ public class BuyKing {
         byte[] digest = md.digest(s.getBytes());
         BigInteger big = new BigInteger(1, digest);
         String md5 = big.toString(16);
-        while(md5.length()<32)
-        {
-            md5="0"+md5;
+        while (md5.length() < 32) {
+            md5 = "0" + md5;
         }
         return md5;
+    }
+
+    public boolean registaCompra(Utilizador u, Venda v) throws SQLException {
+        v.setComprador(u);
+        GregorianCalendar d = new GregorianCalendar();
+        d.add(GregorianCalendar.DAY_OF_MONTH, 7); //7 dias para conclusao da venda
+        v.setDataLimiteVenda(d);
+        boolean res = _vendas.update(v);
+        return res;
+    }
+    
+    public boolean vender(Utilizador u, Produto p, float preco) throws SQLException
+    {
+        boolean res=false;
+        List<Produto> pr = _produtos.getFromUser(u);
+        if(pr.contains(p)&&!_vendas.aVenda(p)&&!_leiloes.emLeilao(p))
+        {
+            Venda v = new Venda(VendasDAO.getNewId(),preco, new GregorianCalendar(), null, null, null,p, u, null);
+            res=_vendas.add(v);
+        }
+        return false;
+    }
+    
+    public boolean licitar(Utilizador u, Leilao l, float v) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException
+    {
+        boolean res=false;
+        if(!l.fechado())
+        {
+            Licitacao lit = new Licitacao(u, v, new GregorianCalendar());
+            res=l.registaLicitacao(lit);
+            if(res&&(v>=l.getTecto()))
+            {
+                GregorianCalendar d = new GregorianCalendar();
+                d.add(GregorianCalendar.DAY_OF_MONTH, 7);
+                l.setDataLimiteLeilao(d);
+                _leiloes.update(l);
+            }
+        }
+        return res;
+    }
+    
+    public boolean leiloar(Utilizador u, Produto p, float base, float tecto) throws SQLException
+    {
+        boolean res=false;
+        List<Produto> pr = _produtos.getFromUser(u);
+        if(pr.contains(p)&&!_vendas.aVenda(p)&&!_leiloes.emLeilao(p))
+        {
+            GregorianCalendar hoje = new GregorianCalendar();
+            GregorianCalendar fecho = (GregorianCalendar) hoje.clone();
+            fecho.add(GregorianCalendar.DAY_OF_MONTH,14);
+            GregorianCalendar limite = (GregorianCalendar) fecho.clone();
+            limite.add(GregorianCalendar.DAY_OF_MONTH, 7);
+            Leilao l = new Leilao(LeiloesDAO.getNewId(), u, p, hoje, fecho, limite, null, null, base, tecto);
+            res=_leiloes.add(l);
+        }
+        return res;
     }
 }

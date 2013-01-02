@@ -80,19 +80,25 @@ public class Leilao {
     public int getId() {
         return id;
     }
+
+    public void setDataLimiteLeilao(GregorianCalendar _dataLimiteLeilao) {
+        this._dataLimiteLeilao = _dataLimiteLeilao;
+    }
         
         
 
-	public void registaLicitacao(Licitacao l) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
+	public boolean registaLicitacao(Licitacao l) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
             if(fechado()) throw new LeilaoFechadoException();
             if(l.getValor()<getUltimaLicitacao()) throw new BaixaLicitacaoException();
-            licitacoes.addLicitacao(l);
+            return licitacoes.addLicitacao(l);
 	}
 
 	public boolean fechado() throws SQLException {
 		GregorianCalendar hoje = new GregorianCalendar();
                 return (hoje.after(this._dataFecho)||(licitacoes.getMaxLicitacao()>=_tecto));
 	}
+        
+        
         
         public void regrideLeilao() {
             
