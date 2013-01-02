@@ -79,7 +79,7 @@ public class ClassificacaoDAO {
     public boolean add(Classificacao cl) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("select * from classificacoes where classificado = ? and classificador = ?");
+        PreparedStatement s = c.prepareStatement("select * from classificacao where classificado = ? and classificador = ?");
         s.setString(1, classificado);
         s.setString(2, cl.getClassificador().getUsername());
         int res=0;
