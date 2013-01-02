@@ -53,7 +53,7 @@ public class Teste {
         //variaveis classificacao
         Classificacao cla = new Classificacao(u1,dClass,5);
         Classificacao cla2;
-        ClassificacaoDAO c = new ClassificacaoDAO("ze");
+        ClassificacaoDAO c = new ClassificacaoDAO("pedroMaia");
         List<Classificacao> listClassific = new ArrayList<Classificacao>();
         //variaveis produto
         List<Produto> listProds = new ArrayList<Produto>();
@@ -74,19 +74,20 @@ public class Teste {
         Leilao le = new Leilao(1,u4,p2,reg,DFecho,DFecho,DPag,DEnvProd,base,teto);
         Leilao le2;
         //metodos Produto
+        //bol = pDao.add(p2, u1);
+        //out.println(bol);
         p=pDao.get(1);
-        out.println(p);
         listProds=pDao.getFromUser(u1);
-        bol = pDao.add(p2, u1);
-        out.println(bol);
+       
         //metodos classificacao
+        bol2=c.add(cla);
+        out.println(bol2);
         listClassific = c.list();
         classificMed = c.getClassificacaoMedia();
         out.println(classificMed);
         classific=c.getNrClassificacao();
         out.println(classific);
-        bol2=c.add(cla);
-        out.println(bol2);
+        
         cla2=c.get(u2);
         out.println(cla2);
         bol3=c.delete(u2);
