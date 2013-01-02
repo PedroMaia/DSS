@@ -11,6 +11,7 @@ import Business.Produto;
 import Business.Suspeita;
 import Business.Troca;
 import Business.Utilizador;
+import Business.Venda;
 import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,12 +90,13 @@ public class Teste {
         TrocasDAO trocs = new TrocasDAO();
         List<Troca> listTrocConv = new ArrayList<Troca>();
         List<Troca> listTrocProps = new ArrayList<Troca>();
-        bol=trocs.add(tr);
-        out.println(bol);
-        listTrocConv = trocs.listConvidado(u1);
-        listTrocProps = trocs.listPropostas(u2);
-        tr2=trocs.get(1);
-        out.println(tr);
+        //variaveis Venda
+        VendasDAO vends = new VendasDAO();
+        List<Venda> listVendsAb = new ArrayList<Venda>();
+        List<Venda> listVendsC = new ArrayList<Venda>();
+        List<Venda> listVendsV = new ArrayList<Venda>();
+        Venda v1 = new Venda(1,30,DEnvProd,DConf,DConclus,DLimit,p2,u1,u5);
+        Venda v2;
         
         
         
@@ -122,6 +124,10 @@ public class Teste {
         //metodos Produto
         bol = pDao.add(p2, u1);
         out.println(bol);
+        
+        bol = pDao.add(p, u1);
+        out.println(bol);
+        
         p=pDao.get(1);
         listProds=pDao.getFromUser(u1);
         
@@ -165,11 +171,29 @@ public class Teste {
         out.println(bol9);
       */
         //metodos suspeita
-        bol7=susp.add(su);
-        out.println(bol7);
-        listSusp=susp.list();
-       
-       
+        //bol7=susp.add(su);
+        //out.println(bol7);
+        //listSusp=susp.list();
+        //metodos Troca
+        bol=trocs.add(tr);
+        out.println(bol);
+        listTrocConv = trocs.listConvidado(u1);
+        listTrocProps = trocs.listPropostas(u2);
+        tr2=trocs.get(1);
+        out.println(tr);
+        bol=trocs.update(tr2);
+        out.println(bol);
+        //metodos venda
+        bol=vends.add(v1);
+        out.println(bol);
+        listVendsAb = vends.getVendasAbertas();
+        out.print(listVendsAb);
+        listVendsC=vends.getVendasComprador(u5);
+        listVendsV=vends.getVendasVendedor(u1);
+        v2=vends.get(1);
+        bol=vends.update(v2);
+        out.print(bol);
+        
         
         
         
