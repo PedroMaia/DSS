@@ -88,7 +88,7 @@ public class UserDAO {
     {
         Connection c = DataConnection.getDataConnection();
         List<Utilizador> res = new ArrayList<Utilizador>();
-        PreparedStatement s = c.prepareStatement("select * from utilizadore");
+        PreparedStatement s = c.prepareStatement("select * from utilizador");
         ResultSet rs = s.executeQuery();
         while(rs.next())
         {
