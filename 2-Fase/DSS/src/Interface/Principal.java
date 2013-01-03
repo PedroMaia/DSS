@@ -4,6 +4,8 @@
  */
 package Interface;
 
+import Business.BuyKing;
+import Business.Utilizador;
 import java.awt.Menu;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -122,7 +124,7 @@ public class Principal extends javax.swing.JFrame {
     {
        
        if(this.loginJanela==null) 
-        this.loginJanela=new LogIn();
+        this.loginJanela=new LogIn(sys, this);
        
        this.jDesktopPanel.add(this.loginJanela);
        this.loginJanela.setVisible(true);
@@ -245,4 +247,10 @@ public class Principal extends javax.swing.JFrame {
     private PrincipalBody janelaBody;
     private LogIn loginJanela;
     private Registo registoJanela;
+    private BuyKing sys=new BuyKing();
+    private Utilizador reg;
+
+    void setUser(Utilizador get) {
+        reg=get;
+    }
 }
