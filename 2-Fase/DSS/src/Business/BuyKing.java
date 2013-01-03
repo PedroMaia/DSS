@@ -83,7 +83,7 @@ public class BuyKing {
             Venda v = new Venda(VendasDAO.getNewId(), preco, new GregorianCalendar(), null, null, null, p, u, null);
             res = _vendas.add(v);
         }
-        return false;
+        return res;
     }
 
     public boolean licitar(Utilizador u, Leilao l, float v) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
