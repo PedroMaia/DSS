@@ -6,6 +6,7 @@ import Data.SuspeitasDAO;
 import Data.TrocasDAO;
 import Data.UserDAO;
 import Data.VendasDAO;
+import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -44,20 +45,13 @@ public class BuyKing {
         return res;
     }
 
-    public List<Leilao> pesquisaLeilao(String aPchave, String aCat) {
-        throw new UnsupportedOperationException();
-    }
+    
 
     public boolean login(String aUsername, String aPassword) throws SQLException {
         //throw new UnsupportedOperationException();
         Utilizador u = _utilizadores.get(aUsername);
         String md5 = BuyKing.md5crypt(aPassword);
         return ((u != null) && (u.getPassmd5().equals(md5)));
-    }
-
-    public boolean registar(Utilizador u) throws SQLException {
-        //throw new UnsupportedOperationException();
-        return _utilizadores.add(u);
     }
 
     public static String md5crypt(String s) {
@@ -130,5 +124,35 @@ public class BuyKing {
             res=_leiloes.add(l);
         }
         return res;
+    }
+    
+    public boolean registar(String nome, String pass, String mail, String localidade,GregorianCalendar dataNascimento, BufferedImage i) throws SQLException
+    {
+        GregorianCalendar dataRegisto=new GregorianCalendar();
+        Utilizador u = new Utilizador(nome, BuyKing.md5crypt(pass), mail, localidade, dataRegisto, dataRegisto, i);
+        return _utilizadores.add(u);
+    }
+    
+    public List<Leilao> pesquisaAvançadaLeilao(String nome, String cat, GregorianCalendar dataLimiteFecho, float pmin, float pmax) throws SQLException
+    {
+        List<Leilao> list = _leiloes.getLeiloesActivos();
+        List<Leilao> res=new ArrayList<Leilao>();
+        for(Leilao l:list)
+        {
+            if((nome.matches(l.getP().getNome())||nome.matches(l.getP().getDescricao()))
+                    &&pmin<=l.getUltimaLicitacao()&&pmax>=l.getTecto()
+                    &&dataLimiteFecho.after(l.getDataFecho()))
+            {
+                res.add(l);
+            }
+        }
+        return res;
+    }
+    
+    public List<Leilao> pesquisaSimplesLeilao(String nome, String cat) throws SQLException
+    {
+        GregorianCalendar lastDate=new GregorianCalendar();
+        lastDate.setTimeInMillis(Long.MAX_VALUE);
+        return pesquisaAvançadaLeilao(nome, cat, lastDate, 0, Float.MAX_VALUE);
     }
 }
