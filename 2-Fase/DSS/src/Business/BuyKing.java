@@ -122,13 +122,12 @@ public class BuyKing {
         return _utilizadores.add(u);
     }
 
-    public List<Leilao> pesquisaAvançadaLeilao(String nome, String cat, GregorianCalendar dataLimiteFecho, float pmin, float pmax) throws SQLException {
+    public List<Leilao> pesquisaAvançadaLeilao(String nome, String cat, float pmin, float pmax) throws SQLException {
         List<Leilao> list = _leiloes.getLeiloesActivos();
         List<Leilao> res = new ArrayList<Leilao>();
         for (Leilao l : list) {
             if ((nome.matches(l.getP().getNome()) || nome.matches(l.getP().getDescricao()))
-                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()
-                    && dataLimiteFecho.after(l.getDataFecho())) {
+                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()) {
                 res.add(l);
             }
         }
@@ -136,9 +135,7 @@ public class BuyKing {
     }
 
     public List<Leilao> pesquisaSimplesLeilao(String nome, String cat) throws SQLException {
-        GregorianCalendar lastDate = new GregorianCalendar();
-        lastDate.setTimeInMillis(Long.MAX_VALUE);
-        return pesquisaAvançadaLeilao(nome, cat, lastDate, 0, Float.MAX_VALUE);
+        return pesquisaAvançadaLeilao(nome, cat, 0, Float.MAX_VALUE);
     }
 
     public boolean classificar(Utilizador classificador, Utilizador classificado, int valor) throws SQLException {
