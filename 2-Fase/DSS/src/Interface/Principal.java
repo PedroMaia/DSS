@@ -56,7 +56,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemNovaJanela);
 
-        jMenuItemClient.setText("AreaCliente");
+        jMenuItemClient.setText("Regista");
         jMenuItemClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemClientActionPerformed(evt);
@@ -135,6 +135,26 @@ public class Principal extends javax.swing.JFrame {
       }
        
     }
+    
+    
+      private void CriaJanelaRegisto() throws InterruptedException {
+
+        if (this.registoJanela == null) {
+            this.registoJanela = new Registo();
+        }
+
+        this.jDesktopPanel.add(this.registoJanela);
+        this.registoJanela.setVisible(true);
+
+        try {
+            this.registoJanela.setSelected(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+        
+        
         
     private void jMenuItemNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaJanelaActionPerformed
     try {
@@ -148,7 +168,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemNovaJanelaActionPerformed
 
     private void jMenuItemClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientActionPerformed
-     // TODO add your handling code here:
+   try {
+            CriaJanelaRegisto();
+            
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItemClientActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -218,4 +244,5 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private PrincipalBody janelaBody;
     private LogIn loginJanela;
+    private Registo registoJanela;
 }

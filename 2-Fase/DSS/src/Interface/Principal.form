@@ -22,7 +22,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemClient">
               <Properties>
-                <Property name="text" type="java.lang.String" value="AreaCliente"/>
+                <Property name="text" type="java.lang.String" value="Regista"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemClientActionPerformed"/>
