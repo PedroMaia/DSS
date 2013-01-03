@@ -2,14 +2,16 @@ package Business;
 
 import Data.SuspeitasDAO;
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
 
 public class Produto {
-	private int _id;
-	private String _nome;
-	private BufferedImage _imagem;
-        private String descricao;
-        private String categoria;
-        private SuspeitasDAO suspeitas;
+
+    private int _id;
+    private String _nome;
+    private BufferedImage _imagem;
+    private String descricao;
+    private String categoria;
+    private SuspeitasDAO suspeitas;
 
     public Produto(int _id, String _nome, BufferedImage _imagem, String descricao, String categoria) {
         this._id = _id;
@@ -66,9 +68,8 @@ public class Produto {
     public String toString() {
         return "Produto{" + "_id=" + _id + ", _nome=" + _nome + ", _imagem=" + _imagem + ", descricao=" + descricao + ", categoria=" + categoria + ", suspeitas=" + suspeitas + '}';
     }
-        
-        
-        
-        
-        
+
+    public boolean addSuspeita(Suspeita s) throws SQLException {
+        return suspeitas.add(s);
+    }
 }

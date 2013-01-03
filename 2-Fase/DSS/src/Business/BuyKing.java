@@ -26,26 +26,23 @@ public class BuyKing {
     private TrocasDAO _trocas_;
     private ProdutosDAO _produtos;
 
-    public List<Venda> pesquisaVendasSimples(String aPchave, String aCat) throws SQLException
-    {
+    public List<Venda> pesquisaVendasSimples(String aPchave, String aCat) throws SQLException {
         return pesquisaVendasAvançada(aPchave, aCat, 0, Float.MAX_VALUE);
     }
-    
+
     public List<Venda> pesquisaVendasAvançada(String aPchave, String aCat, float minP, float maxP) throws SQLException {
         //throw new UnsupportedOperationException();
         List<Venda> l = _vendas.getVendasAbertas();
         List<Venda> res = new ArrayList<Venda>();
-        for(Venda v:l)
-        {
-            if((v.getPreco()>minP)&&(v.getPreco()<maxP)&&
-                    (aPchave.matches(v.getProduto().getNome())||aPchave.matches(v.getProduto().getDescricao()))
-                    &&(aCat.equals(v.getProduto().getCategoria())))
+        for (Venda v : l) {
+            if ((v.getPreco() > minP) && (v.getPreco() < maxP)
+                    && (aPchave.matches(v.getProduto().getNome()) || aPchave.matches(v.getProduto().getDescricao()))
+                    && (aCat.equals(v.getProduto().getCategoria()))) {
                 res.add(v);
+            }
         }
         return res;
     }
-
-    
 
     public boolean login(String aUsername, String aPassword) throws SQLException {
         //throw new UnsupportedOperationException();
@@ -78,28 +75,23 @@ public class BuyKing {
         boolean res = _vendas.update(v);
         return res;
     }
-    
-    public boolean vender(Utilizador u, Produto p, float preco) throws SQLException
-    {
-        boolean res=false;
+
+    public boolean vender(Utilizador u, Produto p, float preco) throws SQLException {
+        boolean res = false;
         List<Produto> pr = _produtos.getFromUser(u);
-        if(pr.contains(p)&&!_vendas.aVenda(p)&&!_leiloes.emLeilao(p))
-        {
-            Venda v = new Venda(VendasDAO.getNewId(),preco, new GregorianCalendar(), null, null, null,p, u, null);
-            res=_vendas.add(v);
+        if (pr.contains(p) && !_vendas.aVenda(p) && !_leiloes.emLeilao(p)) {
+            Venda v = new Venda(VendasDAO.getNewId(), preco, new GregorianCalendar(), null, null, null, p, u, null);
+            res = _vendas.add(v);
         }
         return false;
     }
-    
-    public boolean licitar(Utilizador u, Leilao l, float v) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException
-    {
-        boolean res=false;
-        if(!l.fechado())
-        {
+
+    public boolean licitar(Utilizador u, Leilao l, float v) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
+        boolean res = false;
+        if (!l.fechado()) {
             Licitacao lit = new Licitacao(u, v, new GregorianCalendar());
-            res=l.registaLicitacao(lit);
-            if(res&&(v>=l.getTecto()))
-            {
+            res = l.registaLicitacao(lit);
+            if (res && (v >= l.getTecto())) {
                 GregorianCalendar d = new GregorianCalendar();
                 d.add(GregorianCalendar.DAY_OF_MONTH, 7);
                 l.setDataLimiteLeilao(d);
@@ -108,51 +100,58 @@ public class BuyKing {
         }
         return res;
     }
-    
-    public boolean leiloar(Utilizador u, Produto p, float base, float tecto) throws SQLException
-    {
-        boolean res=false;
+
+    public boolean leiloar(Utilizador u, Produto p, float base, float tecto) throws SQLException {
+        boolean res = false;
         List<Produto> pr = _produtos.getFromUser(u);
-        if(pr.contains(p)&&!_vendas.aVenda(p)&&!_leiloes.emLeilao(p))
-        {
+        if (pr.contains(p) && !_vendas.aVenda(p) && !_leiloes.emLeilao(p)) {
             GregorianCalendar hoje = new GregorianCalendar();
             GregorianCalendar fecho = (GregorianCalendar) hoje.clone();
-            fecho.add(GregorianCalendar.DAY_OF_MONTH,14);
+            fecho.add(GregorianCalendar.DAY_OF_MONTH, 14);
             GregorianCalendar limite = (GregorianCalendar) fecho.clone();
             limite.add(GregorianCalendar.DAY_OF_MONTH, 7);
             Leilao l = new Leilao(LeiloesDAO.getNewId(), u, p, hoje, fecho, limite, null, null, base, tecto);
-            res=_leiloes.add(l);
+            res = _leiloes.add(l);
         }
         return res;
     }
-    
-    public boolean registar(String nome, String pass, String mail, String localidade,GregorianCalendar dataNascimento, BufferedImage i) throws SQLException
-    {
-        GregorianCalendar dataRegisto=new GregorianCalendar();
+
+    public boolean registar(String nome, String pass, String mail, String localidade, GregorianCalendar dataNascimento, BufferedImage i) throws SQLException {
+        GregorianCalendar dataRegisto = new GregorianCalendar();
         Utilizador u = new Utilizador(nome, BuyKing.md5crypt(pass), mail, localidade, dataRegisto, dataRegisto, i);
         return _utilizadores.add(u);
     }
-    
-    public List<Leilao> pesquisaAvançadaLeilao(String nome, String cat, GregorianCalendar dataLimiteFecho, float pmin, float pmax) throws SQLException
-    {
+
+    public List<Leilao> pesquisaAvançadaLeilao(String nome, String cat, GregorianCalendar dataLimiteFecho, float pmin, float pmax) throws SQLException {
         List<Leilao> list = _leiloes.getLeiloesActivos();
-        List<Leilao> res=new ArrayList<Leilao>();
-        for(Leilao l:list)
-        {
-            if((nome.matches(l.getP().getNome())||nome.matches(l.getP().getDescricao()))
-                    &&pmin<=l.getUltimaLicitacao()&&pmax>=l.getTecto()
-                    &&dataLimiteFecho.after(l.getDataFecho()))
-            {
+        List<Leilao> res = new ArrayList<Leilao>();
+        for (Leilao l : list) {
+            if ((nome.matches(l.getP().getNome()) || nome.matches(l.getP().getDescricao()))
+                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()
+                    && dataLimiteFecho.after(l.getDataFecho())) {
                 res.add(l);
             }
         }
         return res;
     }
-    
-    public List<Leilao> pesquisaSimplesLeilao(String nome, String cat) throws SQLException
-    {
-        GregorianCalendar lastDate=new GregorianCalendar();
+
+    public List<Leilao> pesquisaSimplesLeilao(String nome, String cat) throws SQLException {
+        GregorianCalendar lastDate = new GregorianCalendar();
         lastDate.setTimeInMillis(Long.MAX_VALUE);
         return pesquisaAvançadaLeilao(nome, cat, lastDate, 0, Float.MAX_VALUE);
+    }
+
+    public boolean classificar(Utilizador classificador, Utilizador classificado, int valor) throws SQLException {
+        Classificacao c = new Classificacao(classificador, new GregorianCalendar(), valor);
+        return classificado.addClassificacao(c);
+    }
+
+    public boolean reportarSuspeita(Utilizador u, Produto p, String just) throws SQLException {
+        Suspeita s = new Suspeita(u, just);
+        return p.addSuspeita(s);
+    }
+
+    public boolean adicionarWishlist(Utilizador u, Produto p) throws SQLException {
+        return u.addWishList(p);
     }
 }

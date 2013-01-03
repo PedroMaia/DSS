@@ -4,6 +4,7 @@ import Data.ClassificacaoDAO;
 import Data.FavoritosDAO;
 import Data.ProdutosDAO;
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 public class Utilizador {
@@ -18,21 +19,19 @@ public class Utilizador {
     private ClassificacaoDAO _classificacao;
     private FavoritosDAO _wishlist;
     private ProdutosDAO meusProds;
-    
-    
-    public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i)
-    {
-        _username=name;
-        _passmd5=pass;
-        email=mail;
-        localidade=l;
-        dataNascimento= dN;
-        dataRegisto=dR;
-        imagem=i;
-        _classificacao=new ClassificacaoDAO(name);
-        _wishlist=new FavoritosDAO(name);
-        meusProds=new ProdutosDAO();
-        
+
+    public Utilizador(String name, String pass, String mail, String l, GregorianCalendar dN, GregorianCalendar dR, BufferedImage i) {
+        _username = name;
+        _passmd5 = pass;
+        email = mail;
+        localidade = l;
+        dataNascimento = dN;
+        dataRegisto = dR;
+        imagem = i;
+        _classificacao = new ClassificacaoDAO(name);
+        _wishlist = new FavoritosDAO(name);
+        meusProds = new ProdutosDAO();
+
     }
 
     public String getUsername() {
@@ -58,42 +57,33 @@ public class Utilizador {
     public GregorianCalendar getDataRegisto() {
         return dataRegisto;
     }
-    
+
     public BufferedImage getImagem() {
         return imagem;
     }
-    
-    
-    
-    
 
     public void compra(Venda aV) {
         throw new UnsupportedOperationException();
-        
+
     }
 
     public void licitar(Leilao aL, int aV) {
         throw new UnsupportedOperationException();
-       
+
     }
 
     public void addProduto(Produto aP) {
         throw new UnsupportedOperationException();
-        
+
     }
 
     public void removeProduto(Produto aP) {
         throw new UnsupportedOperationException();
-        
+
     }
 
     public Suspeita reporta(Produto aP, String aUsername, String aJust) {
         throw new UnsupportedOperationException();
-    }
-
-    public void classifica(Utilizador classificado, int aClassificacao) {
-        throw new UnsupportedOperationException();
-        
     }
 
     public Venda vende(Produto aP) {
@@ -106,7 +96,7 @@ public class Utilizador {
 
     public int getClassificacao() {
         throw new UnsupportedOperationException();
-        
+
     }
 
     @Override
@@ -135,6 +125,12 @@ public class Utilizador {
     public String toString() {
         return "Utilizador{" + "_username=" + _username + ", _passmd5=" + _passmd5 + ", email=" + email + ", localidade=" + localidade + ", dataNascimento=" + dataNascimento + ", dataRegisto=" + dataRegisto + ", imagem=" + imagem + '}';
     }
-    
-    
+
+    public boolean addClassificacao(Classificacao c) throws SQLException {
+        return _classificacao.add(c);
+    }
+
+    boolean addWishList(Produto p) throws SQLException {
+        return _wishlist.add(p);
+    }
 }
