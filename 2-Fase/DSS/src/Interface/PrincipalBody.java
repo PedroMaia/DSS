@@ -35,9 +35,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
      * Creates new form PrincipalBody
      * Cria o kingClienteArea mal é construido
      */
-    public PrincipalBody() {
+   
+    public PrincipalBody(Principal sysIn) {
       
         initComponents();
+        this.sys=sysIn;
      
     }
 
@@ -1205,4 +1207,5 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
    private KingClienteArea kingArea;
    private  BufferedImage imgProduto;
+   private Principal sys;
 }

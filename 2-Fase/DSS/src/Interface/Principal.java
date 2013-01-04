@@ -103,7 +103,7 @@ public class Principal extends javax.swing.JFrame {
     {
        
        if(this.janelaBody==null) 
-           this.janelaBody=new PrincipalBody();
+           this.janelaBody=new PrincipalBody(this.);
        
        this.jDesktopPanel.add(this.janelaBody);
        this.janelaBody.setVisible(true);
