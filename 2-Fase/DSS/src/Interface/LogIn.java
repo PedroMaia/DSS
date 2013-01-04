@@ -6,6 +6,7 @@ package Interface;
 
 import Business.BuyKing;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,24 @@ public class LogIn extends javax.swing.JInternalFrame {
         initComponents();
         this.sys=sys;
         this.p=p;
+    }
+    
+    
+    public void registoUser(){
+        try{
+            
+        
+            if(sys.login(this.jTextFieldUserName.getText(), new String(jPasswordField1.getPassword())))
+            {
+                p.setUser(sys.utilizadores.get(jTextFieldUserName.getText()));
+                this.dispose();
+            }else{
+               JOptionPane.showInternalMessageDialog(this,"Dados inválidos","Registo",JOptionPane.ERROR_MESSAGE);
+                  }
+        } catch (SQLException e)
+        {
+            JOptionPane.showInternalMessageDialog(this,e.toString(),"Registo",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -156,20 +175,7 @@ public class LogIn extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //Contro de erros
-        try{
-            
-        
-            if(sys.login(this.jTextFieldUserName.getText(), new String(jPasswordField1.getPassword())))
-            {
-                p.setUser(sys.utilizadores.get(jTextFieldUserName.getText()));
-                this.dispose();
-            }
-        } catch (SQLException e)
-        {
-            //TODO lidar com erro
-        }
+     this.registoUser();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
