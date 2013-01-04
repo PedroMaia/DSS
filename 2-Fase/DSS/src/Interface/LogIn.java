@@ -163,7 +163,7 @@ public class LogIn extends javax.swing.JInternalFrame {
         
             if(sys.login(this.jTextFieldUserName.getText(), new String(jPasswordField1.getPassword())))
             {
-                p.setUser(sys.utilizadores.get(jTextFieldUserName.getText()));
+                p.setUser(sys.getUser(jTextFieldUserName.getText()));
                 this.dispose();
             }
         } catch (SQLException e)
