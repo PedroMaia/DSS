@@ -168,4 +168,15 @@ public class UserDAO {
         int res=rs.getInt(1);
         return res>0;
     }
+    
+    public boolean existeMail(String mail) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select count(*) from utilizador where e=?");
+        s.setString(1, mail);
+        ResultSet rs=s.executeQuery();
+        rs.next();
+        int res=rs.getInt(1);
+        return res>0;
+    }
 }

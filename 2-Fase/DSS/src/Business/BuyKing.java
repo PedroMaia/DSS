@@ -226,4 +226,9 @@ public class BuyKing {
     {
         return utilizadores.existe(username);
     }
+    
+    public boolean existeUserMail(String mail) throws SQLException
+    {
+        return utilizadores.existeMail(mail);
+    }
 }
