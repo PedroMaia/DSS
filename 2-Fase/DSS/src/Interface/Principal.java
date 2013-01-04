@@ -152,7 +152,7 @@ public class Principal extends javax.swing.JFrame {
     {
        
        if(this.janelaBody==null) 
-           this.janelaBody=new PrincipalBody(this.sys);
+           this.janelaBody=new PrincipalBody(this.sys, this);
        
        this.jDesktopPanel.add(this.janelaBody);
       //maximiza a janela!
@@ -336,4 +336,10 @@ public class Principal extends javax.swing.JFrame {
     private Utilizador reg;
     private KingClienteArea kingArea;
 
+    public Utilizador getReg() {
+        return reg;
+    }
+
+    
+    
 }

@@ -19,11 +19,11 @@ import java.util.logging.Logger;
 
 public class BuyKing {
 
-    public UserDAO utilizadores;
-    public VendasDAO vendas;
-    public LeiloesDAO leiloes;
-    public TrocasDAO trocas;
-    public ProdutosDAO produtos;
+    private UserDAO utilizadores;
+    private VendasDAO vendas;
+    private LeiloesDAO leiloes;
+    private TrocasDAO trocas;
+    private ProdutosDAO produtos;
 
     public BuyKing()
     {
@@ -208,5 +208,15 @@ public class BuyKing {
 
     public boolean adicionarWishlist(Utilizador u, Produto p) throws SQLException {
         return u.addWishList(p);
+    }
+    
+    public boolean addProduto(Utilizador u, String nomeP, BufferedImage imgP, String descP, String cat) throws SQLException
+    {
+        Produto p = new Produto(ProdutosDAO.getNewId(), nomeP, imgP, descP, cat);
+        return produtos.add(p, u);
+    }
+
+    public Utilizador getUtilizador(String text) throws SQLException {
+        return utilizadores.get(text);
     }
 }
