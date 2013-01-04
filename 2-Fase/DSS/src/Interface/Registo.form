@@ -144,7 +144,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="jLabelDisponivel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelNDisponivel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -156,7 +156,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                          <Component id="jLabelPassworsErro" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelPasswordErro" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -178,7 +178,7 @@
                               <Component id="jLabelDisponivel" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                          <Component id="jLabelDisponivel1" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="jLabelNDisponivel" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -218,7 +218,7 @@
                       <Component id="jPasswordField2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelPassworsErro" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="jLabelPasswordErro" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace pref="82" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -260,13 +260,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordField2">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar password* :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabelDisponivel1">
+        <Component class="javax.swing.JLabel" name="jLabelNDisponivel">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font color= &quot;Red&quot;&gt;User j&#xe1; existe, insira outro user name.&lt;/font&gt;&lt;/html&gt;"/>
           </Properties>
@@ -286,7 +289,7 @@
             <Property name="text" type="java.lang.String" value="DataNascimento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabelPassworsErro">
+        <Component class="javax.swing.JLabel" name="jLabelPasswordErro">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font color= &quot;Red&quot;&gt;Passwors n&#xe3;o coincidem.&lt;/font&gt;&lt;/html&gt;"/>
           </Properties>

@@ -1118,7 +1118,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jButtonvendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonvendActionPerformed
         // TODO add your handling code here:
-        sys.addProduto(p.getReg(), new Produto(WIDTH, title, imgProduto, title, title));
+//        sys.addProduto(p.getReg(), new Produto(WIDTH, title, imgProduto, title, title));
     }//GEN-LAST:event_jButtonvendActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
