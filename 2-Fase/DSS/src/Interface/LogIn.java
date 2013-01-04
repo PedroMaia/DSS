@@ -4,6 +4,9 @@
  */
 package Interface;
 
+import Business.BuyKing;
+import java.sql.SQLException;
+
 /**
  *
  * @author Pedro
@@ -13,8 +16,14 @@ public class LogIn extends javax.swing.JInternalFrame {
     /**
      * Creates new form LogIn
      */
-    public LogIn() {
+    
+    private BuyKing sys;
+    private Principal p;
+    
+    public LogIn(BuyKing sys, Principal p) {
         initComponents();
+        this.sys=sys;
+        this.p=p;
     }
 
     /**
@@ -40,14 +49,12 @@ public class LogIn extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("LogIn:");
 
-        jTextFieldUserName.setText("UserName");
         jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUserNameActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setText("jPas");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -79,9 +86,9 @@ public class LogIn extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jTextFieldUserName)
+                .addComponent(jTextFieldUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1))
         );
@@ -134,7 +141,7 @@ public class LogIn extends javax.swing.JInternalFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -150,6 +157,19 @@ public class LogIn extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //Contro de erros
+        try{
+            
+        
+            if(sys.login(this.jTextFieldUserName.getText(), new String(jPasswordField1.getPassword())))
+            {
+                p.setUser(sys.utilizadores.get(jTextFieldUserName.getText()));
+                this.dispose();
+            }
+        } catch (SQLException e)
+        {
+            //TODO lidar com erro
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,4 +182,6 @@ public class LogIn extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldUserName;
     // End of variables declaration//GEN-END:variables
+
+    
 }

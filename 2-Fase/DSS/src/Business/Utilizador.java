@@ -6,6 +6,7 @@ import Data.ProdutosDAO;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Utilizador {
 
@@ -132,5 +133,13 @@ public class Utilizador {
 
     boolean addWishList(Produto p) throws SQLException {
         return _wishlist.add(p);
+    }
+
+    public List<Produto> getWishList() throws SQLException {
+        return _wishlist.list();
+    }
+
+    List<Produto> getProdutos() throws SQLException {
+        return meusProds.getFromUser(this);
     }
 }
