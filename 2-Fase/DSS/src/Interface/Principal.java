@@ -6,10 +6,12 @@ package Interface;
 
 import Business.BuyKing;
 import Business.Utilizador;
+import java.awt.Dimension;
 import java.awt.Menu;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -51,7 +53,7 @@ public class Principal extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jButtonNovaJanela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newWindows.png"))); // NOI18N
+        jButtonNovaJanela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newBody.png"))); // NOI18N
         jButtonNovaJanela.setFocusable(false);
         jButtonNovaJanela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonNovaJanela.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -74,7 +76,6 @@ public class Principal extends javax.swing.JFrame {
         jToolBar1.add(jButtonKingArea);
 
         jButtonLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SmallLoginin.png"))); // NOI18N
-        jButtonLogOut.setFocusable(false);
         jButtonLogOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLogOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButtonLogOut);
@@ -121,36 +122,44 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)))
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//Cria janela  principal no desktop
-    private void CriaJanelaBody() throws InterruptedException
+
+    
+    
+    
+    //Cria janela  principal no desktop
+    private void CriaJanelaBody() throws InterruptedException, PropertyVetoException
     {
        
        if(this.janelaBody==null) 
            this.janelaBody=new PrincipalBody(this.sys);
        
        this.jDesktopPanel.add(this.janelaBody);
+      //maximiza a janela!
+       this.janelaBody.setMaximum(true);
+       
        this.janelaBody.setVisible(true);
+       
       
   try {
           this.janelaBody.setSelected(true);
@@ -161,7 +170,10 @@ public class Principal extends javax.swing.JFrame {
        
     }
 
-   
+/**
+ * Cria a janela de LogIn.
+ * @throws InterruptedException 
+ */    
     private void CriaJanelaLogIn() throws InterruptedException
     {
        
@@ -181,11 +193,10 @@ public class Principal extends javax.swing.JFrame {
     }
     
     
-      private void CriaJanelaRegisto() throws InterruptedException {
+    private void CriaJanelaRegisto() throws InterruptedException {
 
-        if (this.registoJanela == null) {
-            this.registoJanela = new Registo(sys);
-        }
+       
+        this.registoJanela = new Registo(sys);
 
         this.jDesktopPanel.add(this.registoJanela);
         this.registoJanela.setVisible(true);
@@ -201,13 +212,18 @@ public class Principal extends javax.swing.JFrame {
       
     
     void setUser(Utilizador get) {
-        reg=get;
+        reg = get;
     }
-        
-        
+    
+
+    
     private void jMenuItemNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaJanelaActionPerformed
     try {
-            CriaJanelaBody();
+            try {
+                CriaJanelaBody();
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         } catch (InterruptedException ex)
         {
@@ -243,7 +259,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButtonNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaJanelaActionPerformed
      try {
-            CriaJanelaBody();
+            try {
+                CriaJanelaBody();
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         } catch (InterruptedException ex)
         {

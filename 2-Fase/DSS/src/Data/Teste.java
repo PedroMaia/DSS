@@ -97,13 +97,6 @@ public class Teste {
         List<Venda> listVendsV = new ArrayList<Venda>();
         Venda v1 = new Venda(1,30,DEnvProd,DConf,DConclus,DLimit,p2,u1,u5);
         Venda v2;
-        
-        
-        
-        
-        
-        
-        /*
         //metodos User
         bol4=userd.add(u3);
         out.println(bol4);
@@ -183,10 +176,9 @@ public class Teste {
         out.println(tr);
         bol=trocs.update(tr2);
         out.println(bol);
-        * */
         //metodos venda
-        //bol=vends.add(v1);
-        //out.println(bol);
+        bol=vends.add(v1);
+        out.println(bol);
         listVendsAb = vends.getVendasAbertas();
         out.print(listVendsAb);
         listVendsC=vends.getVendasComprador(u5);
