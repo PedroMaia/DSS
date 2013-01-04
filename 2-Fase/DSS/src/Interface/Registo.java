@@ -71,16 +71,19 @@ public class Registo extends javax.swing.JInternalFrame {
         this.jLabelDisponivel.setVisible(bol);
         this.jLabelDisponivel1.setVisible(bol);
         this.jLabelPasswordErro.setVisible(bol);
+        this.jLabelEmailErro.setVisible(bol);
     }
     
     public void dispUser() throws SQLException {
         String dUser = this.jTextFieldUserName.getText();
-        if (sys.existeUtilizador(dUser) && this.jTextFieldUserName.getText()!=null ) {
-            this.jLabelDisponivel1.setVisible(true);
-            this.jLabelDisponivel.setVisible(false);
-        } else {
-            this.jLabelDisponivel.setVisible(true);
-            this.jLabelDisponivel1.setVisible(false);
+        if (!this.jTextFieldUserName.getText().equals("")) {
+            if (sys.existeUtilizador(dUser)) {
+                this.jLabelDisponivel1.setVisible(true);
+                this.jLabelDisponivel.setVisible(false);
+            } else {
+                this.jLabelDisponivel.setVisible(true);
+                this.jLabelDisponivel1.setVisible(false);
+            }
         }
     }
     
@@ -92,6 +95,14 @@ public class Registo extends javax.swing.JInternalFrame {
             this.jLabelPasswordErro.setVisible(false);
         else 
             this.jLabelPasswordErro.setVisible(true);
+    }
+    
+    public void dispMail() throws SQLException{
+        String dMail = this.jTextFieldEmail.getText();
+        if(sys.existeUserMail(dMail) && this.jTextFieldEmail.getText().equals(""))
+            this.jLabelEmailErro.setVisible(true);
+        else
+            this.jLabelEmailErro.setVisible(false);
     }
     
     
@@ -117,7 +128,8 @@ public class Registo extends javax.swing.JInternalFrame {
                 int dia=Integer.parseInt(this.jTextFieldDay.getText());
                 int mes=this.jMonthChooser1.getMonth();
                 int ano=this.jYearChooser1.getYear();
-                GregorianCalendar dataNacimento=new GregorianCalendar(ano, mes,dia);
+                System.out.println(""+dia+ano+mes);
+                GregorianCalendar dataNacimento=new GregorianCalendar(ano,mes,dia);
                 
                 if(sys.registar(jTextFieldUserName.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
                     , jTextFieldMorada.getText(),dataNacimento , this.imgCliente))
@@ -164,6 +176,7 @@ public class Registo extends javax.swing.JInternalFrame {
         jBcimagem = new javax.swing.JButton();
         jLabelDisponivel1 = new javax.swing.JLabel();
         jPasswordConfirme = new javax.swing.JPasswordField();
+        jLabelEmailErro = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -214,6 +227,11 @@ public class Registo extends javax.swing.JInternalFrame {
                 jTextFieldDayActionPerformed(evt);
             }
         });
+        jTextFieldDay.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldDayFocusGained(evt);
+            }
+        });
 
         jBcimagem.setText("Carregar Imagem");
         jBcimagem.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +252,8 @@ public class Registo extends javax.swing.JInternalFrame {
                 jPasswordConfirmeFocusLost(evt);
             }
         });
+
+        jLabelEmailErro.setText("<html><font color= \"Red\">Email já se encontra registado!</font></html>");
 
         javax.swing.GroupLayout jPanelInforUserLayout = new javax.swing.GroupLayout(jPanelInforUser);
         jPanelInforUser.setLayout(jPanelInforUserLayout);
@@ -261,16 +281,11 @@ public class Registo extends javax.swing.JInternalFrame {
                             .addComponent(jTextFieldMorada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInforUserLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInforUserLayout.createSequentialGroup()
-                                .addComponent(jBcimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInforUserLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
             .addGroup(jPanelInforUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +293,7 @@ public class Registo extends javax.swing.JInternalFrame {
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPasswordConfirme, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelPasswordErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelInforUserLayout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -290,6 +305,12 @@ public class Registo extends javax.swing.JInternalFrame {
                                 .addGap(4, 4, 4)
                                 .addComponent(jLabelDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInforUserLayout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabelEmailErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBcimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
         jPanelInforUserLayout.setVerticalGroup(
             jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,13 +337,14 @@ public class Registo extends javax.swing.JInternalFrame {
                         .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelEmailErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelInforUserLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBcimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jBcimagem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldMorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -357,7 +379,7 @@ public class Registo extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(453, Short.MAX_VALUE)
+                .addContainerGap(457, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
@@ -366,7 +388,7 @@ public class Registo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(38, 38, 38)
                     .addComponent(jPanelInforUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(31, Short.MAX_VALUE)))
+                    .addContainerGap(35, Short.MAX_VALUE)))
         );
 
         pack();
@@ -383,7 +405,7 @@ public class Registo extends javax.swing.JInternalFrame {
 
     private void jTextFieldDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDayActionPerformed
         //seleciona o texto
-        this.jTextFieldDay.selectAll();
+        this.jTextFieldDay.setText("");
     }//GEN-LAST:event_jTextFieldDayActionPerformed
 
     private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
@@ -410,6 +432,10 @@ public class Registo extends javax.swing.JInternalFrame {
         dispPass();
     }//GEN-LAST:event_jPasswordConfirmeFocusLost
 
+    private void jTextFieldDayFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDayFocusGained
+       this.jTextFieldDay.setText("");   // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDayFocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcimagem;
     private javax.swing.JButton jButton1;
@@ -421,6 +447,7 @@ public class Registo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelDisponivel;
     private javax.swing.JLabel jLabelDisponivel1;
+    private javax.swing.JLabel jLabelEmailErro;
     private javax.swing.JLabel jLabelImagemCliente;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelPasswordErro;
