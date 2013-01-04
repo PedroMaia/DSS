@@ -78,6 +78,6 @@ public class LicitacoesDAO {
         s.setFloat(4, l.getValor());
         int res=s.executeUpdate();
         c.close();
-        return (res<0);
+        return (res>0);
     }
 }

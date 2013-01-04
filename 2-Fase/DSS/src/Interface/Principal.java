@@ -156,7 +156,7 @@ public class Principal extends javax.swing.JFrame {
        
        this.jDesktopPanel.add(this.janelaBody);
       //maximiza a janela!
-       this.janelaBody.setMaximum(true);
+       //this.janelaBody.setMaximum(true);
        
        this.janelaBody.setVisible(true);
        

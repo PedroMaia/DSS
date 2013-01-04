@@ -155,6 +155,6 @@ public class UserDAO {
         s.setString(5, u.getUsername());
         int res=s.executeUpdate();
         c.close();
-        return res<0;
+        return res>0;
     }
 }

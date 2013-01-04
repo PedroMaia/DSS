@@ -51,7 +51,7 @@ public class LeiloesDAO {
         s.setFloat(9, l.getBase());
         s.setFloat(10, l.getTecto());
         int res = s.executeUpdate();
-        return (res<0);
+        return (res>0);
     }
     
     private Leilao read(ResultSet rs) throws SQLException
@@ -113,7 +113,7 @@ public class LeiloesDAO {
             s.setNull(1, Types.DATE);
         s.setInt(2, l.getId());
         int res = s.executeUpdate();
-        return (res<1);
+        return (res>0);
     }
     
     public boolean emLeilao(Produto p) throws SQLException

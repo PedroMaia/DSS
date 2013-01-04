@@ -134,7 +134,7 @@ public class TrocasDAO {
         s.setDate(9, new Date(t.getDataProposta().getTime().getTime()));
         int res=s.executeUpdate();
         c.close();
-        return res<1;
+        return res>0;
     }
     
     public boolean update(Troca t) throws SQLException
@@ -152,6 +152,6 @@ public class TrocasDAO {
         s.setInt(3, t.getId());
         int res=s.executeUpdate();
         c.close();
-        return res<1;
+        return res>0;
     }
 }

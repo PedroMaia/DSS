@@ -34,7 +34,7 @@ public class SuspeitasDAO {
         s.setString(3,sus.getJust());
         int res=s.executeUpdate();
         c.close();
-        return res<0;
+        return res>0;
     }
     
     private Suspeita read(ResultSet rs) throws SQLException
