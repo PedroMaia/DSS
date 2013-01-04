@@ -132,7 +132,7 @@ public class Registo extends javax.swing.JInternalFrame {
                 GregorianCalendar dataNacimento=new GregorianCalendar(ano,mes,dia);
                 
                 if(sys.registar(jTextFieldUserName.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
-                    , jTextFieldMorada.getText(),dataNacimento , this.imgCliente))
+                    , jTextFieldMorada.getText(), dataNacimento , this.imgCliente))
                 {
                     JOptionPane.showInternalMessageDialog(this,"Já pode efetuar Login", "Registo feito Com Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();

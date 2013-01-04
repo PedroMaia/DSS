@@ -176,7 +176,7 @@ public class BuyKing {
 
     public boolean registar(String nome, String pass, String mail, String localidade, GregorianCalendar dataNascimento, BufferedImage i) throws SQLException {
         GregorianCalendar dataRegisto = new GregorianCalendar();
-        Utilizador u = new Utilizador(nome, BuyKing.md5crypt(pass), mail, localidade, dataRegisto, dataRegisto, i);
+        Utilizador u = new Utilizador(nome, BuyKing.md5crypt(pass), mail, localidade, dataNascimento, dataRegisto, i);
         return utilizadores.add(u);
     }
 
