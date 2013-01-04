@@ -4,17 +4,23 @@
  */
 package Interface;
 
+import Business.BuyKing;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author Pedro
  */
 public class Registo extends javax.swing.JInternalFrame {
 
+    private BuyKing sys;
+    
     /**
      * Creates new form Registo
      */
-    public Registo() {
+    public Registo(BuyKing sys) {
         initComponents();
+        this.sys=sys;
     }
 
     /**
@@ -138,7 +144,7 @@ public class Registo extends javax.swing.JInternalFrame {
                     .addGroup(jPanelInforUserLayout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(jLabelDisponivel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInforUserLayout.createSequentialGroup()
                         .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanelInforUserLayout.createSequentialGroup()
@@ -188,6 +194,11 @@ public class Registo extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PenGreenicon.png"))); // NOI18N
         jButton1.setText("Registar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,6 +241,17 @@ public class Registo extends javax.swing.JInternalFrame {
     private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUserNameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(this.jCheckBox1.isSelected()&&jPasswordField1.getPassword().equals(jPasswordField2.getPassword()))
+        {
+            try
+            {
+                sys.registar(jTextFieldNome.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
+                    , jTextFieldMorada.getText(), new GregorianCalendar(), null);
+            } catch(Exception e){}
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpanelIdpessoal;

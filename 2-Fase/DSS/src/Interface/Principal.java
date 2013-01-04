@@ -184,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
       private void CriaJanelaRegisto() throws InterruptedException {
 
         if (this.registoJanela == null) {
-            this.registoJanela = new Registo();
+            this.registoJanela = new Registo(sys);
         }
 
         this.jDesktopPanel.add(this.registoJanela);
