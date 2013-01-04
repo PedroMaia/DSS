@@ -23,8 +23,7 @@ import javax.swing.filechooser.FileFilter;
  */
 public class Registo extends javax.swing.JInternalFrame {
 
-    private BuyKing sys;
-    
+
     /**
      * Creates new form Registo
      */
@@ -368,4 +367,6 @@ public class Registo extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JYearChooser jYearChooser1;
     // End of variables declaration//GEN-END:variables
     private BufferedImage imgCliente;
+    private BuyKing sys;
+    
 }
