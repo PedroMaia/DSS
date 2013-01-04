@@ -252,7 +252,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNovaJanelaActionPerformed
 
     private void jButtonKingAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKingAreaActionPerformed
-asdhasjkdghashjkgdfahuksgf        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_jButtonKingAreaActionPerformed
 
     /**

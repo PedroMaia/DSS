@@ -243,14 +243,17 @@ public class Registo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextFieldUserNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(this.jCheckBox1.isSelected()&&jPasswordField1.getPassword().equals(jPasswordField2.getPassword()))
-        {
+        if(new String(jPasswordField1.getPassword()).equals(new String(jPasswordField2.getPassword()))&&jCheckBox1.isSelected())
             try
             {
-                sys.registar(jTextFieldNome.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
-                    , jTextFieldMorada.getText(), new GregorianCalendar(), null);
-            } catch(Exception e){}
-        }
+                if(sys.registar(jTextFieldUserName.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
+                    , jTextFieldMorada.getText(), new GregorianCalendar(), null))
+                {
+                    //TODO lançar janela de sucesso
+                    this.dispose();
+                }
+            } catch(Exception e){System.err.println(e);}
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
