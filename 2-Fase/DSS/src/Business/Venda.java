@@ -3,6 +3,11 @@ package Business;
 import java.util.GregorianCalendar;
 
 public class Venda {
+    
+    public static final int ABERTA=1;
+    public static final int PENDENTE=2;
+    public static final int CONCLUIDA=3;
+    public static final int EXPIRADA=4;
 
     private int id;
     private float _preco;
@@ -101,5 +106,20 @@ public class Venda {
     @Override
     public String toString() {
         return "Venda{" + "id=" + id + ", _preco=" + _preco + ", dataVenda=" + dataVenda + ", _dataLimiteVenda=" + _dataLimiteVenda + ", dataEnvioProduto=" + dataEnvioProduto + ", dataPagamento=" + dataPagamento + ", _produto=" + _produto + ", vendedor=" + vendedor + ", comprador=" + comprador + '}';
+    }
+    
+    public int getEstado()
+    {
+        if(comprador==null) return Venda.ABERTA;
+        else{
+            if(dataEnvioProduto!=null&&dataPagamento!=null)
+                return Venda.CONCLUIDA;
+            else{
+                if(_dataLimiteVenda.after(new GregorianCalendar()))
+                    return Venda.PENDENTE;
+                else
+                    return Venda.EXPIRADA;
+            }
+        }
     }
 }
