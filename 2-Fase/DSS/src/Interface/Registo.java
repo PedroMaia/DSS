@@ -75,13 +75,23 @@ public class Registo extends javax.swing.JInternalFrame {
     
     public void dispUser() throws SQLException {
         String dUser = this.jTextFieldUserName.getText();
-        if (sys.getUtilizador(dUser) != null) {
+        if (sys.existeUtilizador(dUser) && this.jTextFieldUserName.getText()!=null ) {
             this.jLabelDisponivel1.setVisible(true);
             this.jLabelDisponivel.setVisible(false);
         } else {
             this.jLabelDisponivel.setVisible(true);
             this.jLabelDisponivel1.setVisible(false);
         }
+    }
+    
+    public void dispPass(){
+        String comp =new String (this.jPasswordField1.getPassword());
+        String comp2 = new String(this.jPasswordConfirme.getPassword());
+        
+        if(comp.equals(comp2))
+            this.jLabelPasswordErro.setVisible(false);
+        else 
+            this.jLabelPasswordErro.setVisible(true);
     }
     
     
@@ -115,7 +125,10 @@ public class Registo extends javax.swing.JInternalFrame {
                     JOptionPane.showInternalMessageDialog(this,"Já pode efetuar Login", "Registo feito Com Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 }
-            } catch(Exception e){System.err.println(e);}
+            } catch(Exception e){JOptionPane.showInternalMessageDialog(this,e,"Não foi possivel registar",JOptionPane.ERROR_MESSAGE);
+                                   }
+        else
+            JOptionPane.showInternalMessageDialog(this,"Dados Incorretos","Não foi possivel registar",JOptionPane.ERROR_MESSAGE);
     }
     
     
@@ -193,7 +206,7 @@ public class Registo extends javax.swing.JInternalFrame {
 
         jLabel1.setText("DataNascimento:");
 
-        jLabelPasswordErro.setText("<html><font color= \"Red\">Passwors não coincidem.</font></html>");
+        jLabelPasswordErro.setText("<html><font color= \"Red\">Password não coincidem.</font></html>");
 
         jTextFieldDay.setText("Dia");
         jTextFieldDay.addActionListener(new java.awt.event.ActionListener() {
@@ -214,6 +227,11 @@ public class Registo extends javax.swing.JInternalFrame {
         jPasswordConfirme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordConfirmeActionPerformed(evt);
+            }
+        });
+        jPasswordConfirme.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordConfirmeFocusLost(evt);
             }
         });
 
@@ -339,7 +357,7 @@ public class Registo extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(449, Short.MAX_VALUE)
+                .addContainerGap(453, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
@@ -348,7 +366,7 @@ public class Registo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(38, 38, 38)
                     .addComponent(jPanelInforUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(27, Short.MAX_VALUE)))
+                    .addContainerGap(31, Short.MAX_VALUE)))
         );
 
         pack();
@@ -387,6 +405,10 @@ public class Registo extends javax.swing.JInternalFrame {
             Logger.getLogger(Registo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTextFieldUserNameFocusLost
+
+    private void jPasswordConfirmeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordConfirmeFocusLost
+        dispPass();
+    }//GEN-LAST:event_jPasswordConfirmeFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcimagem;
