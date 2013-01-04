@@ -157,4 +157,15 @@ public class UserDAO {
         c.close();
         return res>0;
     }
+    
+    public boolean existe(String username) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select count(*) from utilizador where usr=?");
+        s.setString(1, username);
+        ResultSet rs=s.executeQuery();
+        rs.next();
+        int res=rs.getInt(1);
+        return res>0;
+    }
 }

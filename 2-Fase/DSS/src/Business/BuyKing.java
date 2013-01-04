@@ -221,4 +221,9 @@ public class BuyKing {
     public Utilizador getUtilizador(String text) throws SQLException {
         return utilizadores.get(text);
     }
+    
+    public boolean existeUtilizador(String username) throws SQLException
+    {
+        return utilizadores.existe(username);
+    }
 }

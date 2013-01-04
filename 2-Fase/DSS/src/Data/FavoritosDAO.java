@@ -23,7 +23,13 @@ public class FavoritosDAO {
     public FavoritosDAO(String username) {
         this.username = username;
     }
-
+    
+    /**
+     * Adiciona um produto a wishlist de um utilizador.
+     * @param p produto a adicionar.
+     * @return se foi adicionado com sucesso.
+     * @throws SQLException 
+     */
     public boolean add(Produto p) throws SQLException {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("insert into favorito values(?,?)");
@@ -33,7 +39,13 @@ public class FavoritosDAO {
         c.close();
         return (res < 1);
     }
-
+    
+    /**
+     * Verifica se determinado produto esta na wishlist.
+     * @param p produto a verificar.
+     * @return se o produto existe ou nao na whishlist.
+     * @throws SQLException 
+     */
     public boolean contains(Produto p) throws SQLException {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("select count(*) from favorito where usr=? and idp=?");
@@ -47,7 +59,13 @@ public class FavoritosDAO {
         c.close();
         return (res >0);
     }
-
+    
+    /**
+     * Elimina um produto da whishlist.
+     * @param p produto a eliminar.
+     * @return se foi removio com sucesso.
+     * @throws SQLException 
+     */
     public boolean delete(Produto p) throws SQLException {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("delete from favorito where usr=? and idp=?");
@@ -57,7 +75,12 @@ public class FavoritosDAO {
         res = s.executeUpdate();
         return (res > 0);
     }
-
+    
+    /**
+     * devolve a lista de produtos actualmente na whishlist.
+     * @return Lista de produtos na wishlist.
+     * @throws SQLException 
+     */
     public List<Produto> list() throws SQLException {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("select idp from favorito where usr=?");

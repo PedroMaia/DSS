@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- *
+ *Classe de acesso as clasificaçoes na base de dados.
  * @author Cesar
  */
 public class ClassificacaoDAO {
@@ -28,6 +28,11 @@ public class ClassificacaoDAO {
         this.classificado=username;
     }
     
+    /**
+     * Devolve a lista de classificaçoes do utilizador a que se refere.
+     * @return
+     * @throws SQLException 
+     */
     public List<Classificacao> list() throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
@@ -43,6 +48,12 @@ public class ClassificacaoDAO {
         return res;
     }
     
+    /**
+     * Le uma linha do ResultSet e devolve a classificaçao.
+     * @param rs ResultSet a ler.
+     * @return classicicaçao na linha actual do ResultSet.
+     * @throws SQLException 
+     */
     private Classificacao readClassificacao(ResultSet rs) throws SQLException
     {
         Utilizador u = new UserDAO().get(rs.getString("classificador"));
@@ -52,6 +63,11 @@ public class ClassificacaoDAO {
         return new Classificacao(u, data, (int)valor);
     }
     
+    /**
+     * Metodo que devolve a classificaçao media do utilizador.
+     * @return classificacao media.
+     * @throws SQLException 
+     */
     public int getClassificacaoMedia() throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
@@ -64,6 +80,11 @@ public class ClassificacaoDAO {
         return res;
     }
     
+    /**
+     * Devolve o numero de classificadores que classificou este utilizador.
+     * @return numero de classificadores.
+     * @throws SQLException 
+     */
     public int getNrClassificacao() throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
@@ -76,6 +97,13 @@ public class ClassificacaoDAO {
         return res;
     }
     
+    /**
+     * Adiciona uma classificaçao.
+     * Caso ja exista faz a actualizaçao da classificacao.
+     * @param cl
+     * @return se a classificaçao foi adicionada com sucesso.
+     * @throws SQLException 
+     */
     public boolean add(Classificacao cl) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
@@ -108,6 +136,12 @@ public class ClassificacaoDAO {
         return (res>0);
     }
     
+    /**
+     * Devolve a classificaçao dada por certo utilizador.
+     * @param u classificador.
+     * @return Classificaçao atribuida. Caso nao exista devolve null.
+     * @throws SQLException 
+     */
     public Classificacao get(Utilizador u) throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
@@ -121,6 +155,12 @@ public class ClassificacaoDAO {
         return cl;
     }
     
+    /**
+     * Elimina a classificaçao dada por um utilizador.
+     * @param u classificador a eliminar.
+     * @return se foi removida com sucesso.
+     * @throws SQLException 
+     */
     public boolean delete(Utilizador u) throws SQLException
     {
         int res=0;
