@@ -19,11 +19,11 @@ import java.util.logging.Logger;
 
 public class BuyKing {
 
-    public UserDAO utilizadores;
-    public VendasDAO vendas;
-    public LeiloesDAO leiloes;
-    public TrocasDAO trocas;
-    public ProdutosDAO produtos;
+    private UserDAO utilizadores;
+    private VendasDAO vendas;
+    private LeiloesDAO leiloes;
+    private TrocasDAO trocas;
+    private ProdutosDAO produtos;
 
     public BuyKing()
     {
@@ -32,6 +32,11 @@ public class BuyKing {
         leiloes=new LeiloesDAO();
         trocas=new TrocasDAO();
         produtos=new ProdutosDAO();
+    }
+    
+    public Utilizador getUser(String username) throws SQLException
+    {
+        return utilizadores.get(username);
     }
     
     public List<Venda> getSugestoesVendas(Utilizador u) throws SQLException
