@@ -45,7 +45,7 @@ public class FavoritosDAO {
             res = rs.getInt(1);
         }
         c.close();
-        return (res < 1);
+        return (res >0);
     }
 
     public boolean delete(Produto p) throws SQLException {
@@ -55,7 +55,7 @@ public class FavoritosDAO {
         s.setInt(2, p.getId());
         int res = 0;
         res = s.executeUpdate();
-        return (res < 0);
+        return (res > 0);
     }
 
     public List<Produto> list() throws SQLException {

@@ -152,7 +152,7 @@ public class VendasDAO {
         s.setString(9, v.getVendedor().getUsername());
         int res = s.executeUpdate();
         c.close();
-        return res<1;
+        return res>0;
     }
     
     public boolean update(Venda v) throws SQLException
@@ -170,7 +170,7 @@ public class VendasDAO {
         s.setInt(3,v.getId());
         int res = s.executeUpdate();
         c.close();
-        return res<1;
+        return res>0;
     }
     
     public boolean aVenda(Produto p) throws SQLException

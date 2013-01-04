@@ -105,7 +105,7 @@ public class ClassificacaoDAO {
             res=s.executeUpdate();
         }
         c.close();
-        return (res<1);
+        return (res>0);
     }
     
     public Classificacao get(Utilizador u) throws SQLException

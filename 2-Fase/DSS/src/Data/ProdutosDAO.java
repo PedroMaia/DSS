@@ -31,9 +31,9 @@ public class ProdutosDAO {
         PreparedStatement s = c.prepareStatement("select sidp.nextval from dual");
         ResultSet rs = s.executeQuery();
         rs.next();
-        rs.close();
+        int res=rs.getInt(1);
         c.close();
-        return rs.getInt(1);
+        return res;
     }
 
     public Produto get(int idp) throws SQLException {
@@ -96,7 +96,7 @@ public class ProdutosDAO {
         s.setString(6, p.getCategoria());
         int res = s.executeUpdate();
         c.close();
-        return (res < 1);
+        return (res>0);
     }
 
     public boolean update(Produto p, Utilizador u) throws SQLException {
@@ -116,6 +116,6 @@ public class ProdutosDAO {
         s.setString(5, p.getCategoria());
         s.setInt(6, p.getId());
         int res = s.executeUpdate();
-        return (res < 1);
+        return (res>0);
     }
 }

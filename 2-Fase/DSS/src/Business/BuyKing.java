@@ -210,10 +210,12 @@ public class BuyKing {
         return u.addWishList(p);
     }
     
-    public boolean addProduto(Utilizador u, String nomeP, BufferedImage imgP, String descP, String cat) throws SQLException
+    public Produto addProduto(Utilizador u, String nomeP, BufferedImage imgP, String descP, String cat) throws SQLException
     {
         Produto p = new Produto(ProdutosDAO.getNewId(), nomeP, imgP, descP, cat);
-        return produtos.add(p, u);
+        if(produtos.add(p, u))
+            return p;
+        else return null;
     }
 
     public Utilizador getUtilizador(String text) throws SQLException {
