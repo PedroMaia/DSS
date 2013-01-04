@@ -3,6 +3,7 @@ package Business;
 import Data.SuspeitasDAO;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Produto {
 
@@ -72,4 +73,20 @@ public class Produto {
     public boolean addSuspeita(Suspeita s) throws SQLException {
         return suspeitas.add(s);
     }
+    
+    public boolean semelhante(Produto p)
+    {
+        return this._nome.matches(p.getNome())||p.getNome().matches(this._nome);
+    }
+    
+    public boolean existeSemelhante(List<Produto> ps)
+    {
+        for(Produto p:ps)
+        {
+            if(semelhante(p))
+                return true;
+        }
+        return false;
+    }
+    
 }

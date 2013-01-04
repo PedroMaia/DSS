@@ -34,6 +34,56 @@ public class BuyKing {
         produtos=new ProdutosDAO();
     }
     
+    public List<Venda> getSugestoesVendas(Utilizador u) throws SQLException
+    {
+        List<Venda> disp = vendas.getVendasAbertas();
+        List<Produto> fav=u.getWishList();
+        List<Venda> res = new ArrayList<Venda>();
+        for(Venda v:disp)
+        {
+            if(v.getProduto().existeSemelhante(fav))
+                res.add(v);
+                
+        }
+        return res;
+    }
+    
+    public List<Leilao> getSugestoesLeilao(Utilizador u) throws SQLException
+    {
+        List<Leilao> disp = leiloes.getLeiloesActivos();
+        List<Produto> fav=u.getWishList();
+        List<Leilao> res = new ArrayList<Leilao>();
+        for(Leilao l:disp)
+        {
+            if(l.getP().existeSemelhante(fav))
+                res.add(l);
+                
+        }
+        return res;
+    }
+    
+    /*
+    public List<Troca> getSugestoesTroca(Utilizador u) throws SQLException
+    {
+        List<Venda> disp = vendas.getVendasAbertas();
+        List<Produto> fav=u.getWishList();
+        List<Troca> res=new ArrayList<Troca>();
+        for(Venda v:disp)
+        {
+            if(v.getProduto().existeSemelhante(fav))
+            {
+                for(Produto p:u.getProdutos())
+                    if(!(leiloes.emLeilao(p)||vendas.aVenda(p))&&p.existeSemelhante(v.getVendedor().getWishList()))
+                    {
+                        Troca t = new Troca(u, v.getVendedor(), v.getProduto(), p, new GregorianCalendar(), null, null, null, TrocasDAO.getNewId());
+                        res.add(t);
+                    }
+            }
+                
+        }
+        
+    }*/
+    
     public List<Venda> pesquisaVendasSimples(String aPchave, String aCat) throws SQLException {
         return pesquisaVendasAvançada(aPchave, aCat, 0, Float.MAX_VALUE);
     }
