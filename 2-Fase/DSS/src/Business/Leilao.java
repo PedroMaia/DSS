@@ -5,18 +5,23 @@ import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 public class Leilao {
-    
-	private int id;
-        private Utilizador leiloador;
-	private Produto p;
-        private GregorianCalendar dataLeilao;
-	private GregorianCalendar _dataFecho;
-	private GregorianCalendar _dataLimiteLeilao;
-	private GregorianCalendar dataPagamento;
-        private GregorianCalendar dataEnvioProduto;
-	private float _base;
-	private float _tecto;
-        private LicitacoesDAO licitacoes;
+
+    public static final int ABERTO = 1;
+    public static final int PENDENTE = 2;
+    public static final int FECHADO = 3;
+    public static final int CONCLUIDO = 4;
+    public static final int EXPIRADO = 5;
+    private int id;
+    private Utilizador leiloador;
+    private Produto p;
+    private GregorianCalendar dataLeilao;
+    private GregorianCalendar _dataFecho;
+    private GregorianCalendar _dataLimiteLeilao;
+    private GregorianCalendar dataPagamento;
+    private GregorianCalendar dataEnvioProduto;
+    private float _base;
+    private float _tecto;
+    private LicitacoesDAO licitacoes;
 
     public Leilao(int id, Utilizador leiloador, Produto p, GregorianCalendar dataLeilao, GregorianCalendar _dataFecho, GregorianCalendar _dataLimiteLeilao, GregorianCalendar dataPagamento, GregorianCalendar dataEnvioProduto, float _base, float _tecto) {
         this.id = id;
@@ -29,17 +34,12 @@ public class Leilao {
         this.dataEnvioProduto = dataEnvioProduto;
         this._base = _base;
         this._tecto = _tecto;
-        this.licitacoes=new LicitacoesDAO(id);
+        this.licitacoes = new LicitacoesDAO(id);
     }
-        
-
-    
 
     public Utilizador getLeiloador() {
         return leiloador;
     }
-
-    
 
     public GregorianCalendar getDataLeilao() {
         return dataLeilao;
@@ -84,30 +84,28 @@ public class Leilao {
     public void setDataLimiteLeilao(GregorianCalendar _dataLimiteLeilao) {
         this._dataLimiteLeilao = _dataLimiteLeilao;
     }
-        
-        
 
-	public boolean registaLicitacao(Licitacao l) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
-            if(fechado()) throw new LeilaoFechadoException();
-            if(l.getValor()<getUltimaLicitacao()) throw new BaixaLicitacaoException();
-            return licitacoes.addLicitacao(l);
-	}
+    public boolean registaLicitacao(Licitacao l) throws LeilaoFechadoException, BaixaLicitacaoException, SQLException {
+        if (fechado()) {
+            throw new LeilaoFechadoException();
+        }
+        if (l.getValor() < getUltimaLicitacao()) {
+            throw new BaixaLicitacaoException();
+        }
+        return licitacoes.addLicitacao(l);
+    }
 
-	public boolean fechado() throws SQLException {
-		GregorianCalendar hoje = new GregorianCalendar();
-                return (hoje.after(this._dataFecho)||(licitacoes.getMaxLicitacao()>=_tecto));
-	}
-        
-        
-        
-        public void regrideLeilao() {
-            
-        }
-        
-        public float getUltimaLicitacao() throws SQLException
-        {
-           return licitacoes.getMaxLicitacao();
-        }
+    public boolean fechado() throws SQLException {
+        GregorianCalendar hoje = new GregorianCalendar();
+        return (hoje.after(this._dataFecho) || (licitacoes.getMaxLicitacao() >= _tecto));
+    }
+
+    public void regrideLeilao() {
+    }
+
+    public float getUltimaLicitacao() throws SQLException {
+        return licitacoes.getMaxLicitacao();
+    }
 
     @Override
     public int hashCode() {
@@ -135,7 +133,24 @@ public class Leilao {
     public String toString() {
         return "Leilao{" + "id=" + id + ", leiloador=" + leiloador + ", p=" + p + ", dataLeilao=" + dataLeilao + ", _dataFecho=" + _dataFecho + ", _dataLimiteLeilao=" + _dataLimiteLeilao + ", dataPagamento=" + dataPagamento + ", dataEnvioProduto=" + dataEnvioProduto + ", _base=" + _base + ", _tecto=" + _tecto + ", licitacoes=" + licitacoes + '}';
     }
-        
-        
-        
+
+    public int getEstado() throws SQLException {
+        if (dataEnvioProduto != null && dataPagamento != null) {
+            return Leilao.CONCLUIDO;
+        } else {
+            if (!fechado()) {
+                return Leilao.ABERTO;
+            } else {
+                if (licitacoes.getVencedor() == null) {
+                    return Leilao.FECHADO;
+                } else {
+                    if (_dataLimiteLeilao.after(new GregorianCalendar())) {
+                        return Leilao.PENDENTE;
+                    } else {
+                        return Leilao.EXPIRADO;
+                    }
+                }
+            }
+        }
+    }
 }
