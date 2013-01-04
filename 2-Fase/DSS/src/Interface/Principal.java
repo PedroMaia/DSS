@@ -250,9 +250,9 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }       
     }//GEN-LAST:event_jButtonNovaJanelaActionPerformed
-
+/**a alterar*/
     private void jButtonKingAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKingAreaActionPerformed
-asdhasjkdghashjkgdfahuksgf        // TODO add your handling code here:
+   // TODO add your handling code here:
     }//GEN-LAST:event_jButtonKingAreaActionPerformed
 
     /**

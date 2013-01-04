@@ -1,5 +1,7 @@
 package Interface;
 
+import Business.BuyKing;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,8 +16,9 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     /**
      * Creates new form KingClienteArea
      */
-    public KingClienteArea() {
+    public KingClienteArea(){
         initComponents();
+        
     }
 
     /**
