@@ -34,6 +34,10 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPanel = new javax.swing.JDesktopPane();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButtonNovaJanela = new javax.swing.JButton();
+        jButtonKingArea = new javax.swing.JButton();
+        jButtonLogOut = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemNovaJanela = new javax.swing.JMenuItem();
@@ -42,6 +46,38 @@ public class Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jToolBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+
+        jButtonNovaJanela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newWindows.png"))); // NOI18N
+        jButtonNovaJanela.setFocusable(false);
+        jButtonNovaJanela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNovaJanela.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNovaJanela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovaJanelaActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonNovaJanela);
+
+        jButtonKingArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CrownSmall.png"))); // NOI18N
+        jButtonKingArea.setFocusable(false);
+        jButtonKingArea.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonKingArea.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonKingArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKingAreaActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonKingArea);
+
+        jButtonLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SmallLoginin.png"))); // NOI18N
+        jButtonLogOut.setFocusable(false);
+        jButtonLogOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLogOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonLogOut);
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,16 +121,22 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jDesktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -105,7 +147,7 @@ public class Principal extends javax.swing.JFrame {
     {
        
        if(this.janelaBody==null) 
-           this.janelaBody=new PrincipalBody();
+           this.janelaBody=new PrincipalBody(this.sys);
        
        this.jDesktopPanel.add(this.janelaBody);
        this.janelaBody.setVisible(true);
@@ -156,6 +198,11 @@ public class Principal extends javax.swing.JFrame {
 
     }
         
+      
+    
+    void setUser(Utilizador get) {
+        reg=get;
+    }
         
         
     private void jMenuItemNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaJanelaActionPerformed
@@ -193,6 +240,20 @@ public class Principal extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemLogInActionPerformed
+
+    private void jButtonNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaJanelaActionPerformed
+     try {
+            CriaJanelaBody();
+            
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_jButtonNovaJanelaActionPerformed
+
+    private void jButtonKingAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKingAreaActionPerformed
+asdhasjkdghashjkgdfahuksgf        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonKingAreaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,6 +297,9 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonKingArea;
+    private javax.swing.JButton jButtonLogOut;
+    private javax.swing.JButton jButtonNovaJanela;
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -243,14 +307,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemClient;
     private javax.swing.JMenuItem jMenuItemLogIn;
     private javax.swing.JMenuItem jMenuItemNovaJanela;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
     private PrincipalBody janelaBody;
     private LogIn loginJanela;
     private Registo registoJanela;
     private BuyKing sys=new BuyKing();
     private Utilizador reg;
+    private KingClienteArea kingArea;
 
-    void setUser(Utilizador get) {
-        reg=get;
-    }
 }
