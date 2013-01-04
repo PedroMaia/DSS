@@ -40,10 +40,17 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     public PrincipalBody(BuyKing sysIn) {
         initComponents();
         this.sys=sysIn;
+        this.iniciarZonasEnable();
     }
 
     
-    
+    /**
+     * O que coordena as zona que foram enable!
+     */
+    private void iniciarZonasEnable(){
+        //colocar pesqAvançada!
+        pesqAvancEnable();
+    }
     
 
     
