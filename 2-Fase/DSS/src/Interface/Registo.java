@@ -194,6 +194,12 @@ public class Registo extends javax.swing.JInternalFrame {
 
         jScrollPane2.setViewportView(jLabelImagemCliente);
 
+        jTextFieldEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEmailFocusLost(evt);
+            }
+        });
+
         jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUserNameActionPerformed(evt);
@@ -379,7 +385,7 @@ public class Registo extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(457, Short.MAX_VALUE)
+                .addContainerGap(469, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
@@ -388,7 +394,7 @@ public class Registo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(38, 38, 38)
                     .addComponent(jPanelInforUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(35, Short.MAX_VALUE)))
+                    .addContainerGap(47, Short.MAX_VALUE)))
         );
 
         pack();
@@ -412,7 +418,7 @@ public class Registo extends javax.swing.JInternalFrame {
         try {
             dispUser();
         } catch (SQLException ex) {
-            Logger.getLogger(Registo.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showInternalMessageDialog(this, ex, "Erro", JOptionPane.ERROR);
         }
     }//GEN-LAST:event_jTextFieldUserNameActionPerformed
 
@@ -424,7 +430,7 @@ public class Registo extends javax.swing.JInternalFrame {
         try {
             dispUser();
         } catch (SQLException ex) {
-            Logger.getLogger(Registo.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showInternalMessageDialog(this, ex, "Erro", JOptionPane.ERROR);
         }
     }//GEN-LAST:event_jTextFieldUserNameFocusLost
 
@@ -435,6 +441,14 @@ public class Registo extends javax.swing.JInternalFrame {
     private void jTextFieldDayFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDayFocusGained
        this.jTextFieldDay.setText("");   // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDayFocusGained
+
+    private void jTextFieldEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEmailFocusLost
+        try {
+            dispMail();
+        } catch (SQLException ex) {
+            JOptionPane.showInternalMessageDialog(this, ex, "Erro", JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_jTextFieldEmailFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcimagem;
