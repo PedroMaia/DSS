@@ -184,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
       private void CriaJanelaRegisto() throws InterruptedException {
 
         if (this.registoJanela == null) {
-            this.registoJanela = new Registo();
+            this.registoJanela = new Registo(sys);
         }
 
         this.jDesktopPanel.add(this.registoJanela);
@@ -252,7 +252,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNovaJanelaActionPerformed
 /**a alterar*/
     private void jButtonKingAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKingAreaActionPerformed
-   // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_jButtonKingAreaActionPerformed
 
     /**
