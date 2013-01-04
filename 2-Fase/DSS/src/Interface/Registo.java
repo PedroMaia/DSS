@@ -6,9 +6,11 @@ package Interface;
 
 import Business.BuyKing;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +36,7 @@ public class Registo extends javax.swing.JInternalFrame {
         //para juntar! no inico
         this.jTextFieldDay.selectAll();
         this.imgCliente=null;
+        estadoInitLabels();
     }
     /*Abre janela de escolher Imagem de produto:Limpar a imagem antrior!*/
     public void abreFileChooser() {
@@ -63,6 +66,23 @@ public class Registo extends javax.swing.JInternalFrame {
         }
     }
     
+    public void estadoInitLabels(){
+        Boolean bol = false;
+        this.jLabelDisponivel.setVisible(bol);
+        this.jLabelDisponivel1.setVisible(bol);
+        this.jLabelPasswordErro.setVisible(bol);
+    }
+    
+    public void dispUser() throws SQLException {
+        String dUser = this.jTextFieldUserName.getText();
+        if (sys.getUtilizador(dUser) != null) {
+            this.jLabelDisponivel1.setVisible(true);
+            this.jLabelDisponivel.setVisible(false);
+        } else {
+            this.jLabelDisponivel.setVisible(true);
+            this.jLabelDisponivel1.setVisible(false);
+        }
+    }
     
     
     
@@ -81,8 +101,7 @@ public class Registo extends javax.swing.JInternalFrame {
     }
     
     public void regista(){
-        Boolean flag=false;
-        if(new String(jPasswordField1.getPassword()).equals(new String(jPasswordField2.getPassword()))&&jCheckBox1.isSelected())
+        if(new String(jPasswordField1.getPassword()).equals(new String(jPasswordConfirme.getPassword()))&&jCheckBox1.isSelected())
             try
             {   // verifica se a string dá para converter para inteiro.
                 int dia=Integer.parseInt(this.jTextFieldDay.getText());
@@ -121,17 +140,17 @@ public class Registo extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
         jLabelDisponivel = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
         jLabel14 = new javax.swing.JLabel();
-        jLabelDisponivel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabelPassworsErro = new javax.swing.JLabel();
+        jLabelPasswordErro = new javax.swing.JLabel();
         jTextFieldDay = new javax.swing.JTextField();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jBcimagem = new javax.swing.JButton();
+        jLabelDisponivel1 = new javax.swing.JLabel();
+        jPasswordConfirme = new javax.swing.JPasswordField();
 
         setClosable(true);
 
@@ -154,6 +173,11 @@ public class Registo extends javax.swing.JInternalFrame {
                 jTextFieldUserNameActionPerformed(evt);
             }
         });
+        jTextFieldUserName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldUserNameFocusLost(evt);
+            }
+        });
 
         jLabel12.setText("Username* :");
 
@@ -163,15 +187,13 @@ public class Registo extends javax.swing.JInternalFrame {
 
         jLabel14.setText("Confirmar password* :");
 
-        jLabelDisponivel1.setText("<html><font color= \"Red\">User já existe, insira outro user name.</font></html>");
-
         jLabel3.setText("Morada* :");
 
         jLabel9.setText("Email* :");
 
         jLabel1.setText("DataNascimento:");
 
-        jLabelPassworsErro.setText("<html><font color= \"Red\">Passwors não coincidem.</font></html>");
+        jLabelPasswordErro.setText("<html><font color= \"Red\">Passwors não coincidem.</font></html>");
 
         jTextFieldDay.setText("Dia");
         jTextFieldDay.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +206,14 @@ public class Registo extends javax.swing.JInternalFrame {
         jBcimagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcimagemActionPerformed(evt);
+            }
+        });
+
+        jLabelDisponivel1.setText("<html><font color= \"Red\">User já existe, insira outro user name.</font></html>");
+
+        jPasswordConfirme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordConfirmeActionPerformed(evt);
             }
         });
 
@@ -206,7 +236,7 @@ public class Registo extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jYearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(jYearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(381, 381, 381))
                     .addGroup(jPanelInforUserLayout.createSequentialGroup()
                         .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -224,27 +254,23 @@ public class Registo extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20))))))
             .addGroup(jPanelInforUserLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelInforUserLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPasswordConfirme, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabelPasswordErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelInforUserLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(14, 14, 14)
                         .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDisponivel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelInforUserLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(14, 14, 14)
                                 .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)
-                                .addComponent(jLabelDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelInforUserLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabelDisponivel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanelInforUserLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelInforUserLayout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jLabelPassworsErro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabelDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanelInforUserLayout.setVerticalGroup(
@@ -259,9 +285,9 @@ public class Registo extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel12))
                             .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabelDisponivel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelDisponivel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel1)
@@ -289,10 +315,9 @@ public class Registo extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelInforUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelPassworsErro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                    .addComponent(jLabelPasswordErro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordConfirme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -307,14 +332,14 @@ public class Registo extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(36, Short.MAX_VALUE)
                     .addComponent(jPanelInforUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(37, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(441, Short.MAX_VALUE)
+                .addContainerGap(449, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
@@ -323,7 +348,7 @@ public class Registo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(38, 38, 38)
                     .addComponent(jPanelInforUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(22, Short.MAX_VALUE)))
+                    .addContainerGap(27, Short.MAX_VALUE)))
         );
 
         pack();
@@ -334,18 +359,34 @@ public class Registo extends javax.swing.JInternalFrame {
         regista();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUserNameActionPerformed
-
-    private void jTextFieldDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDayActionPerformed
-        //seleciona o texto      
-        this.jTextFieldDay.selectAll();
-    }//GEN-LAST:event_jTextFieldDayActionPerformed
-
     private void jBcimagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcimagemActionPerformed
         abreFileChooser();
     }//GEN-LAST:event_jBcimagemActionPerformed
+
+    private void jTextFieldDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDayActionPerformed
+        //seleciona o texto
+        this.jTextFieldDay.selectAll();
+    }//GEN-LAST:event_jTextFieldDayActionPerformed
+
+    private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
+        try {
+            dispUser();
+        } catch (SQLException ex) {
+            Logger.getLogger(Registo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextFieldUserNameActionPerformed
+
+    private void jPasswordConfirmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordConfirmeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordConfirmeActionPerformed
+
+    private void jTextFieldUserNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUserNameFocusLost
+        try {
+            dispUser();
+        } catch (SQLException ex) {
+            Logger.getLogger(Registo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextFieldUserNameFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcimagem;
@@ -360,11 +401,11 @@ public class Registo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelDisponivel1;
     private javax.swing.JLabel jLabelImagemCliente;
     private javax.swing.JLabel jLabelPassword;
-    private javax.swing.JLabel jLabelPassworsErro;
+    private javax.swing.JLabel jLabelPasswordErro;
     private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanelInforUser;
+    private javax.swing.JPasswordField jPasswordConfirme;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldDay;
     private javax.swing.JTextField jTextFieldEmail;
