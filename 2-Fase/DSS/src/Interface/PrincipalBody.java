@@ -5,6 +5,7 @@
 package Interface;
 
 
+import Business.BuyKing;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -36,11 +37,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
      * Cria o kingClienteArea mal é construido
      */
    
-    public PrincipalBody(Principal sysIn) {
-      
+    public PrincipalBody(BuyKing sysIn) {
         initComponents();
         this.sys=sysIn;
-     
     }
 
     
@@ -1207,5 +1206,5 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
    private KingClienteArea kingArea;
    private  BufferedImage imgProduto;
-   private Principal sys;
+   private BuyKing sys;
 }
