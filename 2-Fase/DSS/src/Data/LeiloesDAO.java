@@ -122,6 +122,7 @@ public class LeiloesDAO {
         PreparedStatement s = c.prepareStatement("select count(*) from leilao where idp=? and sysdate<df and (select max(vl) from licitacao where licitacao.idl = leilao.idl) < pml and dp is not null and dep is not null");
         s.setInt(1,p.getId());
         ResultSet rs=s.executeQuery();
+        rs.next();
         int res = rs.getInt(1);
         return res>0;
     }

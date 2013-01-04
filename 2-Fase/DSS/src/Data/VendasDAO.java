@@ -179,6 +179,7 @@ public class VendasDAO {
         PreparedStatement s = c.prepareStatement("select count(*) from venda where idp=? and cp is not null and dp is not null and dep is not null");
         s.setInt(1,p.getId());
         ResultSet rs=s.executeQuery();
+        rs.next();
         int res = rs.getInt(1);
         return res>0;
     }
