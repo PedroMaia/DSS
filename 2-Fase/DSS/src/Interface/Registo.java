@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -77,6 +78,25 @@ public class Registo extends javax.swing.JInternalFrame {
         ImageIcon icon = new ImageIcon(resizedImage);
         this.jLabelImagemCliente.setIcon(icon);
     
+    }
+    
+    public void regista(){
+        Boolean flag=false;
+        if(new String(jPasswordField1.getPassword()).equals(new String(jPasswordField2.getPassword()))&&jCheckBox1.isSelected())
+            try
+            {   // verifica se a string dá para converter para inteiro.
+                int dia=Integer.parseInt(this.jTextFieldDay.getText());
+                int mes=this.jMonthChooser1.getMonth();
+                int ano=this.jYearChooser1.getYear();
+                GregorianCalendar dataNacimento=new GregorianCalendar(ano, mes,dia);
+                
+                if(sys.registar(jTextFieldUserName.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
+                    , jTextFieldMorada.getText(),dataNacimento , this.imgCliente))
+                {
+                    JOptionPane.showInternalMessageDialog(this,"Já pode efetuar Login", "Registo feito Com Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+            } catch(Exception e){System.err.println(e);}
     }
     
     
@@ -310,22 +330,8 @@ public class Registo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(new String(jPasswordField1.getPassword()).equals(new String(jPasswordField2.getPassword()))&&jCheckBox1.isSelected())
-            try
-            {
-                int dia=Integer.parseInt(this.jTextFieldDay.getText());
-                int mes=this.jMonthChooser1.getMonth();
-                int ano=this.jYearChooser1.getYear();
-                GregorianCalendar dataNacimento=new GregorianCalendar(ano, mes,dia);
-                
-                if(sys.registar(jTextFieldUserName.getText(), new String(jPasswordField1.getPassword()), jTextFieldEmail.getText()
-                    , jTextFieldMorada.getText(),dataNacimento , this.imgCliente))
-                {
-                    //TODO lançar janela de sucesso
-                    this.dispose();
-                }
-            } catch(Exception e){System.err.println(e);}
         
+        regista();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
