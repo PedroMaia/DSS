@@ -23,7 +23,9 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
+        this.reg=null;
         initComponents();
+        
     }
 
     /**
@@ -329,7 +331,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNovaJanela;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
-    private PrincipalBody janelaBody;
+    PrincipalBody janelaBody;
     private LogIn loginJanela;
     private Registo registoJanela;
     private BuyKing sys=new BuyKing();
@@ -339,7 +341,8 @@ public class Principal extends javax.swing.JFrame {
     public Utilizador getReg() {
         return reg;
     }
-
+    
+    
     
     
 }

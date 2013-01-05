@@ -35,6 +35,7 @@ public class LogIn extends javax.swing.JInternalFrame {
             if(sys.login(this.jTextFieldUserName.getText(), new String(jPasswordField1.getPassword())))
             {
                 p.setUser(sys.getUtilizador(jTextFieldUserName.getText()));
+                if(p.janelaBody!=null) p.janelaBody.iniciarZonasEnable();
                 this.dispose();
             }else{
                JOptionPane.showInternalMessageDialog(this,"Dados inválidos","Registo",JOptionPane.ERROR_MESSAGE);
