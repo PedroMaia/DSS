@@ -76,7 +76,7 @@ public class Produto {
     
     public boolean semelhante(Produto p)
     {
-        return this._nome.matches(p.getNome())||p.getNome().matches(this._nome);
+        return this._nome.matches("(?i:.*"+p.getNome()+".*)")||p.getNome().matches("(?i:.*"+this._nome+".*)");
     }
     
     public boolean existeSemelhante(List<Produto> ps)
