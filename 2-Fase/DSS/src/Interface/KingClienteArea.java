@@ -1,6 +1,7 @@
 package Interface;
 
 import Business.BuyKing;
+import Business.Leilao;
 import Business.Produto;
 import Business.Utilizador;
 import Business.Venda;
@@ -17,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pedro
  */
-public class KingClienteArea extends javax.swing.JInternalFrame {
+public final class KingClienteArea extends javax.swing.JInternalFrame {
 
     
     private Utilizador u;
@@ -30,6 +31,9 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         this.u=u;
         this.sys=sys;
         updateListaProdutos();
+        updateCompras();
+        updateVendas();
+        updateLeiloes();
     }
     
     public void updateListaProdutos() throws SQLException
@@ -46,11 +50,48 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     
     public void updateCompras() throws SQLException
     {
-        List<Venda> list = sys.getFromComprador(u);
-        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0);
+        List<Venda> list = sys.getVendasFromComprador(u);
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+            {
+                @Override
+                public boolean isCellEditable(int rowIndex, int mColIndex) {
+                    return false;
+                }
+            };
         jTable2.setModel(m);
         for(Venda v:list){
             m.addRow(new Object[]{v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
+        }
+    }
+    
+    public void updateVendas() throws SQLException 
+    {
+        List<Venda> list = sys.getVendasFromVendedor(u);
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+            {
+                @Override
+                public boolean isCellEditable(int rowIndex, int mColIndex) {
+                    return false;
+                }
+            };
+        jTable4.setModel(m);
+        for(Venda v:list){
+            m.addRow(new Object[]{v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
+        }
+    }
+    
+    public void updateLeiloes() throws SQLException{
+        List<Leilao> list = sys.getLeilaoFromLeiloador(u);
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+            {
+                @Override
+                public boolean isCellEditable(int rowIndex, int mColIndex) {
+                    return false;
+                }
+            };
+        jTableMeusLeiloes.setModel(m);
+        for(Leilao l:list){
+            m.addRow(new Object[]{l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstado()]});
         }
     }
 
@@ -75,9 +116,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelVendasEsperaPagamento = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jPanelProdRequesit = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
         jPanelLeiloes = new javax.swing.JPanel();
         jPanelMeusLeilões = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -151,7 +189,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
 
         jPanelCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jPanelComprasEspera.setBorder(javax.swing.BorderFactory.createTitledBorder("Em Espera:"));
+        jPanelComprasEspera.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jTable2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,7 +216,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelComprasEsperaLayout.setVerticalGroup(
             jPanelComprasEsperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComprasEsperaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -203,7 +241,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
 
         jPanelVendas.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jPanelVendasEsperaPagamento.setBorder(javax.swing.BorderFactory.createTitledBorder("Espera Pagamento :"));
+        jPanelVendasEsperaPagamento.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -229,36 +267,8 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelVendasEsperaPagamentoLayout.setVerticalGroup(
             jPanelVendasEsperaPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasEsperaPagamentoLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
-        );
-
-        jPanelProdRequesit.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos Requesitados :"));
-
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable5);
-
-        javax.swing.GroupLayout jPanelProdRequesitLayout = new javax.swing.GroupLayout(jPanelProdRequesit);
-        jPanelProdRequesit.setLayout(jPanelProdRequesitLayout);
-        jPanelProdRequesitLayout.setHorizontalGroup(
-            jPanelProdRequesitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProdRequesitLayout.createSequentialGroup()
-                .addComponent(jScrollPane5)
-                .addContainerGap())
-        );
-        jPanelProdRequesitLayout.setVerticalGroup(
-            jPanelProdRequesitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanelVendasLayout = new javax.swing.GroupLayout(jPanelVendas);
@@ -267,9 +277,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelVendasEsperaPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelProdRequesit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelVendasEsperaPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelVendasLayout.setVerticalGroup(
@@ -277,9 +285,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelVendasEsperaPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(52, 52, 52)
-                .addComponent(jPanelProdRequesit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addContainerGap())
         );
 
         jTabbedPaneBody.addTab("<html>\n<strong>\nVendas\n</html>\n</strong>", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vender.png")), jPanelVendas); // NOI18N
@@ -315,7 +321,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanelMinhasReq.setBorder(javax.swing.BorderFactory.createTitledBorder("Minhas requesições:"));
+        jPanelMinhasReq.setBorder(javax.swing.BorderFactory.createTitledBorder("Minhas licitações:"));
 
         jTableMinhasRequesicoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -561,7 +567,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPaneBody, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -599,7 +605,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelMeusProdutos;
     private javax.swing.JPanel jPanelMinhasReq;
     private javax.swing.JPanel jPanelMudarPassword;
-    private javax.swing.JPanel jPanelProdRequesit;
     private javax.swing.JPanel jPanelVendas;
     private javax.swing.JPanel jPanelVendasEsperaPagamento;
     private javax.swing.JPasswordField jPasswordFieldNovaPass1;
@@ -607,14 +612,12 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPaneBody;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTable jTableMeusLeiloes;
     private javax.swing.JTable jTableMinhasRequesicoes;
     private javax.swing.JTextField jTextField3;

@@ -233,8 +233,16 @@ public class BuyKing {
         return utilizadores.existeMail(mail);
     }
     
-    public List<Venda> getFromComprador(Utilizador u) throws SQLException
+    public List<Venda> getVendasFromComprador(Utilizador u) throws SQLException
     {
         return vendas.getVendasComprador(u);
+    }
+
+    public List<Venda> getVendasFromVendedor(Utilizador u) throws SQLException {
+        return vendas.getVendasVendedor(u);
+    }
+
+    public List<Leilao> getLeilaoFromLeiloador(Utilizador u) throws SQLException {
+        return leiloes.getLeiloesLeiloador(u);
     }
 }

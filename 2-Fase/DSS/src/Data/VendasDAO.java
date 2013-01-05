@@ -61,7 +61,7 @@ public class VendasDAO {
         Produto p = (new ProdutosDAO()).get(rs.getInt("idp"));
         UserDAO users=new UserDAO();
         Utilizador vendedor = users.get(rs.getString("vd"));
-        Utilizador comprador = users.get("cp");
+        Utilizador comprador = users.get(rs.getString("cp"));
         return new Venda(id, preco, dataVenda, dataLimiteVenda, dataEnvioProduto, dataPagamento, p, vendedor, comprador);
         
     }
