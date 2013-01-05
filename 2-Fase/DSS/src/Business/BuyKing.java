@@ -85,7 +85,7 @@ public class BuyKing {
     }*/
     
     public List<Venda> pesquisaVendasSimples(String aPchave, String aCat) throws SQLException {
-        return pesquisaVendasAvançada(aPchave, aCat, 0, Float.MAX_VALUE);
+        return pesquisaVendasAvançada(aPchave, aCat, 0, Float.POSITIVE_INFINITY);
     }
 
     public List<Venda> pesquisaVendasAvançada(String aPchave, String aCat, float minP, float maxP) throws SQLException {
@@ -94,8 +94,8 @@ public class BuyKing {
         List<Venda> res = new ArrayList<Venda>();
         for (Venda v : l) {
             if ((v.getPreco() > minP) && (v.getPreco() < maxP)
-                    && (aPchave.matches(v.getProduto().getNome()) || aPchave.matches(v.getProduto().getDescricao()))
-                    && (aCat.equals(v.getProduto().getCategoria()))) {
+                    && (v.getProduto().getNome().matches("(?i:.*"+aPchave+".*)")) || v.getProduto().getDescricao().matches("(?i:.*"+aPchave+".*)")
+                    && aCat.equals(v.getProduto().getCategoria())) {
                 res.add(v);
             }
         }
@@ -180,12 +180,12 @@ public class BuyKing {
         return utilizadores.add(u);
     }
 
-    public List<Leilao> pesquisaAvançadaLeilao(String nome, String cat, float pmin, float pmax) throws SQLException {
+    public List<Leilao> pesquisaAvançadaLeilao(String aPchave, String cat, float pmin, float pmax) throws SQLException {
         List<Leilao> list = leiloes.getLeiloesActivos();
         List<Leilao> res = new ArrayList<Leilao>();
         for (Leilao l : list) {
-            if ((nome.matches(l.getP().getNome()) || nome.matches(l.getP().getDescricao()))
-                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()) {
+            if ((l.getP().getNome().matches("(?i:.*"+aPchave+".*)") || l.getP().getDescricao().matches("(?i:.*"+aPchave+".*)"))
+                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()&&l.getP().getCategoria().equals(cat)) {
                 res.add(l);
             }
         }
