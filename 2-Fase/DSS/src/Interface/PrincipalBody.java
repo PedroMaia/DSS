@@ -170,7 +170,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     }
     
     
-    
+    /**
+     * Carraga Imagens de um produto!
+     */
     
     public void loadImgProd()
     {
@@ -185,7 +187,10 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     }
     
     
-        
+    
+    /**
+     * Carrega o avatar do user caso tenha feito o logIn
+    */
     public void loadImgUser()
     {
         if(this.p.getReg().getImagem()!=null)
@@ -202,6 +207,72 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     }
     
     
+    
+    /**
+     * Pesquisa/Muda de painel pesquisa.
+     */
+    public void pesquisarKey() {
+        //Actividade do card layout
+        CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+        card.show(this.BodyPrincipal, "cardPesquisa");
+        // TODO add your handling code here:
+        //Todas
+        //Venda
+        //Leilão
+        try {
+            String[] nomesCol = {"Nome", "Preço", "Tipo"};
+            DefaultTableModel m = new DefaultTableModel(nomesCol, 0);
+            jTableResultadosPesquisa.setModel(m);
+            m.fireTableDataChanged();
+            List<Venda> vendas;
+            List<Leilao> leiloes;
+            if (this.jCheckBoxActivaFiltro.isSelected()) {
+                if (jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        || jComboBoxTransacao.getSelectedItem().equals("Venda")) {
+                    vendas = sys.pesquisaVendasAvançada(ChavePesquisa.getText(),
+                            (String) jComboBoxCategoria.getSelectedItem(),
+                            Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
+                    for (Venda v : vendas) {
+                        Object[] line = {v.getProduto().getNome(), v.getPreco(), "Venda"};
+                        m.addRow(line);
+                    }
+                }
+                if (jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        || jComboBoxTransacao.getSelectedItem().equals("Leilão")) {
+                    leiloes = sys.pesquisaAvançadaLeilao(ChavePesquisa.getText(),
+                            (String) jComboBoxCategoria.getSelectedItem(),
+                            Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
+                    for (Leilao l : leiloes) {
+                        Object[] line = {l.getP().getNome(), l.getUltimaLicitacao(), "Leilão"};
+                        m.addRow(line);
+                    }
+                }
+            } else {
+                if (jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        || jComboBoxTransacao.getSelectedItem().equals("Venda")) {
+                    vendas = sys.pesquisaVendasSimples(ChavePesquisa.getText(),
+                            (String) jComboBoxCategoria.getSelectedItem());
+                    for (Venda v : vendas) {
+                        Object[] line = {v.getProduto().getNome(), v.getPreco(), "Venda"};
+                        m.addRow(line);
+                    }
+                }
+                if (jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        || jComboBoxTransacao.getSelectedItem().equals("Venda")) {
+                    leiloes = sys.pesquisaSimplesLeilao(ChavePesquisa.getText(),
+                            (String) jComboBoxCategoria.getSelectedItem());
+                    for (Leilao l : leiloes) {
+                        Object[] line = {l.getP().getNome(), l.getUltimaLicitacao(), "Leilão"};
+                        m.addRow(line);
+                    }
+                }
+            }
+            m.fireTableDataChanged();
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro ocorrido durante a pesquisa.", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -659,7 +730,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         PanelPesqLayout.setVerticalGroup(
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPesqLayout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
+                .addContainerGap(232, Short.MAX_VALUE)
                 .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonPesqAvan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -667,11 +738,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelPesqLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addGap(218, 218, 218)))
         );
 
-        BodyPrincipal.add(PanelPesq, "card7");
+        BodyPrincipal.add(PanelPesq, "cardPesquisa");
 
         jPanelImagem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -823,7 +894,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jLabel15)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1073,7 +1144,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addGroup(VenderLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         BodyPrincipal.add(Vender, "cardVender");
@@ -1119,11 +1190,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(153, 153, 153)
-                    .addComponent(BodyPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                    .addComponent(BodyPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGap(22, 22, 22)))
         );
 
@@ -1148,7 +1219,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void ChavePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChavePesquisaActionPerformed
-        // TODO add your handling code here:
+        pesquisarKey();
     }//GEN-LAST:event_ChavePesquisaActionPerformed
 
     private void BodyPrincipalComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_BodyPrincipalComponentAdded
@@ -1201,64 +1272,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonvendActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
-        //Todas
-        //Venda
-        //Leilão
-        try{
-            String[] nomesCol={"Nome","Preço","Tipo"};
-            DefaultTableModel m= new DefaultTableModel(nomesCol, 0);
-            jTableResultadosPesquisa.setModel(m);
-            m.fireTableDataChanged();
-            List<Venda> vendas;
-            List<Leilao> leiloes;
-            if(this.jCheckBoxActivaFiltro.isSelected()){
-                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
-                        ||jComboBoxTransacao.getSelectedItem().equals("Venda")){
-                    vendas=sys.pesquisaVendasAvançada(ChavePesquisa.getText(), 
-                            (String)jComboBoxCategoria.getSelectedItem(), 
-                            Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
-                    for(Venda v:vendas){
-                        Object[] line={v.getProduto().getNome(), v.getPreco(), "Venda"};
-                        m.addRow(line);
-                    }
-                }
-                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
-                        ||jComboBoxTransacao.getSelectedItem().equals("Leilão")){
-                    leiloes=sys.pesquisaAvançadaLeilao(ChavePesquisa.getText(), 
-                            (String)jComboBoxCategoria.getSelectedItem(), 
-                            Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
-                    for(Leilao l:leiloes){
-                        Object[] line={l.getP().getNome(),l.getUltimaLicitacao(),"Leilão"};
-                        m.addRow(line);
-                    }
-                }
-            }
-            else{
-                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
-                        ||jComboBoxTransacao.getSelectedItem().equals("Venda")){
-                    vendas=sys.pesquisaVendasSimples(ChavePesquisa.getText(), 
-                            (String)jComboBoxCategoria.getSelectedItem());
-                    for(Venda v:vendas){
-                        Object[] line={v.getProduto().getNome(), v.getPreco(), "Venda"};
-                        m.addRow(line);
-                    }
-                }
-                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
-                        ||jComboBoxTransacao.getSelectedItem().equals("Venda")){
-                    leiloes=sys.pesquisaSimplesLeilao(ChavePesquisa.getText(), 
-                            (String)jComboBoxCategoria.getSelectedItem());
-                    for(Leilao l:leiloes){
-                        Object[] line={l.getP().getNome(),l.getUltimaLicitacao(),"Leilão"};
-                        m.addRow(line);
-                    }
-                }
-            }
-            m.fireTableDataChanged();
-        }
-        catch(Exception e){
-            JOptionPane.showInternalMessageDialog(this, e, "Erro ocorrido durante a pesquisa.", JOptionPane.ERROR_MESSAGE);
-        }
+   pesquisarKey();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
