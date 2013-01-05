@@ -309,8 +309,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jLabel32 = new javax.swing.JLabel();
         BodyPrincipal = new javax.swing.JPanel();
         PanelPesq = new javax.swing.JPanel();
-        jButtonPesqAvan = new javax.swing.JButton();
-        jButtonResults = new javax.swing.JButton();
         jScrollResultadosPesquisa = new javax.swing.JScrollPane();
         jTableResultadosPesquisa = new javax.swing.JTable();
         ProdutoCompra = new javax.swing.JPanel();
@@ -373,8 +371,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jButtonvend = new javax.swing.JButton();
         jBcimagem = new javax.swing.JButton();
 
-        setClosable(true);
-        setMaximizable(true);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
@@ -414,8 +410,19 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
         jButtonLeiloar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ColocarEmLeilão.png"))); // NOI18N
         jButtonLeiloar.setText("Leiloar");
+        jButtonLeiloar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLeiloarActionPerformed(evt);
+            }
+        });
 
+        jButtonMenuFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lixo.png"))); // NOI18N
         jButtonMenuFavoritos.setText("Favoritos");
+        jButtonMenuFavoritos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMenuFavoritosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuPrincipalLayout = new javax.swing.GroupLayout(MenuPrincipal);
         MenuPrincipal.setLayout(MenuPrincipalLayout);
@@ -638,7 +645,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addComponent(jLabel30)
                     .addComponent(jLabel31)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanelPesquisaAvancLayout = new javax.swing.GroupLayout(jPanelPesquisaAvanc);
@@ -673,7 +680,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jCheckBoxActivaFiltro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelVLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addGap(112, 112, 112))
         );
 
         BodyPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -687,11 +694,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
         PanelPesq.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
         PanelPesq.setToolTipText("");
-
-        jButtonPesqAvan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
-        jButtonPesqAvan.setText("Pesquisa Avançada");
-
-        jButtonResults.setText("Mais Resultados");
 
         jTableResultadosPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -716,30 +718,16 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         PanelPesqLayout.setHorizontalGroup(
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPesqLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jButtonResults, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButtonPesqAvan, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
-            .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelPesqLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addContainerGap()
+                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addContainerGap())
         );
         PanelPesqLayout.setVerticalGroup(
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPesqLayout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
-                .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonPesqAvan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(169, 169, 169))
-            .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelPesqLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addGap(218, 218, 218)))
+            .addGroup(PanelPesqLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addGap(218, 218, 218))
         );
 
         BodyPrincipal.add(PanelPesq, "cardPesquisa");
@@ -894,7 +882,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jLabel15)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1144,7 +1132,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addGroup(VenderLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         BodyPrincipal.add(Vender, "cardVender");
@@ -1177,24 +1165,22 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logotipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
-                        .addComponent(MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelPesquisaAvanc, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelPesquisaAvanc, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(153, 153, 153)
-                    .addComponent(BodyPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                    .addComponent(BodyPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                     .addGap(22, 22, 22)))
         );
 
@@ -1280,6 +1266,16 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         iniciarZonasEnable();        
     }//GEN-LAST:event_formFocusGained
 
+    private void jButtonLeiloarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeiloarActionPerformed
+        CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
+      card.show(this.BodyPrincipal,"cardVender");
+    }//GEN-LAST:event_jButtonLeiloarActionPerformed
+
+    private void jButtonMenuFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuFavoritosActionPerformed
+          CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
+      card.show(this.BodyPrincipal,"cardVender");
+    }//GEN-LAST:event_jButtonMenuFavoritosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
     private javax.swing.JTextField ChavePesquisa;
@@ -1298,9 +1294,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonKingArea;
     private javax.swing.JButton jButtonLeiloar;
     private javax.swing.JButton jButtonMenuFavoritos;
-    private javax.swing.JButton jButtonPesqAvan;
     private javax.swing.JButton jButtonPesquisar;
-    private javax.swing.JButton jButtonResults;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonVender;
     private javax.swing.JButton jButtoncomprar;

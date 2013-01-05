@@ -25,6 +25,17 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         this.reg=null;
         initComponents();
+       
+        
+        try {
+            CriaJanelaBody();
+        } catch (InterruptedException ex)
+        {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PropertyVetoException ex)
+        {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -39,9 +50,9 @@ public class Principal extends javax.swing.JFrame {
 
         jDesktopPanel = new javax.swing.JDesktopPane();
         jToolBar1 = new javax.swing.JToolBar();
-        jButtonNovaJanela = new javax.swing.JButton();
-        jButtonKingArea = new javax.swing.JButton();
-        jButtonLogOut = new javax.swing.JButton();
+        jButtonLogIn = new javax.swing.JButton();
+        jButtonRegista = new javax.swing.JButton();
+        jButtonAjudaPanel = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemNovaJanela = new javax.swing.JMenuItem();
@@ -55,32 +66,34 @@ public class Principal extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jButtonNovaJanela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newBody.png"))); // NOI18N
-        jButtonNovaJanela.setFocusable(false);
-        jButtonNovaJanela.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonNovaJanela.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonNovaJanela.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LogInBig.png"))); // NOI18N
+        jButtonLogIn.setFocusTraversalPolicyProvider(true);
+        jButtonLogIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLogIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovaJanelaActionPerformed(evt);
+                jButtonLogInActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButtonNovaJanela);
+        jToolBar1.add(jButtonLogIn);
+        this.jButtonLogIn.setToolTipText("Login");
 
-        jButtonKingArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CrownSmall.png"))); // NOI18N
-        jButtonKingArea.setFocusable(false);
-        jButtonKingArea.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonKingArea.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonKingArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonKingAreaActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonKingArea);
+        jButtonRegista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PenGreenicon.png"))); // NOI18N
+        jButtonRegista.setToolTipText("");
+        jButtonRegista.setFocusTraversalPolicyProvider(true);
+        jButtonRegista.setFocusable(false);
+        jButtonRegista.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRegista.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonRegista);
+        this.jButtonRegista.setToolTipText("Registar");
 
-        jButtonLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SmallLoginin.png"))); // NOI18N
-        jButtonLogOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonLogOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButtonLogOut);
+        jButtonAjudaPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Help.png"))); // NOI18N
+        jButtonAjudaPanel.setFocusTraversalPolicyProvider(true);
+        jButtonAjudaPanel.setFocusable(false);
+        jButtonAjudaPanel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAjudaPanel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonAjudaPanel);
+        this.jButtonAjudaPanel.setToolTipText("Ajuda Cliente");
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +171,7 @@ public class Principal extends javax.swing.JFrame {
        
        this.jDesktopPanel.add(this.janelaBody);
       //maximiza a janela!
-       //this.janelaBody.setMaximum(true);
+       this.janelaBody.setMaximum(true);
        
        this.janelaBody.setVisible(true);
        
@@ -197,7 +210,6 @@ public class Principal extends javax.swing.JFrame {
     
     private void CriaJanelaRegisto() throws InterruptedException {
 
-       
         this.registoJanela = new Registo(sys);
 
         this.jDesktopPanel.add(this.registoJanela);
@@ -219,63 +231,52 @@ public class Principal extends javax.swing.JFrame {
     
 
     
-    private void jMenuItemNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaJanelaActionPerformed
-    try {
-            try {
-                CriaJanelaBody();
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (InterruptedException ex)
-        {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
- // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemNovaJanelaActionPerformed
-
-    private void jMenuItemClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientActionPerformed
-   try {
-            CriaJanelaRegisto();
-            
-        } catch (InterruptedException ex)
-        {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jMenuItemClientActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenuItemLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogInActionPerformed
-          try {
+    private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
+                 try {
             CriaJanelaLogIn();
             
         } catch (InterruptedException ex)
         {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_jButtonLogInActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+   }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItemLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogInActionPerformed
+        try {
+            CriaJanelaLogIn();
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemLogInActionPerformed
 
-    private void jButtonNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaJanelaActionPerformed
-     try {
+    private void jMenuItemClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientActionPerformed
+        try {
+            CriaJanelaRegisto();
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemClientActionPerformed
+
+    private void jMenuItemNovaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaJanelaActionPerformed
+        try {
             try {
                 CriaJanelaBody();
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        } catch (InterruptedException ex)
-        {
+
+        } catch (InterruptedException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }       
-    }//GEN-LAST:event_jButtonNovaJanelaActionPerformed
-/**a alterar*/
-    private void jButtonKingAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKingAreaActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonKingAreaActionPerformed
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemNovaJanelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,9 +320,9 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonKingArea;
-    private javax.swing.JButton jButtonLogOut;
-    private javax.swing.JButton jButtonNovaJanela;
+    private javax.swing.JButton jButtonAjudaPanel;
+    private javax.swing.JButton jButtonLogIn;
+    private javax.swing.JButton jButtonRegista;
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
