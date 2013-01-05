@@ -6,8 +6,10 @@ package Interface;
 
 
 import Business.BuyKing;
+import Business.Leilao;
 import Business.Produto;
 import Business.Utilizador;
+import Business.Venda;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -19,6 +21,7 @@ import javax.swing.filechooser.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -26,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.table.DefaultTableModel;
 import sun.applet.Main;
 
 /**
@@ -327,6 +331,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jComboBoxCategoria.setToolTipText("");
 
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Pesquisa.png"))); // NOI18N
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelPesquisaLayout = new javax.swing.GroupLayout(jPanelPesquisa);
         jPanelPesquisa.setLayout(jPanelPesquisaLayout);
@@ -336,7 +345,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabelPesq)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChavePesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(ChavePesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -526,7 +535,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxTransacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPesquisaAvancLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 6, Short.MAX_VALUE)
                                 .addComponent(jPanelVLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
@@ -539,7 +548,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addComponent(jComboBoxTransacao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxActivaFiltro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jPanelVLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103))
         );
@@ -563,15 +572,20 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
         jTableResultadosPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Preço", "Tipo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollResultadosPesquisa.setViewportView(jTableResultadosPesquisa);
 
         javax.swing.GroupLayout PanelPesqLayout = new javax.swing.GroupLayout(PanelPesq);
@@ -913,7 +927,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
                 .addGroup(JpanelPropriedadesProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
-                        .addComponent(lnome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lnome, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTnome, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JpanelPropriedadesProdutoLayout.createSequentialGroup()
@@ -976,7 +990,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                                 .addGroup(VenderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(VenderLayout.createSequentialGroup()
                                         .addComponent(jButtonvend)
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGap(0, 23, Short.MAX_VALUE))
                                     .addComponent(jPanelAddImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18))
                     .addGroup(VenderLayout.createSequentialGroup()
@@ -987,7 +1001,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelEuro, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)))
-                .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VenderLayout.setVerticalGroup(
@@ -1034,9 +1048,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 236, Short.MAX_VALUE)
+                    .addGap(0, 240, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 236, Short.MAX_VALUE)))
+                    .addGap(0, 240, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1058,9 +1072,9 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 141, Short.MAX_VALUE)
+                    .addGap(0, 149, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 141, Short.MAX_VALUE)))
+                    .addGap(0, 149, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1135,6 +1149,67 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             }
         
     }//GEN-LAST:event_jButtonvendActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // TODO add your handling code here:
+        //Todas
+        //Venda
+        //Leilão
+        try{
+            String[] nomesCol={"Nome","Preço","Tipo"};
+            DefaultTableModel m= new DefaultTableModel(nomesCol, 0);
+            jTableResultadosPesquisa.setModel(m);
+            m.fireTableDataChanged();
+            List<Venda> vendas;
+            List<Leilao> leiloes;
+            if(this.jCheckBoxActivaFiltro.isSelected()){
+                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        ||jComboBoxTransacao.getSelectedItem().equals("Venda")){
+                    vendas=sys.pesquisaVendasAvançada(ChavePesquisa.getText(), 
+                            (String)jComboBoxCategoria.getSelectedItem(), 
+                            Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
+                    for(Venda v:vendas){
+                        Object[] line={v.getProduto().getNome(), v.getPreco(), "Venda"};
+                        m.addRow(line);
+                    }
+                }
+                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        ||jComboBoxTransacao.getSelectedItem().equals("Leilão")){
+                    leiloes=sys.pesquisaAvançadaLeilao(ChavePesquisa.getText(), 
+                            (String)jComboBoxCategoria.getSelectedItem(), 
+                            Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
+                    for(Leilao l:leiloes){
+                        Object[] line={l.getP().getNome(),l.getUltimaLicitacao(),"Leilão"};
+                        m.addRow(line);
+                    }
+                }
+            }
+            else{
+                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        ||jComboBoxTransacao.getSelectedItem().equals("Venda")){
+                    vendas=sys.pesquisaVendasSimples(ChavePesquisa.getText(), 
+                            (String)jComboBoxCategoria.getSelectedItem());
+                    for(Venda v:vendas){
+                        Object[] line={v.getProduto().getNome(), v.getPreco(), "Venda"};
+                        m.addRow(line);
+                    }
+                }
+                if(jComboBoxTransacao.getSelectedItem().equals("Todas")
+                        ||jComboBoxTransacao.getSelectedItem().equals("Venda")){
+                    leiloes=sys.pesquisaSimplesLeilao(ChavePesquisa.getText(), 
+                            (String)jComboBoxCategoria.getSelectedItem());
+                    for(Leilao l:leiloes){
+                        Object[] line={l.getP().getNome(),l.getUltimaLicitacao(),"Leilão"};
+                        m.addRow(line);
+                    }
+                }
+            }
+            m.fireTableDataChanged();
+        }
+        catch(Exception e){
+            JOptionPane.showInternalMessageDialog(this, e, "Erro ocorrido durante a pesquisa.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
