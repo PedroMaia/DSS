@@ -139,7 +139,7 @@ public class Utilizador {
         return _wishlist.list();
     }
 
-    List<Produto> getProdutos() throws SQLException {
+    public List<Produto> getProdutos() throws SQLException {
         return meusProds.getFromUser(this);
     }
 }

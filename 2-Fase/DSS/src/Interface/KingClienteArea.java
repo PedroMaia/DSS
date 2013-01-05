@@ -1,6 +1,11 @@
 package Interface;
 
 import Business.BuyKing;
+import Business.Produto;
+import Business.Utilizador;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this template, choose Tools | Templates
@@ -13,12 +18,29 @@ import Business.BuyKing;
  */
 public class KingClienteArea extends javax.swing.JInternalFrame {
 
+    
+    private Utilizador u;
+    private BuyKing sys;
     /**
      * Creates new form KingClienteArea
      */
-    public KingClienteArea(){
+    public KingClienteArea(Utilizador u, BuyKing sys) throws SQLException{
         initComponents();
-        
+        this.u=u;
+        this.sys=sys;
+        updateListaProdutos();
+    }
+    
+    public void updateListaProdutos() throws SQLException
+    {
+        List<Produto> l= u.getProdutos();
+        String[] colNames={"Nome", "Categoria"};
+        DefaultTableModel m = new DefaultTableModel(colNames, 0);
+        jTable3.setModel(m);
+        for(Produto p:l){
+            m.addRow(new Object[]{p.getNome(), p.getCategoria()});
+        }
+        m.fireTableDataChanged();
     }
 
     /**
@@ -55,13 +77,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelMinhasReq = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTableMinhasRequesicoes = new javax.swing.JTable();
-        jPanelTrocas = new javax.swing.JPanel();
-        jPanelPropostasPendentes = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTablePropostasPendentes = new javax.swing.JTable();
-        jPanelPropostasFeitas = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTablePropostasFeitas = new javax.swing.JTable();
         jPanelDefUser = new javax.swing.JPanel();
         jPanelMudarPassword = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -91,7 +106,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
 
         jTabbedPaneBody.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jPanelMeusProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder("<html> <strong> Lista de Produtos: </strong> </html>"));
+        jPanelMeusProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(" Lista de Produtos:"));
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -114,13 +129,13 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             jPanelMeusProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMeusProdutosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelMeusProdutosLayout.setVerticalGroup(
             jPanelMeusProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMeusProdutosLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -155,7 +170,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelComprasEsperaLayout.setVerticalGroup(
             jPanelComprasEsperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComprasEsperaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -189,7 +204,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelEmViagemLayout.setVerticalGroup(
             jPanelEmViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmViagemLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
 
@@ -246,7 +261,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelVendasEsperaPagamentoLayout.setVerticalGroup(
             jPanelVendasEsperaPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasEsperaPagamentoLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -372,7 +387,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
                 .addGroup(jPanelLeiloesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelMeusLeilões, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelMinhasReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanelLeiloesLayout.setVerticalGroup(
             jPanelLeiloesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,92 +400,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         );
 
         jTabbedPaneBody.addTab("<html>\n<strong>\nLeilões\n</strong>\n</html>", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Leilão.png")), jPanelLeiloes); // NOI18N
-
-        jPanelPropostasPendentes.setBorder(javax.swing.BorderFactory.createTitledBorder("Propostas Pendentes:"));
-
-        jTablePropostasPendentes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTablePropostasPendentes);
-
-        javax.swing.GroupLayout jPanelPropostasPendentesLayout = new javax.swing.GroupLayout(jPanelPropostasPendentes);
-        jPanelPropostasPendentes.setLayout(jPanelPropostasPendentesLayout);
-        jPanelPropostasPendentesLayout.setHorizontalGroup(
-            jPanelPropostasPendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropostasPendentesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelPropostasPendentesLayout.setVerticalGroup(
-            jPanelPropostasPendentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropostasPendentesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
-        );
-
-        jPanelPropostasFeitas.setBorder(javax.swing.BorderFactory.createTitledBorder("Propostas Feitas:"));
-
-        jTablePropostasFeitas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane7.setViewportView(jTablePropostasFeitas);
-
-        javax.swing.GroupLayout jPanelPropostasFeitasLayout = new javax.swing.GroupLayout(jPanelPropostasFeitas);
-        jPanelPropostasFeitas.setLayout(jPanelPropostasFeitasLayout);
-        jPanelPropostasFeitasLayout.setHorizontalGroup(
-            jPanelPropostasFeitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropostasFeitasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelPropostasFeitasLayout.setVerticalGroup(
-            jPanelPropostasFeitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropostasFeitasLayout.createSequentialGroup()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                .addGap(21, 21, 21))
-        );
-
-        javax.swing.GroupLayout jPanelTrocasLayout = new javax.swing.GroupLayout(jPanelTrocas);
-        jPanelTrocas.setLayout(jPanelTrocasLayout);
-        jPanelTrocasLayout.setHorizontalGroup(
-            jPanelTrocasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTrocasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelTrocasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelPropostasPendentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelPropostasFeitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        jPanelTrocasLayout.setVerticalGroup(
-            jPanelTrocasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTrocasLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanelPropostasPendentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelPropostasFeitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-
-        jTabbedPaneBody.addTab("<html>\n<strong>\nTrocas\n</strong>\n<html>", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Troca.png")), jPanelTrocas); // NOI18N
 
         jPanelMudarPassword.setBorder(javax.swing.BorderFactory.createTitledBorder("Mudar password"));
 
@@ -595,7 +524,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
                                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(280, Short.MAX_VALUE))))
+                        .addContainerGap(288, Short.MAX_VALUE))))
         );
         JpanelAlterarIdpessoalLayout.setVerticalGroup(
             JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -645,7 +574,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
                 .addComponent(jPanelMudarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(JpanelAlterarIdpessoal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         jTabbedPaneBody.addTab("<html><strong>Definições de Utilizador</strong></html>", new javax.swing.ImageIcon(getClass().getResource("/Imagens/DefUser.png")), jPanelDefUser); // NOI18N
@@ -664,23 +593,23 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPaneBody, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGuardarNovaPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarNovaPassActionPerformed
+    private void jButtonGuardarNovaPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarNovaPass1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGuardarNovaPassActionPerformed
+    }//GEN-LAST:event_jButtonGuardarNovaPass1ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
 
-    private void jButtonGuardarNovaPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarNovaPass1ActionPerformed
+    private void jButtonGuardarNovaPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarNovaPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGuardarNovaPass1ActionPerformed
+    }//GEN-LAST:event_jButtonGuardarNovaPassActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpanelAlterarIdpessoal;
@@ -704,9 +633,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelMinhasReq;
     private javax.swing.JPanel jPanelMudarPassword;
     private javax.swing.JPanel jPanelProdRequesit;
-    private javax.swing.JPanel jPanelPropostasFeitas;
-    private javax.swing.JPanel jPanelPropostasPendentes;
-    private javax.swing.JPanel jPanelTrocas;
     private javax.swing.JPanel jPanelVendas;
     private javax.swing.JPanel jPanelVendasEsperaPagamento;
     private javax.swing.JPasswordField jPasswordFieldNovaPass1;
@@ -716,8 +642,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPaneBody;
@@ -728,8 +652,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTableMeusLeiloes;
     private javax.swing.JTable jTableMinhasRequesicoes;
-    private javax.swing.JTable jTablePropostasFeitas;
-    private javax.swing.JTable jTablePropostasPendentes;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

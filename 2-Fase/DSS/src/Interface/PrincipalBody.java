@@ -89,15 +89,23 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     { 
     try {   
         
-        if(this.kingArea==null)
-            this.kingArea=new KingClienteArea();
-            
-            this.getDesktopPane().add(this.kingArea);
-            this.kingArea.setVisible(true);
-            this.kingArea.setSelected(true);
+        
+            if(p.getReg()!=null)
+            {
+                this.kingArea=new KingClienteArea(this.p.getReg(), this.sys);
+                this.getDesktopPane().add(this.kingArea);
+                this.kingArea.setVisible(true);
+                this.kingArea.setSelected(true);
+            }
+            else{
+                JOptionPane.showInternalMessageDialog(this, "Efectue o logIn para aceder à KingArea", "Efectue LogIn", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (PropertyVetoException ex) 
         {
             Logger.getLogger(PrincipalBody.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException e){
+            JOptionPane.showInternalMessageDialog(this, e, "Erro ao aceder ao servidor",JOptionPane.ERROR_MESSAGE);
         }
     }
     
