@@ -25,7 +25,7 @@ public class LicitacoesDAO {
         idLeilao=id;
     }
     
-    private Licitacao readLlicitacao(ResultSet rs) throws SQLException
+    private Licitacao readLicitacao(ResultSet rs) throws SQLException
     {
         String username=rs.getString("ul");
         Utilizador u=(new UserDAO()).get(username);
@@ -79,5 +79,22 @@ public class LicitacoesDAO {
         int res=s.executeUpdate();
         c.close();
         return (res>0);
+    }
+    
+    public Licitacao getMaiorDeUtilizador(Utilizador u) throws SQLException
+    {
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s=c.prepareStatement(
+                "select * from licitacao where idl=? and ul=? and vl=(select max(vl) from licitacao where idl=? and ul=?");
+        s.setInt(1, idLeilao);
+        s.setString(2, u.getUsername());
+        s.setInt(3, idLeilao);
+        s.setString(4, u.getUsername());
+        ResultSet rs = s.executeQuery();
+        Licitacao res=null;
+        if(rs.next())
+            res=readLicitacao(rs);
+        c.close();
+        return res;
     }
 }
