@@ -94,7 +94,7 @@ public class BuyKing {
         List<Venda> res = new ArrayList<Venda>();
         for (Venda v : l) {
             if ((v.getPreco() > minP) && (v.getPreco() < maxP)
-                    && (v.getProduto().getNome().matches("(?i:.*"+aPchave+".*)")) || v.getProduto().getDescricao().matches("(?i:.*"+aPchave+".*)")
+                    && ((v.getProduto().getNome().matches("(?i:.*"+aPchave+".*)")) || v.getProduto().getDescricao().matches("(?i:.*"+aPchave+".*)"))
                     && aCat.equals(v.getProduto().getCategoria())) {
                 res.add(v);
             }
