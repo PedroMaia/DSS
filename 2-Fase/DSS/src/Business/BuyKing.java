@@ -94,9 +94,9 @@ public class BuyKing {
         List<Venda> res = new ArrayList<Venda>();
         for (Venda v : l) {
             if ((v.getPreco() > minP) && (v.getPreco() < maxP)
-                    && ((v.getProduto().getNome().matches("(?i:.*"+aPchave+".*)")) || v.getProduto().getDescricao().matches("(?i:.*"+aPchave+".*)"))
-                    && aCat.equals(v.getProduto().getCategoria())) {
-                res.add(v);
+                    && ((v.getProduto().getNome().matches("(?i:.*"+aPchave+".*)")) || v.getProduto().getDescricao().matches("(?i:.*"+aPchave+".*)"))) {
+                if(aCat.equals("<html><strong>Categoria</strong></html>")||aCat.equals(v.getProduto().getCategoria()))
+                    res.add(v);
             }
         }
         return res;
@@ -185,8 +185,9 @@ public class BuyKing {
         List<Leilao> res = new ArrayList<Leilao>();
         for (Leilao l : list) {
             if ((l.getP().getNome().matches("(?i:.*"+aPchave+".*)") || l.getP().getDescricao().matches("(?i:.*"+aPchave+".*)"))
-                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()&&l.getP().getCategoria().equals(cat)) {
-                res.add(l);
+                    && pmin <= l.getUltimaLicitacao() && pmax >= l.getTecto()) {
+                if(cat.equals("<html><strong>Categoria</strong></html>")||cat.equals(l.getP().getCategoria()))
+                    res.add(l);
             }
         }
         return res;
