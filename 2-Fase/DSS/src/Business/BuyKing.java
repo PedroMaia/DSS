@@ -232,4 +232,9 @@ public class BuyKing {
     {
         return utilizadores.existeMail(mail);
     }
+    
+    public List<Venda> getFromComprador(Utilizador u) throws SQLException
+    {
+        return vendas.getVendasComprador(u);
+    }
 }

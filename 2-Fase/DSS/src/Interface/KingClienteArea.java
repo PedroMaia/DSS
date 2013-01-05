@@ -3,6 +3,7 @@ package Interface;
 import Business.BuyKing;
 import Business.Produto;
 import Business.Utilizador;
+import Business.Venda;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +43,16 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         }
         m.fireTableDataChanged();
     }
+    
+    public void updateCompras() throws SQLException
+    {
+        List<Venda> list = sys.getFromComprador(u);
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0);
+        jTable2.setModel(m);
+        for(Venda v:list){
+            m.addRow(new Object[]{v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,9 +71,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelComprasEspera = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jPanelEmViagem = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanelVendas = new javax.swing.JPanel();
         jPanelVendasEsperaPagamento = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -135,7 +143,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelMeusProdutosLayout.setVerticalGroup(
             jPanelMeusProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMeusProdutosLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -165,50 +173,14 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             jPanelComprasEsperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComprasEsperaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE))
         );
         jPanelComprasEsperaLayout.setVerticalGroup(
             jPanelComprasEsperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComprasEsperaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
-
-        jPanelEmViagem.setBorder(javax.swing.BorderFactory.createTitledBorder("Em Viagem"));
-
-        jScrollPane1.setName(""); // NOI18N
-
-        jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jPanelEmViagemLayout = new javax.swing.GroupLayout(jPanelEmViagem);
-        jPanelEmViagem.setLayout(jPanelEmViagemLayout);
-        jPanelEmViagemLayout.setHorizontalGroup(
-            jPanelEmViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEmViagemLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
-        );
-        jPanelEmViagemLayout.setVerticalGroup(
-            jPanelEmViagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEmViagemLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                .addGap(3, 3, 3))
-        );
-
-        jScrollPane1.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout jPanelComprasLayout = new javax.swing.GroupLayout(jPanelCompras);
         jPanelCompras.setLayout(jPanelComprasLayout);
@@ -216,9 +188,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             jPanelComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComprasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelComprasEspera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelEmViagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelComprasEspera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelComprasLayout.setVerticalGroup(
@@ -226,9 +196,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelComprasLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jPanelComprasEspera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelEmViagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(123, 123, 123))
+                .addContainerGap())
         );
 
         jTabbedPaneBody.addTab("<html> <strong> Compras</strong> <html> ", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Comprar.png")), jPanelCompras, ""); // NOI18N
@@ -261,7 +229,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelVendasEsperaPagamentoLayout.setVerticalGroup(
             jPanelVendasEsperaPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasEsperaPagamentoLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -574,7 +542,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
                 .addComponent(jPanelMudarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(JpanelAlterarIdpessoal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jTabbedPaneBody.addTab("<html><strong>Definições de Utilizador</strong></html>", new javax.swing.ImageIcon(getClass().getResource("/Imagens/DefUser.png")), jPanelDefUser); // NOI18N
@@ -593,7 +561,7 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPaneBody, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -626,7 +594,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelCompras;
     private javax.swing.JPanel jPanelComprasEspera;
     private javax.swing.JPanel jPanelDefUser;
-    private javax.swing.JPanel jPanelEmViagem;
     private javax.swing.JPanel jPanelLeiloes;
     private javax.swing.JPanel jPanelMeusLeilões;
     private javax.swing.JPanel jPanelMeusProdutos;
@@ -637,7 +604,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelVendasEsperaPagamento;
     private javax.swing.JPasswordField jPasswordFieldNovaPass1;
     private javax.swing.JPasswordField jPasswordFieldNovaPass2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -645,7 +611,6 @@ public class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPaneBody;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
