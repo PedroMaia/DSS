@@ -6,11 +6,13 @@ import java.util.GregorianCalendar;
 
 public class Leilao {
 
-    public static final int ABERTO = 1;
-    public static final int PENDENTE = 2;
-    public static final int FECHADO = 3;
-    public static final int CONCLUIDO = 4;
-    public static final int EXPIRADO = 5;
+    public static final int ABERTO = 0;
+    public static final int PENDENTE = 1;
+    public static final int FECHADO = 2;
+    public static final int CONCLUIDO = 3;
+    public static final int EXPIRADO = 4;
+    public static final String[] ESTADOS={"Aberto","Pendente","Fechado","Concluido","Expirado"};
+    
     private int id;
     private Utilizador leiloador;
     private Produto p;

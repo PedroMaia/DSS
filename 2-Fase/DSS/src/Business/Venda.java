@@ -4,10 +4,11 @@ import java.util.GregorianCalendar;
 
 public class Venda {
     
-    public static final int ABERTA=1;
-    public static final int PENDENTE=2;
-    public static final int CONCLUIDA=3;
-    public static final int EXPIRADA=4;
+    public static final int ABERTA=0;
+    public static final int PENDENTE=1;
+    public static final int CONCLUIDA=2;
+    public static final int EXPIRADA=3;
+    public static final String[] ESTADOS={"Aberta","Pendente","Concluida","Expirada"};
 
     private int id;
     private float _preco;
