@@ -34,6 +34,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         updateCompras();
         updateVendas();
         updateLeiloes();
+        updateLicitacoes();
     }
     
     public void updateListaProdutos() throws SQLException
@@ -94,6 +95,22 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             m.addRow(new Object[]{l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstado()]});
         }
     }
+    
+    public void updateLicitacoes() throws SQLException
+    {
+        List<Leilao> list = sys.getLeilaoFromLicitador(u);
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+            {
+                @Override
+                public boolean isCellEditable(int rowIndex, int mColIndex) {
+                    return false;
+                }
+            };
+        jTableMinhasLicitacoes.setModel(m);
+        for(Leilao l:list){
+            m.addRow(new Object[]{l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstadoLicitacao(u)]});
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,7 +139,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         jTableMeusLeiloes = new javax.swing.JTable();
         jPanelMinhasReq = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTableMinhasRequesicoes = new javax.swing.JTable();
+        jTableMinhasLicitacoes = new javax.swing.JTable();
         jPanelDefUser = new javax.swing.JPanel();
         jPanelMudarPassword = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -323,7 +340,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
 
         jPanelMinhasReq.setBorder(javax.swing.BorderFactory.createTitledBorder("Minhas licitações:"));
 
-        jTableMinhasRequesicoes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMinhasLicitacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -334,7 +351,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane9.setViewportView(jTableMinhasRequesicoes);
+        jScrollPane9.setViewportView(jTableMinhasLicitacoes);
 
         javax.swing.GroupLayout jPanelMinhasReqLayout = new javax.swing.GroupLayout(jPanelMinhasReq);
         jPanelMinhasReq.setLayout(jPanelMinhasReqLayout);
@@ -567,7 +584,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPaneBody, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -619,7 +636,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTableMeusLeiloes;
-    private javax.swing.JTable jTableMinhasRequesicoes;
+    private javax.swing.JTable jTableMinhasLicitacoes;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

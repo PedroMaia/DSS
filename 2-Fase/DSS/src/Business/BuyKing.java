@@ -245,4 +245,9 @@ public class BuyKing {
     public List<Leilao> getLeilaoFromLeiloador(Utilizador u) throws SQLException {
         return leiloes.getLeiloesLeiloador(u);
     }
+    
+    public List<Leilao> getLeilaoFromLicitador(Utilizador u) throws SQLException
+    {
+        return leiloes.getLeiloesLicitador(u);
+    }
 }

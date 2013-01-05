@@ -155,5 +155,16 @@ public class LeiloesDAO {
         
     }
     
-    
+    public List<Leilao> getLeiloesLicitador(Utilizador u) throws SQLException{
+        Connection c = DataConnection.getDataConnection();
+        PreparedStatement s = c.prepareStatement("select * from leilao where idl in (select distinct idl from licitacao where ul=?)");
+        s.setString(1, u.getUsername());
+        List<Leilao> res = new ArrayList<Leilao>();
+        ResultSet rs = s.executeQuery();
+        while(rs.next()){
+            res.add(read(rs));
+        }
+        c.close();
+        return res;
+    }
 }

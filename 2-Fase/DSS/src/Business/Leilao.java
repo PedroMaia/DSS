@@ -10,8 +10,11 @@ public class Leilao {
     public static final int PENDENTE = 1;
     public static final int FECHADO = 2;
     public static final int CONCLUIDO = 3;
-    public static final int EXPIRADO = 4;
-    public static final String[] ESTADOS={"Aberto","Pendente","Fechado","Concluido","Expirado"};
+    public static final int EXPIRADO = 4;    
+    private static int MAIOR_LICITACAO=5;
+    private static int LICITACAO_BATIDA=6;
+    
+    public static final String[] ESTADOS={"Aberto","Pendente","Fechado","Concluido","Expirado", "Maior Licitação", "Licitação Batida"};
     
     private int id;
     private Utilizador leiloador;
@@ -153,6 +156,35 @@ public class Leilao {
                     }
                 }
             }
+        }
+    }
+    
+    public Utilizador getVencedor() throws SQLException
+    {
+        return licitacoes.getVencedor();
+    }
+    
+    public float getMaxDeUser(Utilizador u) throws SQLException
+    {
+        return licitacoes.getMaiorDeUtilizador(u).getValor();
+    }
+    
+    public int getEstadoLicitacao(Utilizador u) throws SQLException
+    {
+        if(fechado())
+        {
+            if(getVencedor().equals(u))
+            {
+                return getEstado();
+            }
+            else
+                return Leilao.FECHADO;
+        }
+        else{
+            if(getVencedor().equals(u))
+                return Leilao.MAIOR_LICITACAO;
+            else
+                return Leilao.LICITACAO_BATIDA;
         }
     }
 }

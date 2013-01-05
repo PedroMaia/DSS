@@ -73,32 +73,7 @@ public class Utilizador {
 
     }
 
-    public void addProduto(Produto aP) {
-        throw new UnsupportedOperationException();
-
-    }
-
-    public void removeProduto(Produto aP) {
-        throw new UnsupportedOperationException();
-
-    }
-
-    public Suspeita reporta(Produto aP, String aUsername, String aJust) {
-        throw new UnsupportedOperationException();
-    }
-
-    public Venda vende(Produto aP) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void leiloar(Produto aP, int aBase, int aTecto) {
-        throw new UnsupportedOperationException();
-    }
-
-    public int getClassificacao() {
-        throw new UnsupportedOperationException();
-
-    }
+    
 
     @Override
     public int hashCode() {
