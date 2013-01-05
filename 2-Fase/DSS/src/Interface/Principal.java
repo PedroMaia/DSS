@@ -25,7 +25,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         this.reg=null;
         initComponents();
-       
+       this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         
         try {
             CriaJanelaBody();
@@ -84,6 +84,11 @@ public class Principal extends javax.swing.JFrame {
         jButtonRegista.setFocusable(false);
         jButtonRegista.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRegista.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRegista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistaActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButtonRegista);
         this.jButtonRegista.setToolTipText("Registar");
 
@@ -172,6 +177,7 @@ public class Principal extends javax.swing.JFrame {
        this.jDesktopPanel.add(this.janelaBody);
       //maximiza a janela!
        this.janelaBody.setMaximum(true);
+      
        
        this.janelaBody.setVisible(true);
        
@@ -277,6 +283,15 @@ public class Principal extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemNovaJanelaActionPerformed
+
+    private void jButtonRegistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistaActionPerformed
+        try {
+            CriaJanelaRegisto();
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRegistaActionPerformed
 
     /**
      * @param args the command line arguments
