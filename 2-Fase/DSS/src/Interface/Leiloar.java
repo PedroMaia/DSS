@@ -10,12 +10,12 @@ package Interface;
  *
  * @author Pedro
  */
-public class LeiloarTetos extends javax.swing.JPanel {
+public class Leiloar extends javax.swing.JPanel {
 
     /**
      * Creates new form LeiloarTetos
      */
-    public LeiloarTetos() {
+    public Leiloar() {
         initComponents();
     }
 
