@@ -74,11 +74,11 @@
                   <Component id="jPanelPesquisaAvanc" min="-2" pref="253" max="-2" attributes="0"/>
                   <Component id="jPanelSugests" min="-2" pref="245" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="217" max="32767" attributes="0"/>
+                  <EmptySpace pref="221" max="32767" attributes="0"/>
                   <Component id="BodyPrincipal" min="-2" pref="413" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -1122,7 +1122,7 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel24" min="-2" pref="84" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabelValorBase" pref="98" max="32767" attributes="0"/>
+                                              <Component id="jLabelValorBase" pref="48" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
                                               <Component id="jTextFieldNovaLicitacao" min="-2" pref="94" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -1839,7 +1839,7 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="JpanelPropriedadesProduto1" pref="241" max="32767" attributes="0"/>
+                      <Component id="JpanelPropriedadesProduto1" pref="301" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1935,7 +1935,7 @@
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabelpreco3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="71" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jTextetolicita" min="-2" pref="66" max="-2" attributes="0"/>

@@ -1993,6 +1993,20 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jComboBoxClassif1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassif1ActionPerformed
         // TODO add your handling code here:
+        try{
+            if(p.getReg()!=null){
+                String s=(String) jComboBoxClassif1.getSelectedItem();
+                if(!s.equals("Classifique")){
+                    int vl=Integer.parseInt(s);
+                    vendaActiva.getVendedor().addClassificacao(new Classificacao(p.getReg(), new GregorianCalendar(), vl));
+                }
+            }
+            else{
+                JOptionPane.showInternalMessageDialog(this, "Efectue logIn para classificar outros utilizadores.", "Efectue logIn", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(Exception e){
+            JOptionPane.showInternalMessageDialog(this, e,"Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jComboBoxClassif1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
