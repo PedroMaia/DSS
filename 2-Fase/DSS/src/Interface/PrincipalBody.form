@@ -1144,7 +1144,7 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel24" min="-2" pref="84" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabelValorBase" pref="96" max="32767" attributes="0"/>
+                                              <Component id="jLabelValorBase" pref="177" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
                                               <Component id="jTextFieldNovaLicitacao" min="-2" pref="94" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>

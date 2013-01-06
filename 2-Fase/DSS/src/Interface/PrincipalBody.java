@@ -7,6 +7,7 @@ package Interface;
 import Business.*;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
@@ -1243,7 +1244,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                                     .addGroup(ProdutoEmLeilaoLayout.createSequentialGroup()
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextFieldNovaLicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -1808,7 +1809,14 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonVenderActionPerformed
 
     private void jButtonAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjudaActionPerformed
-        // TODO add your handling code here:
+    File pdf = new File("./ficha.pdf");    
+    try {    
+     Desktop.getDesktop().open(pdf);    
+    } catch(Exception ex)
+    {    
+    ex.printStackTrace();    
+  JOptionPane.showMessageDialog(null, "Erro no Desktop: " + ex);    
+}          // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAjudaActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -2255,7 +2263,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 String s = (String) jComboBoxClassif.getSelectedItem();
                 if (!s.equals("Classifique")) {
                     int vl = Integer.parseInt(s);
-                    vendaActiva.getVendedor().addClassificacao(new Classificacao(p.getReg(), new GregorianCalendar(), vl));
+                    leilaoActivo.getLeiloador().addClassificacao(new Classificacao(p.getReg(), new GregorianCalendar(), vl));
                 }
             } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue logIn para classificar outros utilizadores.", "Efectue logIn", JOptionPane.ERROR_MESSAGE);
