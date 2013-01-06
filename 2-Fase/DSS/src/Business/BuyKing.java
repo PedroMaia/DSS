@@ -250,4 +250,14 @@ public class BuyKing {
     {
         return leiloes.getLeiloesLicitador(u);
     }
+    
+    public Venda getVenda(int id) throws SQLException
+    {
+        return vendas.get(id);
+    }
+    
+    public Leilao getLeilao(int id) throws SQLException
+    {
+        return leiloes.get(id);
+    }
 }
