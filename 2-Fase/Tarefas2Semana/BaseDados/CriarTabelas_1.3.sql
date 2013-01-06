@@ -66,7 +66,7 @@ CREATE TABLE Produto(
 CREATE TABLE Venda(
    idv NUMBER(10), --idVenda
    idp NUMBER(10) REFERENCES Produto(idp),--idproduto
-   pr number(6,2),--preço produto
+   pr number(10,3),--preço produto
    cp VARCHAR2(20) DEFAULT NULL REFERENCES Utilizador(usr),--comprador 
    dlv DATE,--DataLimiteVenda
    dp DATE,--DataPagamento
@@ -105,8 +105,8 @@ CREATE TABLE Leilao(
   dep DATE, --DataEnvioProduto
   df DATE,--DataFecho
   di DATE,--DataInsercao
-  pb number(6,2),--Preço Base
-  pml number(6,2),--PMLecitacao
+  pb number(10,3),--Preço Base
+  pml number(10,3),--PMLecitacao
   PRIMARY KEY (idl)
 );
 
@@ -120,7 +120,7 @@ CREATE TABLE Licitacao (
   idl number(10) REFERENCES Leilao(idl),--idleilão
   ul VARCHAR2(20) REFERENCES Utilizador(usr),--UserLecitou
   dl DATE ,--DataLecitacao
-  vl number(6,2),--Valor Lecitação
+  vl number(10,3),--Valor Lecitação
   PRIMARY KEY (idl,ul,dl),
   UNIQUE(idl,vl)
 );
