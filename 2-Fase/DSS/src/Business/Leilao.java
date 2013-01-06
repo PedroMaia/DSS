@@ -109,7 +109,11 @@ public class Leilao {
     }
 
     public float getUltimaLicitacao() throws SQLException {
-        return licitacoes.getMaxLicitacao();
+        float lic=licitacoes.getMaxLicitacao();
+        if(lic>_base)
+            return lic;
+        else 
+            return _base;
     }
 
     @Override

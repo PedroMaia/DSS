@@ -130,7 +130,7 @@ public class LeiloesDAO {
     public List<Leilao> getLeiloesActivos() throws SQLException
     {
         Connection c = DataConnection.getDataConnection();
-        PreparedStatement s = c.prepareStatement("select * from leilao where sysdate<df and (select max(vl) from licitacao where licitacao.idl=leilao.idl)<pml");
+        PreparedStatement s = c.prepareStatement("select * from leilao where sysdate<df and nvl((select max(vl) from licitacao where licitacao.idl=leilao.idl),0)<pml");
         List<Leilao> res = new ArrayList<Leilao>();
         ResultSet rs = s.executeQuery();
         while(rs.next())
