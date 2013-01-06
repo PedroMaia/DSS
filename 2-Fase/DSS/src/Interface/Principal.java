@@ -191,6 +191,13 @@ public class Principal extends javax.swing.JFrame {
        
     }
 
+    
+    
+    
+    
+    public void logOutUser(){
+        this.reg=null;
+    }
 /**
  * Cria a janela de LogIn.
  * @throws InterruptedException 
