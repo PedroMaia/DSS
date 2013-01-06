@@ -4,7 +4,6 @@
  */
 package Interface;
 
-
 import Business.*;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -30,254 +29,237 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class PrincipalBody extends javax.swing.JInternalFrame {
 
-  
     /**
-     * Creates new form PrincipalBody
-     * Cria o kingClienteArea mal é construido
+     * Creates new form PrincipalBody Cria o kingClienteArea mal é construido
      */
-   
     private KingClienteArea kingArea;
-    private  BufferedImage imgProduto;
+    private BufferedImage imgProduto;
     private BuyKing sys;
     private Principal p;
     private Venda vendaActiva;
     private Leilao leilaoActivo;
-   
+
     public PrincipalBody(BuyKing sysIn, Principal p) {
         initComponents();
-       
-        this.sys=sysIn;
-        this.p=p;
+
+        this.sys = sysIn;
+        this.p = p;
         this.iniciarZonasEnable();
     }
 
-    
     /**
      * O que coordena as zona que foram enable!
      */
     void iniciarZonasEnable() {
         //colocar pesqAvançada!
         pesqAvancEnable();
-        if(this.p.getReg()==null)
-        {
+        if (this.p.getReg() == null) {
             enableLogIn(false);
-            DefaultTableModel m = new DefaultTableModel(new String[]{"Nr","Nome","Tipo"},0)
-                {
-                    @Override
-                    public boolean isCellEditable(int row, int col){
-                        return false;
-                    }
-                };
+            DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome", "Tipo"}, 0) {
+                @Override
+                public boolean isCellEditable(int row, int col) {
+                    return false;
+                }
+            };
             jTableSugestoes.setModel(m);
-        }
-        else
-        {
+        } else {
             enableLogIn(true);
             loadImgUser();
-            DefaultTableModel m = new DefaultTableModel(new String[]{"Nr","Nome","Tipo"},0)
-                {
-                    @Override
-                    public boolean isCellEditable(int row, int col){
-                        return false;
-                    }
-                };
+            DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome", "Tipo"}, 0) {
+                @Override
+                public boolean isCellEditable(int row, int col) {
+                    return false;
+                }
+            };
             jTableSugestoes.setModel(m);
-            try{
-            List<Venda> vs=sys.getSugestoesVendas(p.getReg());
-            List<Leilao> ls=sys.getSugestoesLeilao(p.getReg());
-            for(Venda v:vs)
-                m.addRow(new Object[]{v.getId(), v.getProduto().getNome(),"Venda"});
-            for(Leilao l:ls)
-                m.addRow(new Object[]{l.getId(), l.getP().getNome(), "Leilão"});
-            }catch(Exception e)
-            {
-                JOptionPane.showInternalMessageDialog(this, e,"Erro", JOptionPane.ERROR_MESSAGE);
+            try {
+                List<Venda> vs = sys.getSugestoesVendas(p.getReg());
+                List<Leilao> ls = sys.getSugestoesLeilao(p.getReg());
+                for (Venda v : vs) {
+                    m.addRow(new Object[]{v.getId(), v.getProduto().getNome(), "Venda"});
+                }
+                for (Leilao l : ls) {
+                    m.addRow(new Object[]{l.getId(), l.getP().getNome(), "Leilão"});
+                }
+            } catch (Exception e) {
+                JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+
     }
-    
- /**Para os visitantes/users*/
-    private void enableLogIn(boolean flag){
-     enablePainel(this.MenuPrincipal,flag);
-     enablePainel(this.DefUser, flag);
-     enablePainel(this.jPanelMenuUser, flag);
-    enablePainel(this.jPanelSugests, flag);
- }
- 
-    
-    
-   public void logOut(){
-   this.p.logOutUser();
-   enableLogIn(false);
-   loadImgDef();
-  
-   } 
-    
- /**Função genérica de enable/disable panle*/
- private static void enablePainel(JPanel panel,boolean flag){
-     for(Component elem: panel.getComponents()){
-     elem.setEnabled(flag);
-     }
- }
-    
-    /**Get do king Area*/
-    public KingClienteArea getKingArea(){
+
+    /**
+     * Para os visitantes/users
+     */
+    private void enableLogIn(boolean flag) {
+        enablePainel(this.MenuPrincipal, flag);
+        enablePainel(this.DefUser, flag);
+        enablePainel(this.jPanelMenuUser, flag);
+        enablePainel(this.jPanelSugests, flag);
+    }
+
+    public void logOut() {
+        this.p.logOutUser();
+        enableLogIn(false);
+        loadImgDef();
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome", "Tipo"}, 0) {
+                @Override
+                public boolean isCellEditable(int row, int col) {
+                    return false;
+                }
+            };
+            jTableSugestoes.setModel(m);
+
+    }
+
+    /**
+     * Função genérica de enable/disable panle
+     */
+    private static void enablePainel(JPanel panel, boolean flag) {
+        for (Component elem : panel.getComponents()) {
+            elem.setEnabled(flag);
+        }
+    }
+
+    /**
+     * Get do king Area
+     */
+    public KingClienteArea getKingArea() {
         return this.kingArea;
-       
+
     }
-     
-    
-    public BufferedImage getImgProduto(){
-    return this.imgProduto;
+
+    public BufferedImage getImgProduto() {
+        return this.imgProduto;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    
-      
-    /**Cria nova janela Area do cliente faz o get do Desktop Pane*/
-    public void abreJanelaAreaCliente()
-    { 
-    try {   
-        
-        
-            if(p.getReg()!=null)
-            {
-                this.kingArea=new KingClienteArea(this.p.getReg(), this.sys);
+    /**
+     * Cria nova janela Area do cliente faz o get do Desktop Pane
+     */
+    public void abreJanelaAreaCliente() {
+        try {
+
+
+            if (p.getReg() != null) {
+                this.kingArea = new KingClienteArea(this.p.getReg(), this.sys);
                 this.getDesktopPane().add(this.kingArea);
                 this.kingArea.setVisible(true);
                 this.kingArea.setSelected(true);
-            }
-            else{
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue o logIn para aceder à KingArea", "Efectue LogIn", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (PropertyVetoException ex) 
-        {
+        } catch (PropertyVetoException ex) {
             Logger.getLogger(PrincipalBody.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (SQLException e){
-            JOptionPane.showInternalMessageDialog(this, e, "Erro ao aceder ao servidor",JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro ao aceder ao servidor", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
 
     /*Abre janela de escolher Imagem de produto:Limpar a imagem antrior!*/
     public void abreFileChooser() {
         JFileChooser file = new JFileChooser();
-        FileFilter ff=  new ExtensionFileFilter("JPG and JPEG", new String[] { "JPG", "JPEG" });
+        FileFilter ff = new ExtensionFileFilter("JPG and JPEG", new String[]{"JPG", "JPEG"});
         file.setFileFilter(ff);
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int i = file.showSaveDialog(null);
 
         if (i == 1) {
             //JOptionPane.showMessageDialog(null, "Procurar Localidade Erro:\n Não existe Localidade", "Erro", JOptionPane.ERROR_MESSAGE);
-
         } else {
-            
-            
+
+
             File arquivo = file.getSelectedFile();
             try {
-                    this.imgProduto=ImageIO.read(arquivo);
-                    loadImgProd();
-                } 
-                catch (IOException ex)
-                {
-                    //Erro carregar Imagem!
-                     Logger.getLogger(PrincipalBody.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                this.imgProduto = ImageIO.read(arquivo);
+                loadImgProd();
+            } catch (IOException ex) {
+                //Erro carregar Imagem!
+                Logger.getLogger(PrincipalBody.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
     }
-    
+
     public void abreFileChooserLeilao() {
         JFileChooser file = new JFileChooser();
-        FileFilter ff=  new ExtensionFileFilter("JPG and JPEG", new String[] { "JPG", "JPEG" });
+        FileFilter ff = new ExtensionFileFilter("JPG and JPEG", new String[]{"JPG", "JPEG"});
         file.setFileFilter(ff);
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int i = file.showSaveDialog(null);
 
         if (i == 1) {
             //JOptionPane.showMessageDialog(null, "Procurar Localidade Erro:\n Não existe Localidade", "Erro", JOptionPane.ERROR_MESSAGE);
-
         } else {
-            
-            
+
+
             File arquivo = file.getSelectedFile();
             try {
-                    this.imgProduto=ImageIO.read(arquivo);
-                    loadImgProdLeilao();
-                } 
-                catch (IOException ex)
-                {
-                    //Erro carregar Imagem!
-                     Logger.getLogger(PrincipalBody.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                this.imgProduto = ImageIO.read(arquivo);
+                loadImgProdLeilao();
+            } catch (IOException ex) {
+                //Erro carregar Imagem!
+                Logger.getLogger(PrincipalBody.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
     }
-    
+
     //Desactivar/Act a parte de pesquisa avançada
-    public void pesqAvancEnable(){
-    
-        boolean flag=false;       
-        if(this.jCheckBoxActivaFiltro.isSelected())
-            flag=true;
-             
-        for(Component elem:this.jPanelVLeilao.getComponents()){
+    public void pesqAvancEnable() {
+
+        boolean flag = false;
+        if (this.jCheckBoxActivaFiltro.isSelected()) {
+            flag = true;
+        }
+
+        for (Component elem : this.jPanelVLeilao.getComponents()) {
             elem.setEnabled(flag);
         }
     }
-    
-    
+
     /**
      * Carraga Imagens de um produto!
      */
-    
-    public void loadImgProd()
-    {
-       int lar= this.jScrollPane2.getWidth();
-        int alt=this.jScrollPane2.getHeight();     
-        
-        Image resizedImage = this.imgProduto.getScaledInstance(lar-10,alt-10, Image.SCALE_DEFAULT);
-        
+    public void loadImgProd() {
+        int lar = this.jScrollPane2.getWidth();
+        int alt = this.jScrollPane2.getHeight();
+
+        Image resizedImage = this.imgProduto.getScaledInstance(lar - 10, alt - 10, Image.SCALE_DEFAULT);
+
         ImageIcon icon = new ImageIcon(resizedImage);
         this.jLabelImagemProd.setIcon(icon);
-    
-    }
-    
-    
-    
-    /**
-     * Carrega o avatar do user caso tenha feito o logIn
-    */
-    public void loadImgUser()
-    {
-        if(this.p.getReg().getImagem()!=null)
-        {
-            int lar= this.jScrollPaneImgUser.getWidth();
-            int alt=this.jScrollPaneImgUser.getHeight();     
-        
-            Image resizedImage = this.p.getReg().getImagem().getScaledInstance(lar-10,alt-10, Image.SCALE_DEFAULT);
-        
-        ImageIcon icon = new ImageIcon(resizedImage);
-        this.jLabel3.setIcon(icon);
-        }
-    
-    }
-    
-    
-    public void loadImgDef(){
-        
-            this.jLabel3.setIcon(new ImageIcon(getClass().getResource("/Imagens/kingAvatar.png")));
-        
 
     }
-    
-    
-    
+
+    /**
+     * Carrega o avatar do user caso tenha feito o logIn
+     */
+    public void loadImgUser() {
+        if (this.p.getReg().getImagem() != null) {
+            int lar = this.jScrollPaneImgUser.getWidth();
+            int alt = this.jScrollPaneImgUser.getHeight();
+
+            Image resizedImage = this.p.getReg().getImagem().getScaledInstance(lar - 10, alt - 10, Image.SCALE_DEFAULT);
+
+            ImageIcon icon = new ImageIcon(resizedImage);
+            this.jLabel3.setIcon(icon);
+        }
+
+    }
+
+    public void loadImgDef() {
+
+        this.jLabel3.setIcon(new ImageIcon(getClass().getResource("/Imagens/kingAvatar.png")));
+
+
+    }
+
     /**
      * Pesquisa/Muda de painel pesquisa.
      */
@@ -290,14 +272,13 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         //Venda
         //Leilão
         try {
-            String[] nomesCol = {"Nr","Nome", "Preço","Categoria" ,"Tipo"};
-            DefaultTableModel m = new DefaultTableModel(nomesCol, 0)
-                {
-                    @Override
-                    public boolean isCellEditable(int row, int col){
-                        return false;
-                    }
-                };
+            String[] nomesCol = {"Nr", "Nome", "Preço", "Categoria", "Tipo"};
+            DefaultTableModel m = new DefaultTableModel(nomesCol, 0) {
+                @Override
+                public boolean isCellEditable(int row, int col) {
+                    return false;
+                }
+            };
             jTableResultadosPesquisa.setModel(m);
             m.fireTableDataChanged();
             List<Venda> vendas;
@@ -305,12 +286,12 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             if (this.jCheckBoxActivaFiltro.isSelected()) {
                 if (jComboBoxTransacao.getSelectedItem().equals("Todas")
                         || jComboBoxTransacao.getSelectedItem().equals("Venda")) {
-                    vendas = sys.pesquisaVendasAvançada(ChavePesquisa.getText(), 
+                    vendas = sys.pesquisaVendasAvançada(ChavePesquisa.getText(),
                             (String) jComboBoxCategoria.getSelectedItem(),
                             p.getReg(),
                             Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
                     for (Venda v : vendas) {
-                        Object[] line = {v.getId(),v.getProduto().getNome(), v.getPreco(),v.getProduto().getCategoria() ,"Venda"};
+                        Object[] line = {v.getId(), v.getProduto().getNome(), v.getPreco(), v.getProduto().getCategoria(), "Venda"};
                         m.addRow(line);
                     }
                 }
@@ -321,7 +302,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                             p.getReg(),
                             Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
                     for (Leilao l : leiloes) {
-                        Object[] line = {l.getId(),l.getP().getNome(), l.getUltimaLicitacao(),l.getP().getCategoria(), "Leilão"};
+                        Object[] line = {l.getId(), l.getP().getNome(), l.getUltimaLicitacao(), l.getP().getCategoria(), "Leilão"};
                         m.addRow(line);
                     }
                 }
@@ -332,7 +313,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                             (String) jComboBoxCategoria.getSelectedItem(),
                             p.getReg());
                     for (Venda v : vendas) {
-                        Object[] line = {v.getId(),v.getProduto().getNome(), v.getPreco(), v.getProduto().getCategoria(),"Venda"};
+                        Object[] line = {v.getId(), v.getProduto().getNome(), v.getPreco(), v.getProduto().getCategoria(), "Venda"};
                         m.addRow(line);
                     }
                 }
@@ -353,7 +334,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -461,6 +442,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         Favoritos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButtonRemoveFavorito = new javax.swing.JButton();
         Leiloar = new javax.swing.JPanel();
         jPanelAddImagem1 = new javax.swing.JPanel();
         jScrollPaneleilao = new javax.swing.JScrollPane();
@@ -856,7 +838,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPesqLayout.createSequentialGroup()
-                        .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+                        .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPesqLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -867,7 +849,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPesqLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jToggleButtonVerProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113))
@@ -901,7 +883,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneImagemCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonfavorit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(jButtonfavorit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelProdutoLayout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1017,7 +999,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jLabelvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtoncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1026,7 +1008,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                     .addComponent(jLabelpreco2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtoncomprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         jButtonGoBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/goback.png"))); // NOI18N
@@ -1046,7 +1028,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jPanelProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(ProdutoCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelUser, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(jPanelUser, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                     .addGroup(ProdutoCompraLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(22, 22, 22)))
@@ -1206,6 +1188,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         });
 
         jComboBoxClassif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Classifique", "0", "1", "2", "3", "4", "5" }));
+        jComboBoxClassif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClassifActionPerformed(evt);
+            }
+        });
 
         jButtonGoBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/goback.png"))); // NOI18N
         jButtonGoBack.setToolTipText("Voltar a pesquisa");
@@ -1240,7 +1227,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                                     .addGroup(ProdutoEmLeilaoLayout.createSequentialGroup()
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextFieldNovaLicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -1396,7 +1383,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                                 .addComponent(jTexpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelEuro, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                                 .addComponent(jButtonvend)))))
                 .addContainerGap())
         );
@@ -1439,11 +1426,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                         .addGap(23, 23, 23)
                         .addComponent(jPanelAddImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderLayout.createSequentialGroup()
-                        .addContainerGap(118, Short.MAX_VALUE)
+                        .addContainerGap(94, Short.MAX_VALUE)
                         .addComponent(jBcimagem)
                         .addGap(21, 21, 21)))
                 .addGap(18, 18, 18)
-                .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VenderLayout.setVerticalGroup(
@@ -1458,7 +1445,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                     .addGroup(VenderLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         BodyPrincipal.add(Vender, "cardVender");
@@ -1487,21 +1474,34 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(0).setResizable(false);
         jTable1.getColumnModel().getColumn(1).setResizable(false);
 
+        jButtonRemoveFavorito.setText("Remover dos Favoritos");
+        jButtonRemoveFavorito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveFavoritoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FavoritosLayout = new javax.swing.GroupLayout(Favoritos);
         Favoritos.setLayout(FavoritosLayout);
         FavoritosLayout.setHorizontalGroup(
             FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FavoritosLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FavoritosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRemoveFavorito)
+                .addGap(84, 84, 84))
         );
         FavoritosLayout.setVerticalGroup(
             FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FavoritosLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                .addGap(107, 107, 107))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRemoveFavorito)
+                .addGap(66, 66, 66))
         );
 
         BodyPrincipal.add(Favoritos, "cardFavoritos");
@@ -1586,7 +1586,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelPropriedadesProduto1Layout.createSequentialGroup()
                                 .addComponent(jLabelpreco3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                                 .addGroup(JpanelPropriedadesProduto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(JpanelPropriedadesProduto1Layout.createSequentialGroup()
                                         .addComponent(jTextetolicita, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1648,11 +1648,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                         .addGap(23, 23, 23)
                         .addComponent(jPanelAddImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeiloarLayout.createSequentialGroup()
-                        .addContainerGap(150, Short.MAX_VALUE)
+                        .addContainerGap(126, Short.MAX_VALUE)
                         .addComponent(jBcimagemleilao)
                         .addGap(21, 21, 21)))
                 .addGap(18, 18, 18)
-                .addComponent(JpanelPropriedadesProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addComponent(JpanelPropriedadesProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                 .addContainerGap())
         );
         LeiloarLayout.setVerticalGroup(
@@ -1667,7 +1667,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(LeiloarLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(JpanelPropriedadesProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)))
+                        .addComponent(JpanelPropriedadesProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1766,7 +1766,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSugests, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1778,7 +1778,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(111, Short.MAX_VALUE)
+                    .addContainerGap(119, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(21, 21, 21)))
         );
@@ -1787,8 +1787,8 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVenderActionPerformed
-      CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-      card.show(this.BodyPrincipal,"cardVender");
+        CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+        card.show(this.BodyPrincipal, "cardVender");
     }//GEN-LAST:event_jButtonVenderActionPerformed
 
     private void jButtonAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjudaActionPerformed
@@ -1796,7 +1796,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonAjudaActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-    //falta janela de confirmação!!
+        //falta janela de confirmação!!
         logOut();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSairActionPerformed
 
@@ -1813,7 +1813,6 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BodyPrincipalComponentAdded
 
     private void jComboBoxTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTransacaoActionPerformed
-
     }//GEN-LAST:event_jComboBoxTransacaoActionPerformed
 
     private void jTnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnomeActionPerformed
@@ -1821,11 +1820,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTnomeActionPerformed
 
     private void jButtonKingAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKingAreaActionPerformed
-       abreJanelaAreaCliente();
+        abreJanelaAreaCliente();
     }//GEN-LAST:event_jButtonKingAreaActionPerformed
 
     private void jBcimagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcimagemActionPerformed
-       abreFileChooser();  
+        abreFileChooser();
     }//GEN-LAST:event_jBcimagemActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -1833,7 +1832,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jCheckBoxActivaFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActivaFiltroActionPerformed
-    pesqAvancEnable();
+        pesqAvancEnable();
     }//GEN-LAST:event_jCheckBoxActivaFiltroActionPerformed
 
     private void jComboBoxCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoria1ActionPerformed
@@ -1842,88 +1841,99 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jButtonvendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonvendActionPerformed
         try {
-            Produto pr=sys.addProduto(p.getReg(), this.jTnome.getText(), this.imgProduto, this.jTextAreaDescricao.getText(), (String) this.jComboBoxCategoria1.getSelectedItem());
-            if(pr!=null){
-                if(sys.vender(p.getReg(),pr, Float.parseFloat(jTexpreco.getText())));
-                else{
+            Produto pr = sys.addProduto(p.getReg(), this.jTnome.getText(), this.imgProduto, this.jTextAreaDescricao.getText(), (String) this.jComboBoxCategoria1.getSelectedItem());
+            if (pr != null) {
+                if (sys.vender(p.getReg(), pr, Float.parseFloat(jTexpreco.getText()))); else {
                     //TODO
                 }
-            }
-            else{
+            } else {
                 //TODO
             }
-        }catch(Exception e){System.err.println(e);
-            }
-        
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
     }//GEN-LAST:event_jButtonvendActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-   pesquisarKey();
+        pesquisarKey();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-       
-            //deActiva  Zona de cliente!
-            iniciarZonasEnable();
-        
+
+        //deActiva  Zona de cliente!
+        iniciarZonasEnable();
+
     }//GEN-LAST:event_formFocusGained
 
     private void jButtonLeiloarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeiloarActionPerformed
-        CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-      card.show(this.BodyPrincipal,"cardLeiloar");
+        CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+        card.show(this.BodyPrincipal, "cardLeiloar");
     }//GEN-LAST:event_jButtonLeiloarActionPerformed
 
     private void jButtonMenuFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuFavoritosActionPerformed
-          CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-      card.show(this.BodyPrincipal,"cardFavoritos");
+        CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+        card.show(this.BodyPrincipal, "cardFavoritos");
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome"}, 0) {
+                public boolean isCellEditable(int row, int col) {
+                    return false;
+                }
+            };
+            jTable1.setModel(m);
+        try {
+            
+            List<Produto> ps = p.getReg().getWishList();
+            for(Produto p:ps){
+                m.addRow(new Object[]{p.getId(), p.getNome()});
+            }
+
+        } catch(Exception e){
+            JOptionPane.showInternalMessageDialog(this,e, "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonMenuFavoritosActionPerformed
 
     private void jToggleButtonVerProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonVerProdutoActionPerformed
-       //Se for leilão carLicitar, compra , cardLeiout compara
-        try{
-            int linha=jTableResultadosPesquisa.getSelectedRow();
-            if(linha==-1)
+        //Se for leilão carLicitar, compra , cardLeiout compara
+        try {
+            int linha = jTableResultadosPesquisa.getSelectedRow();
+            if (linha == -1) {
                 JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "Produto não selecionado", JOptionPane.ERROR_MESSAGE);
-            else{
-                String tipo= (String)jTableResultadosPesquisa.getValueAt(linha, 4);
-                if(tipo.equals("Leilão"))
-                {
-                    CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-                    card.show(this.BodyPrincipal,"cardLicitar");
-                    int id=(Integer) jTableResultadosPesquisa.getValueAt(linha, 0);
-                    Leilao l= sys.getLeilao(id);
+            } else {
+                String tipo = (String) jTableResultadosPesquisa.getValueAt(linha, 4);
+                if (tipo.equals("Leilão")) {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "cardLicitar");
+                    int id = (Integer) jTableResultadosPesquisa.getValueAt(linha, 0);
+                    Leilao l = sys.getLeilao(id);
                     Image i = l.getP().getImagem()
-                            .getScaledInstance(jScrollPaneImagemProduto.getWidth()-10, jScrollPaneImagemProduto.getHeight()-10, Image.SCALE_DEFAULT);
+                            .getScaledInstance(jScrollPaneImagemProduto.getWidth() - 10, jScrollPaneImagemProduto.getHeight() - 10, Image.SCALE_DEFAULT);
                     jLabelProdutoLeilao.setIcon(new ImageIcon(i));
                     jLabelLicitarNomeP.setText(l.getP().getNome());
                     jTextAreaLicitarDesc.setText(l.getP().getDescricao());
                     jLabelEmail.setText(l.getLeiloador().getUsername());
-                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao())+"€");
-                    jLabelTectoValor.setText(Float.toString(l.getTecto())+"€");
+                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao()) + "€");
+                    jLabelTectoValor.setText(Float.toString(l.getTecto()) + "€");
                     jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
                     SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
                     jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
-                    leilaoActivo=l;
-                }
-                else
-                {
-                    CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-                    card.show(this.BodyPrincipal,"ProdutoCompra");
+                    leilaoActivo = l;
+                } else {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "ProdutoCompra");
                     int id = (Integer) jTableResultadosPesquisa.getModel().getValueAt(linha, 0);
                     Venda v = sys.getVenda(id);
                     Image i = v.getProduto().getImagem()
-                            .getScaledInstance(jScrollPaneImagemCompra.getWidth()-10, jScrollPaneImagemCompra.getHeight()-10, Image.SCALE_DEFAULT);
+                            .getScaledInstance(jScrollPaneImagemCompra.getWidth() - 10, jScrollPaneImagemCompra.getHeight() - 10, Image.SCALE_DEFAULT);
                     jLabelImagemCompra.setIcon(new ImageIcon(i));
                     jLabelNomeProdutoCompra.setText(v.getProduto().getNome());
                     jEditorPane1.setText(v.getProduto().getDescricao());
-                    jLabelvalor.setText(Float.toString(v.getPreco())+"€");
+                    jLabelvalor.setText(Float.toString(v.getPreco()) + "€");
                     jLabelcontacto.setText(v.getVendedor().getUsername());
                     jLabelClassificaValor.setText(Integer.toString(v.getVendedor().getClassificacao()));
-                    vendaActiva=v;
+                    vendaActiva = v;
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jToggleButtonVerProdutoActionPerformed
@@ -1938,19 +1948,18 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jButtonvend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonvend1ActionPerformed
         // TODO add your handling code here:
-         try {
-            Produto pr=sys.addProduto(p.getReg(), this.jTnomeLeilao.getText(), this.imgProduto, this.jTextAreaDescricaoleilao.getText(), (String) this.jComboBoxCategoriaLeilao.getSelectedItem());
-            if(pr!=null){
-                if(sys.leiloar(p.getReg(),pr, Float.parseFloat(jTexprecobase.getText()), Float.parseFloat(jTextetolicita.getText())));
-                else{
+        try {
+            Produto pr = sys.addProduto(p.getReg(), this.jTnomeLeilao.getText(), this.imgProduto, this.jTextAreaDescricaoleilao.getText(), (String) this.jComboBoxCategoriaLeilao.getSelectedItem());
+            if (pr != null) {
+                if (sys.leiloar(p.getReg(), pr, Float.parseFloat(jTexprecobase.getText()), Float.parseFloat(jTextetolicita.getText()))); else {
                     //TODO
                 }
-            }
-            else{
+            } else {
                 //TODO
             }
-        }catch(Exception e){System.err.println(e);
-            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }//GEN-LAST:event_jButtonvend1ActionPerformed
 
     private void jBcimagemleilaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcimagemleilaoActionPerformed
@@ -1968,26 +1977,25 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTableSugestoesMouseClicked
 
     private void jButtonGoBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGoBack1ActionPerformed
-       CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
-        card.show(this.BodyPrincipal, "cardPesquisa");   
+        CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+        card.show(this.BodyPrincipal, "cardPesquisa");
     }//GEN-LAST:event_jButtonGoBack1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-            if(p.getReg()!=null){
-                int sel=JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo apresentar esta queixa?", "Confirmar queixa,", JOptionPane.YES_NO_OPTION);
-                    if(sel==JOptionPane.YES_OPTION){
-                        if(vendaActiva.getProduto().addSuspeita(new Suspeita(p.getReg(), jTextFieldReportaJust.getText())))
-                            JOptionPane.showInternalMessageDialog(this, "Queixa reportada com sucesso.", "Sucesso",JOptionPane.INFORMATION_MESSAGE);
-                        else
-                            JOptionPane.showInternalMessageDialog(this, "Erro ao reportar queixa.", "Erro", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo apresentar esta queixa?", "Confirmar queixa,", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    if (vendaActiva.getProduto().addSuspeita(new Suspeita(p.getReg(), jTextFieldReportaJust.getText()))) {
+                        JOptionPane.showInternalMessageDialog(this, "Queixa reportada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showInternalMessageDialog(this, "Erro ao reportar queixa.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
-            }
-            else{
+                }
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue o logIn", "", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1998,25 +2006,23 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jButtonfavoritActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonfavoritActionPerformed
         // TODO add your handling code here:
-        try{
-            if(p.getReg()!=null){
-            int sel=JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo adicionar este produto aos seus favoritos?", "Confirmar favorito", JOptionPane.YES_NO_OPTION);
-            if(sel==JOptionPane.YES_OPTION)
-            {
-                if(p.getReg().addWishList(vendaActiva.getProduto()))
-                    JOptionPane.showInternalMessageDialog(this, "Produto adicionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                else
-                    JOptionPane.showInternalMessageDialog(this, "Erro ao adicionar aos favoritos.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            }
-            else{
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo adicionar este produto aos seus favoritos?", "Confirmar favorito", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    if (p.getReg().addWishList(vendaActiva.getProduto())) {
+                        JOptionPane.showInternalMessageDialog(this, "Produto adicionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showInternalMessageDialog(this, "Erro ao adicionar aos favoritos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue o logIn", "", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButtonfavoritActionPerformed
 
     private void jTextFieldReportaJust1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldReportaJust1ActionPerformed
@@ -2025,169 +2031,193 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo apresentar esta queixa?", "Confirmar queixa,", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    if (leilaoActivo.getP().addSuspeita(new Suspeita(p.getReg(), jTextFieldReportaJust1.getText()))) {
+                        JOptionPane.showInternalMessageDialog(this, "Queixa reportada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showInternalMessageDialog(this, "Erro ao reportar queixa.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showInternalMessageDialog(this, "Efectue o logIn", "", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGoBackActionPerformed
         CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
-        card.show(this.BodyPrincipal, "cardPesquisa"); 
+        card.show(this.BodyPrincipal, "cardPesquisa");
     }//GEN-LAST:event_jButtonGoBackActionPerformed
 
     private void jButtoncomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncomprarActionPerformed
         // TODO add your handling code here:
-        try{
-            if(p.getReg()!=null){
-                int sel=JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo comprar este produto?", "Confrimar Compra", JOptionPane.YES_NO_OPTION);
-                if(sel==JOptionPane.YES_OPTION)
-                {
-                    if(sys.registaCompra(p.getReg(), vendaActiva))
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo comprar este produto?", "Confrimar Compra", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    if (sys.registaCompra(p.getReg(), vendaActiva)) {
                         JOptionPane.showInternalMessageDialog(this, "Compra efectuada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    else
+                    } else {
                         JOptionPane.showInternalMessageDialog(this, "Erro ao efectuar compra.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue login para efectuar compras.", "Efectue logIn", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtoncomprarActionPerformed
 
     private void jComboBoxClassif1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassif1ActionPerformed
         // TODO add your handling code here:
-        try{
-            if(p.getReg()!=null){
-                String s=(String) jComboBoxClassif1.getSelectedItem();
-                if(!s.equals("Classifique")){
-                    int vl=Integer.parseInt(s);
+        try {
+            if (p.getReg() != null) {
+                String s = (String) jComboBoxClassif1.getSelectedItem();
+                if (!s.equals("Classifique")) {
+                    int vl = Integer.parseInt(s);
                     vendaActiva.getVendedor().addClassificacao(new Classificacao(p.getReg(), new GregorianCalendar(), vl));
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue logIn para classificar outros utilizadores.", "Efectue logIn", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(Exception e){
-            JOptionPane.showInternalMessageDialog(this, e,"Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jComboBoxClassif1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        try{
-            int linha=jTableSugestoes.getSelectedRow();
-            if(linha==-1)
+        try {
+            int linha = jTableSugestoes.getSelectedRow();
+            if (linha == -1) {
                 JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "Produto não selecionado", JOptionPane.ERROR_MESSAGE);
-            else{
-                String tipo= (String)jTableSugestoes.getValueAt(linha, 2);
-                if(tipo.equals("Leilão"))
-                {
-                    CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-                    card.show(this.BodyPrincipal,"cardLicitar");
-                    int id=(Integer) jTableSugestoes.getValueAt(linha, 0);
-                    Leilao l= sys.getLeilao(id);
+            } else {
+                String tipo = (String) jTableSugestoes.getValueAt(linha, 2);
+                if (tipo.equals("Leilão")) {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "cardLicitar");
+                    int id = (Integer) jTableSugestoes.getValueAt(linha, 0);
+                    Leilao l = sys.getLeilao(id);
                     Image i = l.getP().getImagem()
-                            .getScaledInstance(jScrollPaneImagemProduto.getWidth()-10, jScrollPaneImagemProduto.getHeight()-10, Image.SCALE_DEFAULT);
+                            .getScaledInstance(jScrollPaneImagemProduto.getWidth() - 10, jScrollPaneImagemProduto.getHeight() - 10, Image.SCALE_DEFAULT);
                     jLabelProdutoLeilao.setIcon(new ImageIcon(i));
                     jLabelLicitarNomeP.setText(l.getP().getNome());
                     jTextAreaLicitarDesc.setText(l.getP().getDescricao());
                     jLabelEmail.setText(l.getLeiloador().getUsername());
-                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao())+"€");
-                    jLabelTectoValor.setText(Float.toString(l.getTecto())+"€");
+                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao()) + "€");
+                    jLabelTectoValor.setText(Float.toString(l.getTecto()) + "€");
                     jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
                     SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
                     jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
-                }
-                else
-                {
-                    CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
-                    card.show(this.BodyPrincipal,"ProdutoCompra");
+                } else {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "ProdutoCompra");
                     int id = (Integer) jTableSugestoes.getModel().getValueAt(linha, 0);
                     Venda v = sys.getVenda(id);
                     Image i = v.getProduto().getImagem()
-                            .getScaledInstance(jScrollPaneImagemCompra.getWidth()-10, jScrollPaneImagemCompra.getHeight()-10, Image.SCALE_DEFAULT);
+                            .getScaledInstance(jScrollPaneImagemCompra.getWidth() - 10, jScrollPaneImagemCompra.getHeight() - 10, Image.SCALE_DEFAULT);
                     jLabelImagemCompra.setIcon(new ImageIcon(i));
                     jLabelNomeProdutoCompra.setText(v.getProduto().getNome());
                     jEditorPane1.setText(v.getProduto().getDescricao());
-                    jLabelvalor.setText(Float.toString(v.getPreco())+"€");
+                    jLabelvalor.setText(Float.toString(v.getPreco()) + "€");
                     jLabelcontacto.setText(v.getVendedor().getUsername());
                     jLabelClassificaValor.setText(Integer.toString(v.getVendedor().getClassificacao()));
-                    vendaActiva=v;
+                    vendaActiva = v;
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonLicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLicitarActionPerformed
         // TODO add your handling code here:
-        try{
-            if(p.getReg()!=null){
-                int sel=JOptionPane.showConfirmDialog(this, "Deseja efetuar esta licitação?", "Confirmar licitação", JOptionPane.YES_NO_OPTION);
-                if(sel==JOptionPane.YES_OPTION){
-                    float vl= Float.parseFloat(jTextFieldNovaLicitacao.getText());
-                    if(sys.licitar(p.getReg(), leilaoActivo, vl)){
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showConfirmDialog(this, "Deseja efetuar esta licitação?", "Confirmar licitação", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    float vl = Float.parseFloat(jTextFieldNovaLicitacao.getText());
+                    if (sys.licitar(p.getReg(), leilaoActivo, vl)) {
                         JOptionPane.showInternalMessageDialog(this, "Licitação efectuada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
+                    } else {
                         JOptionPane.showInternalMessageDialog(this, "Erro ao efectuar licitação.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efetue logIn para fazer licitações.", "Efetue logIn", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(Exception e){
-            JOptionPane.showInternalMessageDialog(this, e ,"Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonLicitarActionPerformed
 
     private void jButtonfavorit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonfavorit1ActionPerformed
         // TODO add your handling code here:
-        try{
-            if(p.getReg()!=null){
-            int sel=JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo adicionar este produto aos seus favoritos?", "Confirmar favorito", JOptionPane.YES_NO_OPTION);
-            if(sel==JOptionPane.YES_OPTION)
-            {
-                if(p.getReg().addWishList(leilaoActivo.getP()))
-                    JOptionPane.showInternalMessageDialog(this, "Produto adicionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                else
-                    JOptionPane.showInternalMessageDialog(this, "Erro ao adicionar aos favoritos.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            }
-            else{
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo adicionar este produto aos seus favoritos?", "Confirmar favorito", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    if (p.getReg().addWishList(leilaoActivo.getP())) {
+                        JOptionPane.showInternalMessageDialog(this, "Produto adicionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showInternalMessageDialog(this, "Erro ao adicionar aos favoritos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efectue o logIn", "", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonfavorit1ActionPerformed
 
     private void jButtonComprarTectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprarTectoActionPerformed
         // TODO add your handling code here:
-        try{
-            if(p.getReg()!=null){
-                int sel=JOptionPane.showConfirmDialog(this, "Deseja comprar imediatamente este produto?", "Confirmar compra", JOptionPane.YES_NO_OPTION);
-                if(sel==JOptionPane.YES_OPTION){
-                    float vl=leilaoActivo.getTecto();
-                    if(sys.licitar(p.getReg(), leilaoActivo, vl)){
+        try {
+            if (p.getReg() != null) {
+                int sel = JOptionPane.showConfirmDialog(this, "Deseja comprar imediatamente este produto?", "Confirmar compra", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    float vl = leilaoActivo.getTecto();
+                    if (sys.licitar(p.getReg(), leilaoActivo, vl)) {
                         JOptionPane.showInternalMessageDialog(this, "Compra efetuada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
+                    } else {
                         JOptionPane.showInternalMessageDialog(this, "Erro ao efectuar compra.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showInternalMessageDialog(this, "Efetue logIn para fazer compras.", "Efetue logIn", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(Exception e){
-            JOptionPane.showInternalMessageDialog(this, e ,"Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonComprarTectoActionPerformed
+
+    private void jButtonRemoveFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveFavoritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRemoveFavoritoActionPerformed
+
+    private void jComboBoxClassifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassifActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (p.getReg() != null) {
+                String s = (String) jComboBoxClassif.getSelectedItem();
+                if (!s.equals("Classifique")) {
+                    int vl = Integer.parseInt(s);
+                    vendaActiva.getVendedor().addClassificacao(new Classificacao(p.getReg(), new GregorianCalendar(), vl));
+                }
+            } else {
+                JOptionPane.showInternalMessageDialog(this, "Efectue logIn para classificar outros utilizadores.", "Efectue logIn", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jComboBoxClassifActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
@@ -2216,6 +2246,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonLicitar;
     private javax.swing.JButton jButtonMenuFavoritos;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonRemoveFavorito;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonVender;
     private javax.swing.JButton jButtoncomprar;
@@ -2319,13 +2350,12 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadImgProdLeilao() {
-        int lar= this.jScrollPaneleilao.getWidth();
-        int alt=this.jScrollPaneleilao.getHeight();     
-        
-        Image resizedImage = this.imgProduto.getScaledInstance(lar-10,alt-10, Image.SCALE_DEFAULT);
-        
+        int lar = this.jScrollPaneleilao.getWidth();
+        int alt = this.jScrollPaneleilao.getHeight();
+
+        Image resizedImage = this.imgProduto.getScaledInstance(lar - 10, alt - 10, Image.SCALE_DEFAULT);
+
         ImageIcon icon = new ImageIcon(resizedImage);
         this.jLabelImagemProd1.setIcon(icon);
     }
-   
 }
