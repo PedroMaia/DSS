@@ -553,6 +553,9 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
                 JOptionPane.showInternalMessageDialog(this, "Erro a alterar a password.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
+        else{
+            JOptionPane.showInternalMessageDialog(this, "Passwords não coincidem.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
         } catch(Exception e){
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
