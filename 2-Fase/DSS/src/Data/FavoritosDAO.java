@@ -37,7 +37,7 @@ public class FavoritosDAO {
         s.setInt(2, p.getId());
         int res = s.executeUpdate();
         c.close();
-        return (res < 1);
+        return (res >0);
     }
     
     /**
