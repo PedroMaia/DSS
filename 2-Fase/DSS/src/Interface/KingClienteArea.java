@@ -7,6 +7,7 @@ import Business.Utilizador;
 import Business.Venda;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -35,6 +36,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         updateVendas();
         updateLeiloes();
         updateLicitacoes();
+        updateDadosUtilizador();
     }
     
     public void updateListaProdutos() throws SQLException
@@ -153,15 +155,6 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         jPasswordFieldNovaPass1 = new javax.swing.JPasswordField();
         jPasswordFieldNovaPass2 = new javax.swing.JPasswordField();
         jButtonGuardarNovaPass = new javax.swing.JButton();
-        JpanelAlterarIdpessoal = new javax.swing.JPanel();
-        jLabelMorada = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabelEmail = new javax.swing.JLabel();
-        jButtonGuardarNovaPass1 = new javax.swing.JButton();
-        jButtonAlteAvatar = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setClosable(true);
@@ -212,7 +205,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelMeusProdutosLayout.setVerticalGroup(
             jPanelMeusProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMeusProdutosLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -260,7 +253,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelComprasEsperaLayout.setVerticalGroup(
             jPanelComprasEsperaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComprasEsperaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -324,7 +317,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
         jPanelVendasEsperaPagamentoLayout.setVerticalGroup(
             jPanelVendasEsperaPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasEsperaPagamentoLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -508,96 +501,21 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        JpanelAlterarIdpessoal.setBorder(javax.swing.BorderFactory.createTitledBorder("Def User"));
-
-        jLabelMorada.setText("Morada* :");
-
-        jLabel6.setText("Localidade* :");
-
-        jLabelEmail.setText("Email* :");
-
-        jButtonGuardarNovaPass1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/save.png"))); // NOI18N
-        jButtonGuardarNovaPass1.setText("Guardar");
-        jButtonGuardarNovaPass1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarNovaPass1ActionPerformed(evt);
-            }
-        });
-
-        jButtonAlteAvatar.setText("Alterar Avatar");
-
-        javax.swing.GroupLayout JpanelAlterarIdpessoalLayout = new javax.swing.GroupLayout(JpanelAlterarIdpessoal);
-        JpanelAlterarIdpessoal.setLayout(JpanelAlterarIdpessoalLayout);
-        JpanelAlterarIdpessoalLayout.setHorizontalGroup(
-            JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpanelAlterarIdpessoalLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelMorada, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                    .addComponent(jTextField3))
-                .addGap(80, 80, 80)
-                .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpanelAlterarIdpessoalLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(JpanelAlterarIdpessoalLayout.createSequentialGroup()
-                        .addComponent(jButtonAlteAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                        .addComponent(jButtonGuardarNovaPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
-        );
-        JpanelAlterarIdpessoalLayout.setVerticalGroup(
-            JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpanelAlterarIdpessoalLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelMorada)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpanelAlterarIdpessoalLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jButtonGuardarNovaPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelAlterarIdpessoalLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(JpanelAlterarIdpessoalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonAlteAvatar))
-                            .addComponent(jLabelEmail))
-                        .addGap(25, 25, 25))))
-        );
-
         javax.swing.GroupLayout jPanelDefUserLayout = new javax.swing.GroupLayout(jPanelDefUser);
         jPanelDefUser.setLayout(jPanelDefUserLayout);
         jPanelDefUserLayout.setHorizontalGroup(
             jPanelDefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDefUserLayout.createSequentialGroup()
-                .addGroup(jPanelDefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDefUserLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jPanelMudarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 317, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDefUserLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(JpanelAlterarIdpessoal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jPanelMudarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         jPanelDefUserLayout.setVerticalGroup(
             jPanelDefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDefUserLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addComponent(jPanelMudarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(JpanelAlterarIdpessoal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
 
         jTabbedPaneBody.addTab("<html><strong>Definições de Utilizador</strong></html>", new javax.swing.ImageIcon(getClass().getResource("/Imagens/DefUser.png")), jPanelDefUser); // NOI18N
@@ -615,31 +533,35 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneBody, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneBody, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGuardarNovaPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarNovaPass1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonGuardarNovaPass1ActionPerformed
-
     private void jButtonGuardarNovaPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarNovaPassActionPerformed
         // TODO add your handling code here:
+        try{
+        if(new String(jPasswordFieldNovaPass1.getPassword()).equals(new String(jPasswordFieldNovaPass2.getPassword())))
+        {
+            u.setPassmd5(sys.md5crypt(new String(jPasswordFieldNovaPass1.getPassword())));
+            if(sys.updateUser(u)){
+                JOptionPane.showInternalMessageDialog(this, "Password alterada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showInternalMessageDialog(this, "Erro a alterar a password.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        } catch(Exception e){
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonGuardarNovaPassActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JpanelAlterarIdpessoal;
-    private javax.swing.JButton jButtonAlteAvatar;
     private javax.swing.JButton jButtonGuardarNovaPass;
-    private javax.swing.JButton jButtonGuardarNovaPass1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JLabel jLabelMorada;
     private javax.swing.JPanel jPanelCompras;
     private javax.swing.JPanel jPanelComprasEspera;
     private javax.swing.JPanel jPanelDefUser;
@@ -663,8 +585,9 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTableMeusLeiloes;
     private javax.swing.JTable jTableMinhasLicitacoes;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+
+    private void updateDadosUtilizador() {
+        
+    }
 }

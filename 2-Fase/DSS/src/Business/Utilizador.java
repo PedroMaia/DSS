@@ -117,4 +117,10 @@ public class Utilizador {
     public boolean removeWishlist(int idp) throws SQLException{
         return _wishlist.delete(idp);
     }
+
+    public void setPassmd5(String _passmd5) {
+        this._passmd5 = _passmd5;
+    }
+    
+    
 }

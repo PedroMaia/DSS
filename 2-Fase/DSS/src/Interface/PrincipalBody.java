@@ -81,9 +81,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 for (Leilao l : ls) {
                     m.addRow(new Object[]{l.getId(), l.getP().getNome(), "Leilão"});
                 }
+                jLabelClassUtil.setText(Integer.toString(p.getReg().getClassificacao()));
             } catch (Exception e) {
                 JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
             }
+            
         }
 
     }
@@ -109,7 +111,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             }
         };
         jTableSugestoes.setModel(m);
-
+        jLabelClassUtil.setText("0");
     }
 
     /**
@@ -357,6 +359,8 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         jButtonSair = new javax.swing.JButton();
         jScrollPaneImgUser = new javax.swing.JScrollPane();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelClassUtil = new javax.swing.JLabel();
         jPanelPesquisaAvanc = new javax.swing.JPanel();
         jComboBoxTransacao = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
@@ -648,6 +652,10 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/kingAvatar.png"))); // NOI18N
         jScrollPaneImgUser.setViewportView(jLabel3);
 
+        jLabel5.setText("Classificação:");
+
+        jLabelClassUtil.setText("0");
+
         javax.swing.GroupLayout DefUserLayout = new javax.swing.GroupLayout(DefUser);
         DefUser.setLayout(DefUserLayout);
         DefUserLayout.setHorizontalGroup(
@@ -656,16 +664,24 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanelMenuUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(DefUserLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPaneImgUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(DefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneImgUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(DefUserLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelClassUtil)))
                 .addContainerGap())
         );
         DefUserLayout.setVerticalGroup(
             DefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DefUserLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
                 .addComponent(jScrollPaneImgUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DefUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabelClassUtil))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelMenuUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1227,7 +1243,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                                     .addGroup(ProdutoEmLeilaoLayout.createSequentialGroup()
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextFieldNovaLicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -1766,7 +1782,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSugests, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1778,7 +1794,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(119, Short.MAX_VALUE)
+                    .addContainerGap(127, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(21, 21, 21)))
         );
@@ -2305,7 +2321,9 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelClassUtil;
     private javax.swing.JLabel jLabelClassificaValor;
     private javax.swing.JLabel jLabelDataLeilao;
     private javax.swing.JLabel jLabelEmail;

@@ -263,4 +263,8 @@ public class BuyKing {
     {
         return leiloes.get(id);
     }
+
+    public boolean updateUser(Utilizador u) throws SQLException {
+        return utilizadores.update(u);
+    }
 }
