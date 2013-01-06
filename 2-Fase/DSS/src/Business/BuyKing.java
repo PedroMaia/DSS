@@ -42,6 +42,7 @@ public class BuyKing {
         for(Venda v:disp)
         {
             if(v.getProduto().existeSemelhante(fav))
+                if(!v.getVendedor().equals(u))
                 res.add(v);
                 
         }
@@ -56,6 +57,7 @@ public class BuyKing {
         for(Leilao l:disp)
         {
             if(l.getP().existeSemelhante(fav))
+                if(!l.getLeiloador().equals(u))
                 res.add(l);
                 
         }
