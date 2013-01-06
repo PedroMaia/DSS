@@ -66,11 +66,11 @@ public class FavoritosDAO {
      * @return se foi removio com sucesso.
      * @throws SQLException 
      */
-    public boolean delete(Produto p) throws SQLException {
+    public boolean delete(int idp) throws SQLException {
         Connection c = DataConnection.getDataConnection();
         PreparedStatement s = c.prepareStatement("delete from favorito where usr=? and idp=?");
         s.setString(1, username);
-        s.setInt(2, p.getId());
+        s.setInt(2, idp);
         int res = 0;
         res = s.executeUpdate();
         return (res > 0);

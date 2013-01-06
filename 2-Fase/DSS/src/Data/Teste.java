@@ -158,7 +158,7 @@ public class Teste {
         out.println(le2);
         bol7=favDao.contains(p2);
         out.println(bol7);
-        bol8=favDao.delete(p2);
+        bol8=favDao.delete(p2.getId());
         out.println(bol8);
         bol9=favDao.contains(p2);
         out.println(bol9);

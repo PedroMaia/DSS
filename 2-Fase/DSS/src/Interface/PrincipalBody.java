@@ -103,12 +103,12 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         enableLogIn(false);
         loadImgDef();
         DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome", "Tipo"}, 0) {
-                @Override
-                public boolean isCellEditable(int row, int col) {
-                    return false;
-                }
-            };
-            jTableSugestoes.setModel(m);
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+        jTableSugestoes.setModel(m);
 
     }
 
@@ -1875,20 +1875,20 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
         card.show(this.BodyPrincipal, "cardFavoritos");
         DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome"}, 0) {
-                public boolean isCellEditable(int row, int col) {
-                    return false;
-                }
-            };
-            jTable1.setModel(m);
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+        jTable1.setModel(m);
         try {
-            
+
             List<Produto> ps = p.getReg().getWishList();
-            for(Produto p:ps){
+            for (Produto p : ps) {
                 m.addRow(new Object[]{p.getId(), p.getNome()});
             }
 
-        } catch(Exception e){
-            JOptionPane.showInternalMessageDialog(this,e, "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonMenuFavoritosActionPerformed
 
@@ -2200,6 +2200,36 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
 
     private void jButtonRemoveFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveFavoritoActionPerformed
         // TODO add your handling code here:
+        int linha = jTable1.getSelectedRow();
+        try {
+            if (linha != -1) {
+                int sel = JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo remover da sua lista de favoritos?", "", JOptionPane.YES_NO_OPTION);
+                if (sel == JOptionPane.YES_OPTION) {
+                    p.getReg().removeWishlist((Integer) jTable1.getValueAt(linha, 0));
+                }
+                DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome"}, 0) {
+                    @Override
+                    public boolean isCellEditable(int row, int col) {
+                        return false;
+                    }
+                };
+                jTable1.setModel(m);
+
+
+                List<Produto> ps = p.getReg().getWishList();
+                for (Produto p : ps) {
+                    m.addRow(new Object[]{p.getId(), p.getNome()});
+                }
+
+
+
+
+            } else {
+                JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonRemoveFavoritoActionPerformed
 
     private void jComboBoxClassifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassifActionPerformed
@@ -2218,7 +2248,6 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jComboBoxClassifActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
     private javax.swing.JTextField ChavePesquisa;

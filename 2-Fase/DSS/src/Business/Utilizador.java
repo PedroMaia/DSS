@@ -113,4 +113,8 @@ public class Utilizador {
     {
         return _classificacao.getClassificacaoMedia();
     }
+    
+    public boolean removeWishlist(int idp) throws SQLException{
+        return _wishlist.delete(idp);
+    }
 }
