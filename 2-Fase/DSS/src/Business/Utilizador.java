@@ -63,15 +63,6 @@ public class Utilizador {
         return imagem;
     }
 
-    public void compra(Venda aV) {
-        throw new UnsupportedOperationException();
-
-    }
-
-    public void licitar(Leilao aL, int aV) {
-        throw new UnsupportedOperationException();
-
-    }
 
     
 
@@ -106,7 +97,7 @@ public class Utilizador {
         return _classificacao.add(c);
     }
 
-    boolean addWishList(Produto p) throws SQLException {
+    public boolean addWishList(Produto p) throws SQLException {
         return _wishlist.add(p);
     }
 
@@ -116,5 +107,10 @@ public class Utilizador {
 
     public List<Produto> getProdutos() throws SQLException {
         return meusProds.getFromUser(this);
+    }
+    
+    public int getClassificacao() throws SQLException
+    {
+        return _classificacao.getClassificacaoMedia();
     }
 }
