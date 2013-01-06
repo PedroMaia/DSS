@@ -40,11 +40,17 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
     public void updateListaProdutos() throws SQLException
     {
         List<Produto> l= u.getProdutos();
-        String[] colNames={"Nome", "Categoria"};
-        DefaultTableModel m = new DefaultTableModel(colNames, 0);
+        String[] colNames={"Nr","Nome", "Categoria"};
+        DefaultTableModel m = new DefaultTableModel(colNames, 0)
+            {
+                @Override
+                public boolean isCellEditable(int rowIndex, int mColIndex) {
+                    return false;
+                }
+            };
         jTable3.setModel(m);
         for(Produto p:l){
-            m.addRow(new Object[]{p.getNome(), p.getCategoria()});
+            m.addRow(new Object[]{p.getId(),p.getNome(), p.getCategoria()});
         }
         m.fireTableDataChanged();
     }
@@ -52,7 +58,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
     public void updateCompras() throws SQLException
     {
         List<Venda> list = sys.getVendasFromComprador(u);
-        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nr","Nome","Preço","Estado"}, 0)
             {
                 @Override
                 public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -61,14 +67,14 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             };
         jTable2.setModel(m);
         for(Venda v:list){
-            m.addRow(new Object[]{v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
+            m.addRow(new Object[]{v.getId(),v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
         }
     }
     
     public void updateVendas() throws SQLException 
     {
         List<Venda> list = sys.getVendasFromVendedor(u);
-        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nr","Nome","Preço","Estado"}, 0)
             {
                 @Override
                 public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -77,13 +83,13 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             };
         jTable4.setModel(m);
         for(Venda v:list){
-            m.addRow(new Object[]{v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
+            m.addRow(new Object[]{v.getId(),v.getProduto().getNome(), v.getPreco(), Venda.ESTADOS[v.getEstado()]});
         }
     }
     
     public void updateLeiloes() throws SQLException{
         List<Leilao> list = sys.getLeilaoFromLeiloador(u);
-        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nr","Nome","Preço","Estado"}, 0)
             {
                 @Override
                 public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -92,14 +98,14 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             };
         jTableMeusLeiloes.setModel(m);
         for(Leilao l:list){
-            m.addRow(new Object[]{l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstado()]});
+            m.addRow(new Object[]{l.getId(),l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstado()]});
         }
     }
     
     public void updateLicitacoes() throws SQLException
     {
         List<Leilao> list = sys.getLeilaoFromLicitador(u);
-        DefaultTableModel m = new DefaultTableModel(new String[]{"Nome","Preço","Estado"}, 0)
+        DefaultTableModel m = new DefaultTableModel(new String[]{"Nr","Nome","Preço","Estado"}, 0)
             {
                 @Override
                 public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -108,7 +114,7 @@ public final class KingClienteArea extends javax.swing.JInternalFrame {
             };
         jTableMinhasLicitacoes.setModel(m);
         for(Leilao l:list){
-            m.addRow(new Object[]{l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstadoLicitacao(u)]});
+            m.addRow(new Object[]{l.getId(),l.getP().getNome(), l.getUltimaLicitacao(), Leilao.ESTADOS[l.getEstadoLicitacao(u)]});
         }
     }
 

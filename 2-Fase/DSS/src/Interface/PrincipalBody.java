@@ -8,17 +8,14 @@ package Interface;
 import Business.BuyKing;
 import Business.Leilao;
 import Business.Produto;
-import Business.Utilizador;
 import Business.Venda;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
-import java.awt.Menu;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,7 +24,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import sun.applet.Main;
 
 /**
  *
@@ -220,7 +216,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         //Venda
         //Leilão
         try {
-            String[] nomesCol = {"Nome", "Preço", "Tipo"};
+            String[] nomesCol = {"Nr","Nome", "Preço","Categoria" ,"Tipo"};
             DefaultTableModel m = new DefaultTableModel(nomesCol, 0);
             jTableResultadosPesquisa.setModel(m);
             m.fireTableDataChanged();
@@ -233,7 +229,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                             (String) jComboBoxCategoria.getSelectedItem(),
                             Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
                     for (Venda v : vendas) {
-                        Object[] line = {v.getProduto().getNome(), v.getPreco(), "Venda"};
+                        Object[] line = {v.getId(),v.getProduto().getNome(), v.getPreco(),v.getProduto().getCategoria() ,"Venda"};
                         m.addRow(line);
                     }
                 }
@@ -243,7 +239,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                             (String) jComboBoxCategoria.getSelectedItem(),
                             Float.parseFloat(jTextField1.getText()), Float.parseFloat(jTextField2.getText()));
                     for (Leilao l : leiloes) {
-                        Object[] line = {l.getP().getNome(), l.getUltimaLicitacao(), "Leilão"};
+                        Object[] line = {l.getId(),l.getP().getNome(), l.getUltimaLicitacao(),l.getP().getCategoria(), "Leilão"};
                         m.addRow(line);
                     }
                 }
@@ -253,7 +249,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     vendas = sys.pesquisaVendasSimples(ChavePesquisa.getText(),
                             (String) jComboBoxCategoria.getSelectedItem());
                     for (Venda v : vendas) {
-                        Object[] line = {v.getProduto().getNome(), v.getPreco(), "Venda"};
+                        Object[] line = {v.getId(),v.getProduto().getNome(), v.getPreco(), v.getProduto().getCategoria(),"Venda"};
                         m.addRow(line);
                     }
                 }
@@ -262,7 +258,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     leiloes = sys.pesquisaSimplesLeilao(ChavePesquisa.getText(),
                             (String) jComboBoxCategoria.getSelectedItem());
                     for (Leilao l : leiloes) {
-                        Object[] line = {l.getP().getNome(), l.getUltimaLicitacao(), "Leilão"};
+                        Object[] line = {l.getId(), l.getP().getNome(), l.getUltimaLicitacao(), l.getP().getCategoria(), "Leilão"};
                         m.addRow(line);
                     }
                 }
@@ -311,6 +307,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         PanelPesq = new javax.swing.JPanel();
         jScrollResultadosPesquisa = new javax.swing.JScrollPane();
         jTableResultadosPesquisa = new javax.swing.JTable();
+        jToggleButtonVerProduto = new javax.swing.JToggleButton();
         ProdutoCompra = new javax.swing.JPanel();
         jPanelImagem = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -326,10 +323,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         jLabelpreco2 = new javax.swing.JLabel();
         jLabelvalor = new javax.swing.JLabel();
         jButtoncomprar = new javax.swing.JButton();
-        jButtontrocar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         ProdutoEmLeilao = new javax.swing.JPanel();
         jScrollPaneImagemProduto = new javax.swing.JScrollPane();
         jLabel19 = new javax.swing.JLabel();
@@ -702,11 +695,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Preço", "Tipo"
+                "Nr", "Nome", "Preço", "Categoria", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -715,21 +708,35 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
         });
         jScrollResultadosPesquisa.setViewportView(jTableResultadosPesquisa);
 
+        jToggleButtonVerProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/file.png"))); // NOI18N
+        jToggleButtonVerProduto.setText("Ver Produto");
+        jToggleButtonVerProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonVerProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelPesqLayout = new javax.swing.GroupLayout(PanelPesq);
         PanelPesq.setLayout(PanelPesqLayout);
         PanelPesqLayout.setHorizontalGroup(
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPesqLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPesqLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButtonVerProduto)
+                .addGap(30, 30, 30))
         );
         PanelPesqLayout.setVerticalGroup(
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPesqLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                .addGap(218, 218, 218))
+                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addGap(65, 65, 65)
+                .addComponent(jToggleButtonVerProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
         );
 
         BodyPrincipal.add(PanelPesq, "cardPesquisa");
@@ -783,8 +790,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
 
         jButtoncomprar.setText("Comprar");
 
-        jButtontrocar.setText("Propor Troca");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -795,9 +800,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jLabelvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtoncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtontrocar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -805,41 +808,8 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelpreco2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtoncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtontrocar))
+                    .addComponent(jButtoncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos vendedor "));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout ProdutoCompraLayout = new javax.swing.GroupLayout(ProdutoCompra);
@@ -861,12 +831,11 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             .addGroup(ProdutoCompraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ProdutoCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addGroup(ProdutoCompraLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         ProdutoCompraLayout.setVerticalGroup(
             ProdutoCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -884,9 +853,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jLabel15)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         BodyPrincipal.add(ProdutoCompra, "ProdutoCompra");
@@ -1014,7 +981,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                                         .addGap(10, 10, 10)
                                         .addComponent(jButtonfavorit1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPaneImagemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanelDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47))
             .addGroup(ProdutoEmLeilaoLayout.createSequentialGroup()
@@ -1024,7 +991,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTectoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonComprarTecto, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ProdutoEmLeilaoLayout.setVerticalGroup(
             ProdutoEmLeilaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1063,7 +1030,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                             .addComponent(jLabel26)
                             .addComponent(jLabelTectoValor)
                             .addComponent(jButtonComprarTecto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         this.jComboBoxClassif.setToolTipText("Classificar utilizador.");
@@ -1145,7 +1112,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                                         .addComponent(jTexpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabelEuro, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 80, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         JpanelPropriedadesProdutoLayout.setVerticalGroup(
@@ -1186,13 +1153,13 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGroup(VenderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VenderLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jPanelAddImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .addComponent(jPanelAddImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VenderLayout.createSequentialGroup()
-                        .addContainerGap(122, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBcimagem)
                         .addGap(21, 21, 21)))
                 .addGap(18, 18, 18)
-                .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VenderLayout.setVerticalGroup(
@@ -1207,7 +1174,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                     .addGroup(VenderLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(JpanelPropriedadesProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         BodyPrincipal.add(Vender, "cardVender");
@@ -1236,7 +1203,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGroup(FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FavoritosLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
                         .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FavoritosLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1247,7 +1214,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FavoritosLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addComponent(jButtonFavProduto)
                 .addGap(46, 46, 46))
@@ -1277,7 +1244,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(253, 253, 253)
-                    .addComponent(BodyPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                    .addComponent(BodyPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                     .addGap(240, 240, 240)))
         );
         layout.setVerticalGroup(
@@ -1294,10 +1261,10 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
                         .addComponent(MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelPesquisaAvanc, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(157, Short.MAX_VALUE)
+                    .addContainerGap(177, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(40, 40, 40)))
         );
@@ -1394,6 +1361,12 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
       card.show(this.BodyPrincipal,"cardFavoritos");
     }//GEN-LAST:event_jButtonMenuFavoritosActionPerformed
 
+    private void jToggleButtonVerProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonVerProdutoActionPerformed
+       //Se for leilão carLicitar, compra , cardLeiout compara
+        CardLayout card =(CardLayout) this.BodyPrincipal.getLayout();
+      card.show(this.BodyPrincipal,"cardLicitar");        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButtonVerProdutoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
     private javax.swing.JTextField ChavePesquisa;
@@ -1420,7 +1393,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtoncomprar;
     private javax.swing.JButton jButtonfavorit;
     private javax.swing.JButton jButtonfavorit1;
-    private javax.swing.JButton jButtontrocar;
     private javax.swing.JButton jButtonvend;
     private javax.swing.JCheckBox jCheckBoxActivaFiltro;
     private javax.swing.JComboBox jComboBoxCategoria;
@@ -1459,7 +1431,6 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelvalor;
     private javax.swing.JLabel jLdescricao;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelAddImagem;
     private javax.swing.JPanel jPanelDescricao;
     private javax.swing.JPanel jPanelDescricaoProduto;
@@ -1471,14 +1442,12 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPaneImagemProduto;
     private javax.swing.JScrollPane jScrollPaneImgUser;
     private javax.swing.JScrollPane jScrollResultadosPesquisa;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableResultadosPesquisa;
     private javax.swing.JTextField jTexpreco;
     private javax.swing.JTextArea jTextAreaDescricao;
@@ -1487,6 +1456,7 @@ public class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldNovaLicitacao;
     private javax.swing.JTextField jTnome;
+    private javax.swing.JToggleButton jToggleButtonVerProduto;
     private javax.swing.JLabel lnome;
     private javax.swing.JPanel logotipo;
     // End of variables declaration//GEN-END:variables
