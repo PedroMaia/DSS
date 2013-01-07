@@ -2153,6 +2153,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                     jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
                     SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
                     jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
+                    leilaoActivo=l;
                 } else {
                     CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
                     card.show(this.BodyPrincipal, "ProdutoCompra");
