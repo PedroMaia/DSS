@@ -84,7 +84,7 @@ public class ProdutosDAO {
         byte[] b = null;
         ByteArrayOutputStream bytesImg = new ByteArrayOutputStream();
         try {
-            ImageIO.write(p.getImagem(), "jpg", bytesImg);
+            ImageIO.write(Imagem.getRedimensionada(p.getImagem()), "jpg", bytesImg);
             bytesImg.flush();
         } catch (IOException ex) {
             Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);

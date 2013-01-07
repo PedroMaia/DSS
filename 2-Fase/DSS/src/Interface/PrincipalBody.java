@@ -63,7 +63,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 }
             };
             jTableSugestoes.setModel(m);
-        } else {
+        } else {          
             enableLogIn(true);
             loadImgUser();
             DefaultTableModel m = new DefaultTableModel(new String[]{"Nr", "Nome", "Tipo"}, 0) {
@@ -101,7 +101,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         enablePainel(this.jPanelSugests, flag);
     }
 
-    public void logOut() {
+    public void logOut() {       
         this.p.logOutUser();
         enableLogIn(false);
         loadImgDef();
@@ -1867,14 +1867,19 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         try {
             Produto pr = sys.addProduto(p.getReg(), this.jTnome.getText(), this.imgProduto, this.jTextAreaDescricao.getText(), (String) this.jComboBoxCategoria1.getSelectedItem());
             if (pr != null) {
-                if (sys.vender(p.getReg(), pr, Float.parseFloat(jTexpreco.getText()))); else {
+                if(JOptionPane.showInternalConfirmDialog(this, "Dejesa mesmo publicar esta venda?", "Confirmar Venda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+                if (sys.vender(p.getReg(), pr, Float.parseFloat(jTexpreco.getText())))
+                    JOptionPane.showInternalMessageDialog(this, "Venda publicada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    else {
                     //TODO
+                    JOptionPane.showInternalMessageDialog(this, "Erro ao publicar venda.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 //TODO
+                JOptionPane.showInternalMessageDialog(this, "Efetue logIn para publicar vendas.", "Efetue logIn", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            System.err.println(e);
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButtonvendActionPerformed
@@ -1973,16 +1978,25 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     private void jButtonvend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonvend1ActionPerformed
         // TODO add your handling code here:
         try {
+            if(p.getReg()!=null){
             Produto pr = sys.addProduto(p.getReg(), this.jTnomeLeilao.getText(), this.imgProduto, this.jTextAreaDescricaoleilao.getText(), (String) this.jComboBoxCategoriaLeilao.getSelectedItem());
             if (pr != null) {
+                if(JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo publicar este leilão?", "Confirmar Leilão", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
                 if (sys.leiloar(p.getReg(), pr, Float.parseFloat(jTexprecobase.getText()), Float.parseFloat(jTextetolicita.getText()))); else {
                     //TODO
+                    JOptionPane.showInternalMessageDialog(this, "Leilão publicado com sucesso.", "Sucesso.", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 //TODO
+                JOptionPane.showInternalMessageDialog(this, "Erro ao publicar leilão.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            }
+            else{
+                JOptionPane.showInternalMessageDialog(this, "Efetue logIn para publicar leilões.", "Efetue logIn", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            System.err.println(e);
+            //System.err.println(e);
+            JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonvend1ActionPerformed
 

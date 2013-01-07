@@ -5,7 +5,9 @@
 package Data;
 
 import Business.Utilizador;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 
 /**
  *
@@ -113,8 +116,9 @@ public class UserDAO {
         {
             byte[] b;
             ByteArrayOutputStream bytesImg = new ByteArrayOutputStream();
+            BufferedImage i=Imagem.getRedimensionada(u.getImagem());            
             try {
-                ImageIO.write(u.getImagem(), "jpg", bytesImg);
+                ImageIO.write(i, "jpg", bytesImg);
                 bytesImg.flush();
             } catch (IOException ex) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

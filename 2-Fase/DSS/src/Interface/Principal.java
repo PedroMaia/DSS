@@ -197,6 +197,19 @@ public class Principal extends javax.swing.JFrame {
     
     public void logOutUser(){
         this.reg=null;
+        this.jDesktopPanel.remove(this.janelaBody);
+        this.janelaBody=new PrincipalBody(this.sys, this);
+       
+       this.jDesktopPanel.add(this.janelaBody);
+        try {
+            //maximiza a janela!
+             this.janelaBody.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+       
+       this.janelaBody.setVisible(true);
     }
 /**
  * Cria a janela de LogIn.
