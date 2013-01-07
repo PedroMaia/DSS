@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, http://code.google.com/p/wwwsqldesigner/ -->
+<!-- Active URL: http://pedromaia.comeze.com/wwwsqldesigner-2.7/ -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+	
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+		<type label="Bit" length="0" sql="bit" quote=""/>
+	</group>
+</datatypes><table x="571" y="315" name="Utilizador">
+<row name="Username()" null="0" autoincrement="1">
+<datatype>VARCHAR(20)</datatype>
+<relation table="Classificação" row="Classificado()" />
+<relation table="Classificação" row="Classificador()" />
+<relation table="CasoSuspeito" row="UserName()" />
+</row>
+<row name="Password()" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<default>'NotNuLL'</default></row>
+<row name="Email()" null="1" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+<default>'NOT NULL UNIQUE'</default></row>
+<row name="Localidade()" null="1" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="DataDeRegisto()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>'DATE NOT NULL'</default></row>
+<row name="DataNascimento()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>'DATE NOT NULL'</default></row>
+<row name="FotoUser()" null="0" autoincrement="0">
+<datatype>BLOB</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>Username()</part>
+</key>
+</table>
+<table x="881" y="592" name="Classificação">
+<row name="Classificado()" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="Classificador()" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="ValorAtribuido()" null="0" autoincrement="0">
+<datatype>INT(5)</datatype>
+</row>
+<row name="DataClassificação()" null="0" autoincrement="0">
+<datatype>DATE</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>Classificado()</part>
+<part>Classificador()</part>
+</key>
+</table>
+<table x="870" y="55" name="Produtos">
+<row name="IdProduto()" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="NomeProduto()" null="1" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="Imagem()" null="0" autoincrement="0">
+<datatype>BLOB</datatype>
+</row>
+<row name="DonoProduto()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="Descrição()" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="Categoria()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>IdProduto()</part>
+</key>
+<key type="INDEX" name="">
+<part>DonoProduto()</part>
+</key>
+</table>
+<table x="1136" y="305" name="Vendas">
+<row name="idVenda()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default></row>
+<row name="idProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Produtos" row="IdProduto()" />
+</row>
+<row name="Preço()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
+<default>NULL</default></row>
+<row name="Comprador()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="DataLimiteVenda()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataPagamento()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataEnvioProduto()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataInseridoAvenda()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="Vendedor()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<key type="PRIMARY" name="">
+<part>idVenda()</part>
+</key>
+</table>
+<table x="337" y="55" name="Favoritos">
+<row name="UseName()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="IdProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Produtos" row="IdProduto()" />
+<relation table="CasoSuspeito" row="idProduto()" />
+</row>
+<key type="PRIMARY" name="">
+<part>UseName()</part>
+<part>IdProduto()</part>
+</key>
+</table>
+<table x="29" y="349" name="Leilão">
+<row name="IdLeilao()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default></row>
+<row name="IdProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Produtos" row="IdProduto()" />
+</row>
+<row name="Leiloador()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="DataLimiteLeilao()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataPagamento()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataEnvioProduto()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataFecho()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="DataInsercao()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="PrecoBase()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
+<default>NULL</default></row>
+<row name="PMLecitacao()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>IdLeilao()</part>
+</key>
+</table>
+<table x="344" y="611" name="Licitacao">
+<row name="IdLeilao()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NULL</default><relation table="Leilão" row="IdLeilao()" />
+</row>
+<row name="UserLicitou()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default><relation table="Utilizador" row="Username()" />
+</row>
+<row name="DataLicitacao()" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="Valor()" null="1" autoincrement="0">
+<datatype>INT(6)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>IdLeilao()</part>
+<part>UserLicitou()</part>
+<part>DataLicitacao()</part>
+</key>
+</table>
+<table x="31" y="203" name="CasoSuspeito">
+<row name="UserName()" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NOT NULL'</default></row>
+<row name="idProduto()" null="1" autoincrement="1">
+<datatype>INT(10)</datatype>
+<default>NOT NULL</default></row>
+<row name="JustificaSusp()" null="1" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>UserName()</part>
+<part>idProduto()</part>
+</key>
+</table>
+</sql>
