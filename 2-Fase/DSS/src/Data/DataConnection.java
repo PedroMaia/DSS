@@ -16,8 +16,8 @@ public class DataConnection {
 
     public static Connection getDataConnection() throws SQLException {
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-        String url = "jdbc:oracle:thin:@serverPC:1521:orcl";
-        Connection c = DriverManager.getConnection(url, "luis", "leilei");
+        String url = "jdbc:oracle:thin:@Cesar-PC:1521:orcl";
+        Connection c = DriverManager.getConnection(url, "cesar", "11585407");
         return c;
     }
 }
