@@ -377,7 +377,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         PanelPesq = new javax.swing.JPanel();
         jScrollResultadosPesquisa = new javax.swing.JScrollPane();
         jTableResultadosPesquisa = new javax.swing.JTable();
-        jToggleButtonVerProduto = new javax.swing.JToggleButton();
+        jButton4 = new javax.swing.JButton();
         ProdutoCompra = new javax.swing.JPanel();
         jPanelProduto = new javax.swing.JPanel();
         jScrollPaneImagemCompra = new javax.swing.JScrollPane();
@@ -839,11 +839,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         jTableResultadosPesquisa.getColumnModel().getColumn(3).setResizable(false);
         jTableResultadosPesquisa.getColumnModel().getColumn(4).setResizable(false);
 
-        jToggleButtonVerProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/file.png"))); // NOI18N
-        jToggleButtonVerProduto.setText("Ver Produto");
-        jToggleButtonVerProduto.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/file.png"))); // NOI18N
+        jButton4.setText("Ver Produto");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonVerProdutoActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -854,22 +854,20 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             .addGroup(PanelPesqLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelPesqLayout.createSequentialGroup()
-                        .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPesqLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToggleButtonVerProduto)
-                        .addGap(30, 30, 30))))
+                        .addComponent(jButton4)))
+                .addContainerGap())
         );
         PanelPesqLayout.setVerticalGroup(
             PanelPesqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPesqLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButtonVerProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addComponent(jScrollResultadosPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addGap(134, 134, 134))
         );
 
         BodyPrincipal.add(PanelPesq, "cardPesquisa");
@@ -1244,7 +1242,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                                     .addGroup(ProdutoEmLeilaoLayout.createSequentialGroup()
                                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                        .addComponent(jLabelValorBase, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextFieldNovaLicitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -1783,7 +1781,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSugests, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1795,7 +1793,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(127, Short.MAX_VALUE)
+                    .addContainerGap(149, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(21, 21, 21)))
         );
@@ -1921,52 +1919,6 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonMenuFavoritosActionPerformed
 
-    private void jToggleButtonVerProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonVerProdutoActionPerformed
-        //Se for leilão carLicitar, compra , cardLeiout compara
-        try {
-            int linha = jTableResultadosPesquisa.getSelectedRow();
-            if (linha == -1) {
-                JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "Produto não selecionado", JOptionPane.ERROR_MESSAGE);
-            } else {
-                String tipo = (String) jTableResultadosPesquisa.getValueAt(linha, 4);
-                if (tipo.equals("Leilão")) {
-                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
-                    card.show(this.BodyPrincipal, "cardLicitar");
-                    int id = (Integer) jTableResultadosPesquisa.getValueAt(linha, 0);
-                    Leilao l = sys.getLeilao(id);
-                    Image i = l.getP().getImagem()
-                            .getScaledInstance(jScrollPaneImagemProduto.getWidth() - 10, jScrollPaneImagemProduto.getHeight() - 10, Image.SCALE_DEFAULT);
-                    jLabelProdutoLeilao.setIcon(new ImageIcon(i));
-                    jLabelLicitarNomeP.setText(l.getP().getNome());
-                    jTextAreaLicitarDesc.setText(l.getP().getDescricao());
-                    jLabelEmail.setText(l.getLeiloador().getUsername());
-                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao()) + "€");
-                    jLabelTectoValor.setText(Float.toString(l.getTecto()) + "€");
-                    jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
-                    SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
-                    jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
-                    leilaoActivo = l;
-                } else {
-                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
-                    card.show(this.BodyPrincipal, "ProdutoCompra");
-                    int id = (Integer) jTableResultadosPesquisa.getModel().getValueAt(linha, 0);
-                    Venda v = sys.getVenda(id);
-                    Image i = v.getProduto().getImagem()
-                            .getScaledInstance(jScrollPaneImagemCompra.getWidth() - 10, jScrollPaneImagemCompra.getHeight() - 10, Image.SCALE_DEFAULT);
-                    jLabelImagemCompra.setIcon(new ImageIcon(i));
-                    jLabelNomeProdutoCompra.setText(v.getProduto().getNome());
-                    jEditorPane1.setText(v.getProduto().getDescricao());
-                    jLabelvalor.setText(Float.toString(v.getPreco()) + "€");
-                    jLabelcontacto.setText(v.getVendedor().getUsername());
-                    jLabelClassificaValor.setText(Integer.toString(v.getVendedor().getClassificacao()));
-                    vendaActiva = v;
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jToggleButtonVerProdutoActionPerformed
-
     private void jTnomeLeilaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnomeLeilaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTnomeLeilaoActionPerformed
@@ -1982,17 +1934,18 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             Produto pr = sys.addProduto(p.getReg(), this.jTnomeLeilao.getText(), this.imgProduto, this.jTextAreaDescricaoleilao.getText(), (String) this.jComboBoxCategoriaLeilao.getSelectedItem());
             if (pr != null) {
                 if(JOptionPane.showInternalConfirmDialog(this, "Deseja mesmo publicar este leilão?", "Confirmar Leilão", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-                if (sys.leiloar(p.getReg(), pr, Float.parseFloat(jTexprecobase.getText()), Float.parseFloat(jTextetolicita.getText()))); else {
+                if (sys.leiloar(p.getReg(), pr, Float.parseFloat(jTexprecobase.getText()), Float.parseFloat(jTextetolicita.getText()))){
                     //TODO
                     JOptionPane.showInternalMessageDialog(this, "Leilão publicado com sucesso.", "Sucesso.", JOptionPane.INFORMATION_MESSAGE);
                 }
-            } else {
+             else {
                 //TODO
                 JOptionPane.showInternalMessageDialog(this, "Erro ao publicar leilão.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
             }
             else{
                 JOptionPane.showInternalMessageDialog(this, "Efetue logIn para publicar leilões.", "Efetue logIn", JOptionPane.ERROR_MESSAGE);
+            }
             }
         } catch (Exception e) {
             //System.err.println(e);
@@ -2287,6 +2240,53 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             JOptionPane.showInternalMessageDialog(this, e, "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jComboBoxClassifActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+         try {
+            int linha = jTableResultadosPesquisa.getSelectedRow();
+            if (linha == -1) {
+                JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "Produto não selecionado", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String tipo = (String) jTableResultadosPesquisa.getValueAt(linha, 4);
+                if (tipo.equals("Leilão")) {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "cardLicitar");
+                    int id = (Integer) jTableResultadosPesquisa.getValueAt(linha, 0);
+                    Leilao l = sys.getLeilao(id);
+                    Image i = l.getP().getImagem()
+                            .getScaledInstance(jScrollPaneImagemProduto.getWidth() - 10, jScrollPaneImagemProduto.getHeight() - 10, Image.SCALE_DEFAULT);
+                    jLabelProdutoLeilao.setIcon(new ImageIcon(i));
+                    jLabelLicitarNomeP.setText(l.getP().getNome());
+                    jTextAreaLicitarDesc.setText(l.getP().getDescricao());
+                    jLabelEmail.setText(l.getLeiloador().getUsername());
+                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao()) + "€");
+                    jLabelTectoValor.setText(Float.toString(l.getTecto()) + "€");
+                    jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
+                    SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
+                    jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
+                    leilaoActivo = l;
+                } else {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "ProdutoCompra");
+                    int id = (Integer) jTableResultadosPesquisa.getModel().getValueAt(linha, 0);
+                    Venda v = sys.getVenda(id);
+                    Image i = v.getProduto().getImagem()
+                            .getScaledInstance(jScrollPaneImagemCompra.getWidth() - 10, jScrollPaneImagemCompra.getHeight() - 10, Image.SCALE_DEFAULT);
+                    jLabelImagemCompra.setIcon(new ImageIcon(i));
+                    jLabelNomeProdutoCompra.setText(v.getProduto().getNome());
+                    jEditorPane1.setText(v.getProduto().getDescricao());
+                    jLabelvalor.setText(Float.toString(v.getPreco()) + "€");
+                    jLabelcontacto.setText(v.getVendedor().getUsername());
+                    jLabelClassificaValor.setText(Integer.toString(v.getVendedor().getClassificacao()));
+                    vendaActiva = v;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
     private javax.swing.JTextField ChavePesquisa;
@@ -2305,6 +2305,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAjuda;
     private javax.swing.JButton jButtonComprarTecto;
     private javax.swing.JButton jButtonGoBack;
@@ -2413,7 +2414,6 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextetolicita;
     private javax.swing.JTextField jTnome;
     private javax.swing.JTextField jTnomeLeilao;
-    private javax.swing.JToggleButton jToggleButtonVerProduto;
     private javax.swing.JLabel lnome;
     private javax.swing.JLabel lnome1;
     private javax.swing.JPanel logotipo;
