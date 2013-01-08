@@ -832,6 +832,11 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             }
         });
         jTableResultadosPesquisa.getTableHeader().setReorderingAllowed(false);
+        jTableResultadosPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableResultadosPesquisaMouseClicked(evt);
+            }
+        });
         jScrollResultadosPesquisa.setViewportView(jTableResultadosPesquisa);
         jTableResultadosPesquisa.getColumnModel().getColumn(0).setResizable(false);
         jTableResultadosPesquisa.getColumnModel().getColumn(1).setResizable(false);
@@ -1690,6 +1695,12 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
 
         jPanelSugests.setBorder(javax.swing.BorderFactory.createTitledBorder("Sugestões"));
 
+        jScrollPaneSugestoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPaneSugestoesMouseClicked(evt);
+            }
+        });
+
         jTableSugestoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1781,7 +1792,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addComponent(DefUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSugests, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1793,7 +1804,7 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(149, Short.MAX_VALUE)
+                    .addContainerGap(153, Short.MAX_VALUE)
                     .addComponent(BodyPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(21, 21, 21)))
         );
@@ -1959,11 +1970,50 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBcimagemleilaoActionPerformed
 
     private void jTableSugestoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSugestoesMouseClicked
-        if (evt.getClickCount() == 1) {
-            System.out.println("Nada Feito");
+       
+        if (evt.getClickCount() >= 2) {
+            try {
+            int linha = jTableSugestoes.getSelectedRow();
+            if (linha == -1) {
+                JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "Produto não selecionado", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String tipo = (String) jTableSugestoes.getValueAt(linha, 2);
+                if (tipo.equals("Leilão")) {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "cardLicitar");
+                    int id = (Integer) jTableSugestoes.getValueAt(linha, 0);
+                    Leilao l = sys.getLeilao(id);
+                    Image i = l.getP().getImagem()
+                            .getScaledInstance(jScrollPaneImagemProduto.getWidth() - 10, jScrollPaneImagemProduto.getHeight() - 10, Image.SCALE_DEFAULT);
+                    jLabelProdutoLeilao.setIcon(new ImageIcon(i));
+                    jLabelLicitarNomeP.setText(l.getP().getNome());
+                    jTextAreaLicitarDesc.setText(l.getP().getDescricao());
+                    jLabelEmail.setText(l.getLeiloador().getUsername());
+                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao()) + "€");
+                    jLabelTectoValor.setText(Float.toString(l.getTecto()) + "€");
+                    jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
+                    SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
+                    jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
+                    leilaoActivo=l;
+                } else {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "ProdutoCompra");
+                    int id = (Integer) jTableSugestoes.getModel().getValueAt(linha, 0);
+                    Venda v = sys.getVenda(id);
+                    Image i = v.getProduto().getImagem()
+                            .getScaledInstance(jScrollPaneImagemCompra.getWidth() - 10, jScrollPaneImagemCompra.getHeight() - 10, Image.SCALE_DEFAULT);
+                    jLabelImagemCompra.setIcon(new ImageIcon(i));
+                    jLabelNomeProdutoCompra.setText(v.getProduto().getNome());
+                    jEditorPane1.setText(v.getProduto().getDescricao());
+                    jLabelvalor.setText(Float.toString(v.getPreco()) + "€");
+                    jLabelcontacto.setText(v.getVendedor().getUsername());
+                    jLabelClassificaValor.setText(Integer.toString(v.getVendedor().getClassificacao()));
+                    vendaActiva = v;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
         }
-        if (evt.getClickCount() == 2) {
-            System.out.println("Is True, duplo Clique");
         }
     }//GEN-LAST:event_jTableSugestoesMouseClicked
 
@@ -2286,6 +2336,59 @@ public final class PrincipalBody extends javax.swing.JInternalFrame {
             JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTableResultadosPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResultadosPesquisaMouseClicked
+        // TODO add your handling code here:
+        int clicks=evt.getClickCount();
+        if(clicks>=2){
+            try {
+            int linha = jTableResultadosPesquisa.getSelectedRow();
+            if (linha == -1) {
+                JOptionPane.showInternalMessageDialog(this, "Selecione um produto", "Produto não selecionado", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String tipo = (String) jTableResultadosPesquisa.getValueAt(linha, 4);
+                if (tipo.equals("Leilão")) {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "cardLicitar");
+                    int id = (Integer) jTableResultadosPesquisa.getValueAt(linha, 0);
+                    Leilao l = sys.getLeilao(id);
+                    Image i = l.getP().getImagem()
+                            .getScaledInstance(jScrollPaneImagemProduto.getWidth() - 10, jScrollPaneImagemProduto.getHeight() - 10, Image.SCALE_DEFAULT);
+                    jLabelProdutoLeilao.setIcon(new ImageIcon(i));
+                    jLabelLicitarNomeP.setText(l.getP().getNome());
+                    jTextAreaLicitarDesc.setText(l.getP().getDescricao());
+                    jLabelEmail.setText(l.getLeiloador().getUsername());
+                    jLabelValorBase.setText(Float.toString(l.getUltimaLicitacao()) + "€");
+                    jLabelTectoValor.setText(Float.toString(l.getTecto()) + "€");
+                    jLabelValorCassific.setText(Integer.toString(l.getLeiloador().getClassificacao()));
+                    SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d 'a' hh:mm:ss ");
+                    jLabelDataLeilao.setText(dateFormatter.format(l.getDataLimiteLeilao().getTime()));
+                    leilaoActivo = l;
+                } else {
+                    CardLayout card = (CardLayout) this.BodyPrincipal.getLayout();
+                    card.show(this.BodyPrincipal, "ProdutoCompra");
+                    int id = (Integer) jTableResultadosPesquisa.getModel().getValueAt(linha, 0);
+                    Venda v = sys.getVenda(id);
+                    Image i = v.getProduto().getImagem()
+                            .getScaledInstance(jScrollPaneImagemCompra.getWidth() - 10, jScrollPaneImagemCompra.getHeight() - 10, Image.SCALE_DEFAULT);
+                    jLabelImagemCompra.setIcon(new ImageIcon(i));
+                    jLabelNomeProdutoCompra.setText(v.getProduto().getNome());
+                    jEditorPane1.setText(v.getProduto().getDescricao());
+                    jLabelvalor.setText(Float.toString(v.getPreco()) + "€");
+                    jLabelcontacto.setText(v.getVendedor().getUsername());
+                    jLabelClassificaValor.setText(Integer.toString(v.getVendedor().getClassificacao()));
+                    vendaActiva = v;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showInternalMessageDialog(this, e, "Erro a apresentar produto", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+    }//GEN-LAST:event_jTableResultadosPesquisaMouseClicked
+
+    private void jScrollPaneSugestoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPaneSugestoesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPaneSugestoesMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BodyPrincipal;
