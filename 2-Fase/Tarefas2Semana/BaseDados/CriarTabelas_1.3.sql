@@ -125,26 +125,6 @@ CREATE TABLE Licitacao (
   UNIQUE(idl,vl)
 );
 
--- ---
--- Table 'PTroca'
--- 
--- ---
-
-
-		
-CREATE TABLE PTroca(
-  idt number(10), --idTroca
-  usr1 VARCHAR2(20) REFERENCES Utilizador(usr),--propositor
-  idp1 number(10) REFERENCES Produto(idp),--oferta
-  usr2 VARCHAR2(20) REFERENCES Utilizador(usr),--convidado
-  idp2 number(10) REFERENCES Produto(idp),--desejado
-  dlt DATE,--DataLimiteParaTroca
-  dct DATE, --DataConfirmacaoTroca
-  dconlt DATE, --DataConclusaoTroca
-  dpt DATE,--DataPropostaDeTroca
-  PRIMARY KEY (idt)
-);
-
 
 
 -- ---
@@ -186,67 +166,45 @@ minvalue 1
 maxvalue 10000;
 
 
-Create sequence Sidt
-start with 1
-increment by 1
-minvalue 1
-nomaxvalue;
----Inserir
 
+create index classificacao_classificado
+on classificacao (classificado);
 
+create index classificacao_classificador
+on classificacao (classificador);
 
--- Test Data estou a fazer!!! não tirar de comentário!
--- ---
+create index favorito_usr
+on favorito (usr);
 
+create index favorito_idp
+on favorito(idp);
 
---Inserir um utilizador  
-INSERT INTO Utilizador VALUES('maiarib','1234','maiarib@gmail.com','Ribeirao rua das Escolas',to_date('2010-01-23','yyyy-mm-dd'),to_date('1991-02-23','yyyy-mm-dd'),null);
-INSERT INTO Utilizador VALUES('pfaria','12345','pfaria@gmail.com','Vizela 4702-407',to_date('2010-01-23','yyyy-mm-dd'),to_date('1991-01-23','yyyy-mm-dd'),null);
-INSERT INTO Utilizador VALUES('cesar','123456','cesar.perdigao92@gmail.com','Santa Marta de Penaguião', to_date('06-07-1992','dd-mm-yyyy'), sysdate, null);
+create index leilao_dp
+on leilao(dp);
 
---inserir uma classificação de 0 a 5 
-INSERT INTO Classificacao VALUES('maiarib','pfaria',5,to_date('2010-01-23','yyyy-mm-dd'));
-INSERT INTO Classificacao VALUES('pfaria','maiarib',5,to_date('2010-01-24','yyyy-mm-dd'));  
+create index leilao_dep
+on leilao(dep);
 
+create index leilao_df
+on leilao(df);
 
---Inserir produtos  
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Samsung',null,'maiarib','Em bom estado','COMUNICACOES');
+create index leilao_ul
+on leilao(ul);
 
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Samsung 2',null,'pfaria','Não Em bom estado','COMUNICACOES');
+create index produto_dp
+on produto(dp);
 
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Da Vodafone',null,'pfaria','Em bom Optimo estado para Troca','COMUNICACOES');
+create index venda_cp
+on venda(cp);
 
-INSERT INTO Produto VALUES(Sidp.nextval,'Telemovel Da Huawei',null,'maiarib','Em bom Optimo estado para troca','COMUNICACOES');
+create index venda_vd
+on venda(vd);
 
+create index venda_idp
+on venda(idp);
 
+create index venda_dp
+on venda(dp);
 
---Inserir nas Venda
-INSERT INTO Venda VALUES
-(Sidv.nextval,1,23.3,null,to_date('2010-01-24','yyyy-mm-dd'),to_date('2012-01-23 14:33','yyyy-mm-dd hh24:mi')
-,to_date('2012-01-22 14:34','yyyy-mm-dd hh24:mi'),'maiarib');
-
-
---Inserir favorito
-INSERT INTO Favorito VALUES('pfaria',1);
-
-
-
-INSERT INTO Leilão VALUES
- (Sidl.nextval,1,'pfaria',null,to_date('2013-01-22 14:34','yyyy-mm-dd hh24:mi'),
- to_date('2012-01-22 14:35','yyyy-mm-dd hh24:mi'),'',3.00,5.00);
-
-
-
-
-INSERT INTO Lecitacao VALUES(1,'maiarib',to_date('2012-01-22 14:35','yyyy-mm-dd hh24:mi'),3.66);
-
-
-
-INSERT INTO PTroca VALUES
-(3,'pfaria',4,'maiarib',1,0,to_date('2012-01-22 14:35','yyyy-mm-dd hh24:mi'),to_date('2012-01-22 14:35','yyyy-mm-dd hh24:mi'));
-
-
-
-INSERT INTO CasoSuspeito VALUES('pfaria',1,'Nao é real!');
-
-
+create index venda_dep
+on venda(dep);
