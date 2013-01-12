@@ -1,5 +1,14 @@
 
 
+--Procedimento para mudar a password do utilizador--
+--para testar em sql : > execute del_password('username')--
+create or replace
+PROCEDURE del_password (usrname string) is
+BEGIN
+UPDATE utilizador set pw='ZZZZZZZZZZZZZZZZ'
+WHERE usr=usrname;
+END del_password;
+
 
 
 --Falta os auto incrementos!
