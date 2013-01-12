@@ -1,4 +1,10 @@
-
+--função que altera a data para os dias que entra--
+--para testar:> select data_anterior(7)from dual--
+create or replace
+function data_anterior(dias integer)
+return date is begin
+return sysdate-dias;
+end data_anterior;
 
 --Procedimento para mudar a password do utilizador--
 --para testar em sql : > execute del_password('username')--
