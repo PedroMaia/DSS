@@ -223,3 +223,40 @@ on venda(dp);
 
 create index venda_dep
 on venda(dep);
+
+create or replace function leilao_fechado(idleilao int)
+return boolean is
+  max_lit real;
+  tecto real;
+  data_fecho date;
+begin
+  select nvl(max(vl),0) into max_lit from licitacao where idl=idleilao;
+  select pml,df into tecto, data_fecho from leilao where idl=idleilao;
+  if(max_lit>tecto or sysdate>data_fecho) then
+    return true;
+  else
+    return false;
+  end if;
+end leilao_fechado;
+
+create or replace trigger valida_licitacao
+before insert on licitacao
+for each row
+
+declare
+  leilaoFechado exception;
+  licitacaoBaixa exception;
+  max_lit real;
+begin
+  select max(vl) into max_lit from licitacao where idl=:new.idl;
+  if(leilao_fechado(:NEW.idl)) then
+    raise leilaoFechado;
+  else
+    if(:new.vl<=max_lit) then
+      raise licitacaoBaixa;
+    end if;
+  end if;
+  exception
+  when leilaoFechado then raise_application_error(-20001,'Leilao já fechado.');
+  when licitacaoBaixa then raise_application_error(-20002,'Licitaçao demasiado baixa.');
+end;
