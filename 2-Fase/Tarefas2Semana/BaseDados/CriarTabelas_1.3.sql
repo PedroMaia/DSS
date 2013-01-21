@@ -1,3 +1,40 @@
+--funçao que vai buscvar o top 3 produtos que mais froma adicionados à lista dos favoritos--
+select np, refs
+from(select idp as ids ,val as refs
+      from(
+          select favorito.idp , count(idp) val
+          from favorito
+          group by favorito.idp
+        )
+     order by refs desc
+     ),produto
+where rownum <3 and produto.idp=ids;
+
+--Faz a media da classificação e dá o top--
+select classificado, avg(va) as top
+from classificacao
+where rownum < 10
+group by classificado
+order by top desc;
+
+
+--tabela com as vendas inseridas 7 dias antes!--
+select usr, count(vd) as top
+from venda, utilizador
+where venda.vd=utilizador.usr
+and venda.div>data_anterior(7)
+and venda.cp is null 
+group by usr
+order by top desc;
+
+--tabela com o nr de favoritos de cada user--
+select favorito.usr, count (favorito.idp) as top
+from favorito , produto
+where favorito.idp=produto.idp 
+group by favorito.usr
+order by top desc;
+
+
 --função que altera a data para os dias que entra--
 --para testar:> select data_anterior(7)from dual--
 create or replace
