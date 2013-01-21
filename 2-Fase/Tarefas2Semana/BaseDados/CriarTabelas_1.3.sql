@@ -11,11 +11,13 @@ from(select idp as ids ,val as refs
 where rownum <3 and produto.idp=ids;
 
 --Faz a media da classificação e dá o top--
-select classificado, avg(va) as top
-from classificacao
-where rownum < 10
-group by classificado
-order by top desc;
+
+select *
+from(select classificado, avg(va) as top
+      from classificacao
+      group by classificado
+      order by top desc)
+where rownum<10;
 
 
 --tabela com as vendas inseridas 7 dias antes!--
