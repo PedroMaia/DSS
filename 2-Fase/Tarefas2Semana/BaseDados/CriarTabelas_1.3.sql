@@ -297,3 +297,11 @@ begin
   when leilaoFechado then raise_application_error(-20001,'Leilao já fechado.');
   when licitacaoBaixa then raise_application_error(-20002,'Licitaçao demasiado baixa.');
 end;
+
+CREATE OR REPLACE TRIGGER valida_compra
+BEFORE UPDATE ON VENDA 
+FOR EACH ROW 
+WHEN (new.cp!=old.cp and old.cp is not null) 
+BEGIN
+  raise_application_error(-20003, 'Produto já comprado.');
+END;
