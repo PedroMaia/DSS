@@ -281,7 +281,6 @@ end leilao_fechado;
 create or replace trigger valida_licitacao
 before insert on licitacao
 for each row
-
 declare
   leilaoFechado exception;
   licitacaoBaixa exception;
@@ -307,3 +306,4 @@ WHEN (new.cp!=old.cp and old.cp is not null)
 BEGIN
   raise_application_error(-20003, 'Produto já comprado.');
 END;
+
