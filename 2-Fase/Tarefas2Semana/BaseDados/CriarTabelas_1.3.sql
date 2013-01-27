@@ -1,3 +1,16 @@
+select di, count(*)
+from leilao
+where di>data_anterior(7)
+group by di
+order by di desc;
+
+select div, count(*)
+from venda
+where div>data_anterior(7)
+group by div
+order by div desc;
+
+
 --funçao que vai buscvar o top 3 produtos que mais froma adicionados à lista dos favoritos--
 select np, refs
 from(select idp as ids ,val as refs
