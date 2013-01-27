@@ -175,8 +175,7 @@ CREATE TABLE Licitacao (
   ul VARCHAR2(20) REFERENCES Utilizador(usr),--UserLecitou
   dl DATE ,--DataLecitacao
   vl number(20,3),--Valor Lecitação
-  PRIMARY KEY (idl,ul,dl),
-  UNIQUE(idl,vl)
+  primary key(idl,vl)
 );
 
 
