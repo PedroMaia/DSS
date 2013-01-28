@@ -1,3 +1,17 @@
+select nvl(sum(0.1*mlic),0)
+from leilao,
+(select idl, max(vl) as mlic
+from licitacao
+group by idl) mlics
+where leilao.idl=mlics.idl
+and leilao.dep is not null
+and leilao.dp is not null;
+
+select nvl(sum(0.1*pr),0)
+from venda
+where dep is not null
+and dp is not null;
+
 select di, count(*)
 from leilao
 where di>data_anterior(7)
@@ -319,3 +333,23 @@ BEGIN
   raise_application_error(-20003, 'Produto já comprado.');
 END;
 
+create or replace procedure elimina_leilao(lnum number) is
+begin
+  delete from licitacao where idl=lnum;
+  delete from leilao where idl=lnum;
+end elimina_leilao;
+
+create or replace procedure elimina_produto(pnum number) is
+begin
+  delete from casosuspeito where idp=pnum;
+  delete from favorito where idp=pnum;
+  delete from licitacao where idl in (select idl from leilao where idp=pnum);
+  delete from leilao where idp=pnum;
+  delete from venda where idp=pnum;
+  delete from produto where idp=pnum;
+end elimina_produto;
+  
+  
+  
+  
+  
